@@ -1,102 +1,70 @@
+# Getting Started with Create React App
 
-# Myntra.com-Clone
-## [Deployed URL] (https://valid-circle-9091-one.vercel.app/)
-##  StyleHub
--Ecommerce Website
-StyleHub is a Casual Wear and Lifestyle Brand and E-commerce platform. 
-StyleHub is a one stop shop for all your fashion and lifestyle needs. Being India's largest e-commerce store for fashion and lifestyle products, StyleHub aims at providing a hassle free and enjoyable shopping experience to shoppers across the country with the widest range of brands and products on its portal. The brand is making a conscious effort to bring the power of fashion to shoppers with an array of the latest and trendiest products available in the country.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
 
+In the project directory, you can run:
 
----
+### `npm start`
 
-## Technologies used
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-<hr>
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-- React
-- Redux
-- Html
-- CSS
-- Javascript
-- Chakra UI
-- React Icons
+### `npm test`
 
-## Installing and Running
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-<hr>
+### `npm run build`
 
-To run this application on your local system
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- Clone the Repository
-- Install npm packages
-- Run the application
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Features
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
----
+### `npm run eject`
 
-- There is login and logout functionality.
-- Elegant navbar for easy navigation between pages and categories.
-- Product Pages where all the products are displayed using Api.
-- Single Product Page on clicking Each Product carrying description of that product.
-- Cart with Crud Operations.
-- Payment Pages.
-- Footer for navigating to different social Media Pages.
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## Steps to navigate the website:
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-<hr>
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-- On opening the application the user is taken to the landing Page which have a Navbar to navigate to different Section of the application.
-- On the Landing Page Navbar, user can click on Website Logo in Navbar to navigate to categories where all the categories of the products available are displayed.
-- There are three categories available Men/Women/Kids.
-- Product Pages containing all the Products available with options of sort and filter according to users requirements.
-- Single Product Page to view the description of each and every Product.
-- Cart Page with of add/delete the product.
-- Payment Pages with form validation.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
----
+## Learn More
 
-<!-- ### Home Page and Footer
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-  ![image](./src/Assets/r1.png)
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-  <img width="1000" alt="Footer" src="./src/Assets/r2.png">
----
+### Code Splitting
 
-### Categories
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-![image](./src/Assets/r3.png)
+### Analyzing the Bundle Size
 
-![image](./src/Assets/r4.png)
-![image](./src/Assets/r5.png)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
----
+### Making a Progressive Web App
 
-### Products Section
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-![image](./src/Assets/r6.png)
-![image](./src/Assets/r7.png)
+### Advanced Configuration
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Login Page/Signup Page
+### Deployment
 
-## <img width="1000" alt="login" src="./src/Assets/r8.png">
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
----
-### Cart Section
-![image](./src/Assets/r9.png)
+### `npm run build` fails to minify
 
-
----
-### Payment Section
-![image](./src/Assets/r10.png)
-
- -->
-
-
-##  Contributors (Group)
-1. Bharat Sharma (Team-Lead)
-2. Rahul Singh Kushwah
-3. Sakshi Mulekar
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

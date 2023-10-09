@@ -1,40 +1,25 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { connect } from "react-redux";
-import BaseRouter from "./routes";
-import * as actions from "./store/actions/auth";
-import "semantic-ui-css/semantic.min.css";
-import CustomLayout from "./containers/Layout";
+import "./App.css";
+import AllRoutes from "./Routes";
+import CartEmpty from "./component/Rahul/Cart/CartEmpty";
+import CartPage from "./component/Rahul/Cart/CartPage";
+import Navbar2 from "./component/Rahul/Navbar2"; 
+import PaymentPage from "./component/Rahul/PaymentPage/PaymentPage";
+ 
 
-class App extends Component {
-  componentDidMount() {
-    this.props.onTryAutoSignup();
-  }
+function App() {
+ 
 
-  render() {
-    return (
-      <Router>
-        <CustomLayout {...this.props}>
-          <BaseRouter />
-        </CustomLayout>
-      </Router>
-    );
-  }
+  
+  return (
+    <div className="App">
+
+   <AllRoutes />
+   {/* <Navbar2 /> */}
+{/* <CartEmpty /> */}
+{/* <CartPage /> */}
+{/* <PaymentPage /> */}
+    </div>
+  );
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

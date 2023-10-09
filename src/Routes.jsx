@@ -5,6 +5,7 @@ import KidsWear from "./component/ProductPage/KidsWear";
 import MensWear from "./component/ProductPage/MensWear";
 import WomensWear from "./component/ProductPage/WomensWear";
 
+import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import AdminPageLogin from "./component/AdminDataBase/AdminPageLogin";
 import AdminPanel from "./component/AdminDataBase/AdminPanel";
@@ -33,10 +34,11 @@ const AllRoutes = () => {
           </PrivateRoutes>
         }
       />
+      <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/address" element={<Address />} />
+      {/* <Route path="/address" element={<Address />} /> */}
       <Route path="/paymentPage" element={<PaymentPage />} />
-      <Route path="/otp" element={<Otp />} />
+      {/* <Route path="/otp" element={<Otp />} /> */}
       <Route path="/orderSuccess" element={<OrderSucess />} />
 
       {/* <Route path='/paymentpage' element={<Address />} />  */}

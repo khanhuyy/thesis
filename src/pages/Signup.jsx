@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import axios from "axios";
 import OtpInput from "otp-input-react";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { RecaptchaVerifier, signInWithEmailAndPassword, signInWithPhoneNumber } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import {
   Box,
@@ -32,6 +33,8 @@ import { async } from "@firebase/util";
 export const Signup = () => {
   const [isAuth,setAuth] = useState(false)
   const [ph, setph] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [user, setuser] = useState("");
   const [otp, setotp] = useState("");
   const [change, setchnage] = useState(true);
@@ -44,11 +47,6 @@ export const Signup = () => {
   const [data, setdata] = useState([]);
   const [checkemail, setcheckemail] = useState("");
   const [checkpss, setcheckpss] = useState("");
-  useEffect(() => {
-    axios
-      .get(`https://63f87b1f5b0e4a127de6dd05.mockapi.io/survey/users`)
-      .then((res) => setdata(res.data));
-  }, []);
 
   const onsubmit = async () => {
     data.map((item) => {
@@ -68,11 +66,6 @@ export const Signup = () => {
       }
     });
   };
-  console.log(data);
-  // const clicked=()=>{
-  //   navigate("/admin")
-  // }
-  /////
 
   function onCatchVerify() {
     if (!window.recaptchaVerifier) {
@@ -91,13 +84,23 @@ export const Signup = () => {
   }
 
   const onSingup = () => {
-    onCatchVerify();
-    setchange2(!change2);
-    const appVerifier = window.recaptchaVerifier;
+    // onCatchVerify();
+    // setchange2(!change2);
+    // const appVerifier = window.recaptchaVerifier;
 
-    const phoneformat = "+84" + ph;
+    // const phoneformat = "+84" + ph;
 
-    signInWithPhoneNumber(auth, phoneformat, appVerifier)
+    // signInWithPhoneNumber(auth, phoneformat, appVerifier)
+    //   .then((confirmationResult) => {
+    //     window.confirmationResult = confirmationResult;
+
+    //     toast.success("Otp Send Successfully");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    signInWithEmailAndPassword(auth, email, password)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
 
@@ -106,6 +109,7 @@ export const Signup = () => {
       .catch((error) => {
         console.log(error);
       });
+    ;
   };
   const wrongalert = async () => {
     toast({
@@ -117,7 +121,7 @@ export const Signup = () => {
     })
   };
 
-  function onOtpVerify() {
+  function onSisnIn() {
     window.confirmationResult
       .confirm(otp)
       .then(async (result) => {
@@ -188,17 +192,29 @@ export const Signup = () => {
                         </Center>
                       </FormLabel>
 
-                      <InputGroup mt={10} size={"sm"} variant={"outline"}>
-                        <InputLeftAddon p={"15px 10px"} children="+91" />
+                      <InputGroup mt={30} size={"sm"} variant={"outline"}>
                         <Input
                           p={"15px 10px"}
                           focusBorderColor="#f4f4f4"
-                          maxLength={10}
-                          minLength={10}
+                          maxLength={30}
+                          minLength={30}
                           type="tel"
-                          placeholder="Mobile Number"
-                          value={ph}
-                          onChange={(e) => setph(e.target.value)}
+                          placeholder="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </InputGroup>
+
+                      <InputGroup mt={30} size={"sm"} variant={"outline"}>
+                        <Input
+                          p={"15px 10px"}
+                          focusBorderColor="#f4f4f4"
+                          maxLength={30}
+                          minLength={30}
+                          type="tel"
+                          placeholder="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                       </InputGroup>
 
@@ -315,7 +331,7 @@ export const Signup = () => {
                         w={"100%"}
                         color="white"
                         bg={"#ff406c"}
-                        onClick={onOtpVerify}
+                        onClick={onSisnIn}
                       >
                         Verify
                       </Button>
