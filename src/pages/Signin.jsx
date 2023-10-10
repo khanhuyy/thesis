@@ -67,80 +67,20 @@ export const Signin = () => {
     });
   };
 
-  function onCatchVerify() {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        "recaptcha-container",
-        {
-          size: "invisible",
-          callback: (response) => {
-            onSingup();
-          },
-          "expired-callback": () => { },
-        },
-        auth
-      );
-    }
-  }
-
-  const onSingup = () => {
-    // onCatchVerify();
-    // setchange2(!change2);
-    // const appVerifier = window.recaptchaVerifier;
-
-    // const phoneformat = "+84" + ph;
-
-    // signInWithPhoneNumber(auth, phoneformat, appVerifier)
-    //   .then((confirmationResult) => {
-    //     window.confirmationResult = confirmationResult;
-
-    //     toast.success("Otp Send Successfully");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
+  const onSignin = (e) => {
+    e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then((confirmationResult) => {
-        window.confirmationResult = confirmationResult;
-
-        toast.success("Otp Send Successfully");
+      .then((userCredential) => {
+        console.log(userCredential);
+        // toast.success("Otp Send Successfully");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log(auth);
     ;
   };
-  const wrongalert = async () => {
-    toast({
-      position: 'top',
-      title: `Wrong OTP entered`,
-      status: "error",
-      isClosable: true,
-      duration: 1500,
-    })
-  };
-
-  function onSisnIn() {
-    window.confirmationResult
-      .confirm(otp)
-      .then(async (result) => {
-        setuser(result.user);
-        toast({
-          position: 'top',
-          title: `Login successful`,
-          status: 'success',
-          isClosable: true,
-          duration: 1500,
-        })
-        // setAuth(true)
-        localStorage.setItem("Login",JSON.stringify(true))
-        navigate("/");
-      })
-      .catch((error) => {
-        wrongalert();
-      });
-  }
 
   return(
     <form>
@@ -179,9 +119,9 @@ export const Signin = () => {
         borderRadius="0"
         colorScheme={"none"}
         type="submit"
-        onClick={onSingup}
+        onClick={onSignin}
       >
-        CONTINUE
+        Login
       </Button>
       <Button w={"100%"}
         mt={8}
@@ -192,9 +132,9 @@ export const Signin = () => {
         borderRadius="0"
         colorScheme={"none"}
         type="submit"
-        onClick={onSingup}
+        onClick={() => navigate("/signup")}
       >
-        CONTINUE
+        Sign Up
       </Button>
     </form>
   )

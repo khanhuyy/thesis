@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import { deleteAll } from "../../../redux/CartReducer/action";
 
 let voices = window.speechSynthesis.getVoices()[3];
-console.log(voices);
 
 const DebitCard = () => {
   const [tabIndex, setTabIndex] = useState(0);

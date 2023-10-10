@@ -4,7 +4,7 @@ import "../../CSS/Nav.css"
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 import { RxCross2 } from 'react-icons/rx'
-
+import {auth} from '../../firebase';
 import { Stack, Box, Text, HStack, Button, Flex, IconButton, Image } from "@chakra-ui/react";
 // RiArrowDropDownLine
 import BANNER from '../imagess/Nbanner.webp'
@@ -13,10 +13,10 @@ import BANNER from '../imagess/Nbanner.webp'
 
 
 const MobileNav = ({setHamburger,hamburger}) => {
-    
     function handleInput() {
-
+    
     }
+    console.log(auth);
     return (
         <Box border={"none"} >
             {hamburger ? <Box  w={"100%"} p={"1%"} border={"none"}>

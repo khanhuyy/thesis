@@ -7,12 +7,13 @@ import MobNav2 from "./NavBar/MobNav2";
 import axios from "axios";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { baseUrl } from "../Url";
+import { auth } from "../firebase";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const Nav = ({ setHamburger, hamburger }) => {
   const navigate = useNavigate()
-
+  console.log(auth);
   const [logout, setlogout] = useState(false)
 
   let token = JSON.parse(localStorage.getItem("Login"))
@@ -84,9 +85,6 @@ const Nav = ({ setHamburger, hamburger }) => {
     });
   };
 
-
-  console.log(DATA, "line 60")
-
   useEffect(() => {
     window.addEventListener("resize", detectSize);
 
@@ -103,8 +101,6 @@ const Nav = ({ setHamburger, hamburger }) => {
     localStorage.setItem("Login", JSON.stringify(""))
     setlogout(false)
   }
-
-  console.log(windowDimension.winWidth);
 
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
@@ -737,8 +733,12 @@ const Nav = ({ setHamburger, hamburger }) => {
           <div className="thirdNavMain">
 
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
-            <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
-            <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={Display} onClick={logouts}>Logout</Button>
+            {/* Login button */}
+            {auth.currentUser != null ? (
+              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
+            ) : (
+              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={Display} onClick={logouts}>Logout</Button>
+            )}
             <div>
               <img
                 src="https://img.icons8.com/ios-glyphs/256/hearts.png"

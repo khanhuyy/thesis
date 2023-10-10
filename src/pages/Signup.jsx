@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import axios from "axios";
 import OtpInput from "otp-input-react";
-import { RecaptchaVerifier, signInWithEmailAndPassword, signInWithPhoneNumber } from "firebase/auth";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { RecaptchaVerifier, signInWithEmailAndPassword, signInWithPhoneNumber, createUserWithEmailAndPassword } from "firebase/auth";
 
 import {
   Box,
@@ -83,64 +82,16 @@ export const Signup = () => {
     }
   }
 
-  const onSingup = () => {
-    // onCatchVerify();
-    // setchange2(!change2);
-    // const appVerifier = window.recaptchaVerifier;
-
-    // const phoneformat = "+84" + ph;
-
-    // signInWithPhoneNumber(auth, phoneformat, appVerifier)
-    //   .then((confirmationResult) => {
-    //     window.confirmationResult = confirmationResult;
-
-    //     toast.success("Otp Send Successfully");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((confirmationResult) => {
-        window.confirmationResult = confirmationResult;
-
-        toast.success("Otp Send Successfully");
+  const onSingup = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
       })
       .catch((error) => {
         console.log(error);
-      });
-    ;
-  };
-  const wrongalert = async () => {
-    toast({
-      position: 'top',
-      title: `Wrong OTP entered`,
-      status: "error",
-      isClosable: true,
-      duration: 1500,
-    })
-  };
-
-  function onSisnIn() {
-    window.confirmationResult
-      .confirm(otp)
-      .then(async (result) => {
-        setuser(result.user);
-        toast({
-          position: 'top',
-          title: `Login successful`,
-          status: 'success',
-          isClosable: true,
-          duration: 1500,
-        })
-        // setAuth(true)
-        localStorage.setItem("Login",JSON.stringify(true))
-        navigate("/");
       })
-      .catch((error) => {
-        wrongalert();
-      });
-  }
+  };
 
   return (
     <>
@@ -331,7 +282,7 @@ export const Signup = () => {
                         w={"100%"}
                         color="white"
                         bg={"#ff406c"}
-                        onClick={onSisnIn}
+                        // onClick={}
                       >
                         Verify
                       </Button>

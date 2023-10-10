@@ -8,7 +8,6 @@ const url = `http://localhost:8080/admin_data`
 
 
 const voices = window.speechSynthesis.getVoices();
-console.log(voices);
 function textTospeech (text) {
     let utternance = new SpeechSynthesisUtterance(text);
     utternance.voice = window.speechSynthesis.getVoices()[3] ;
