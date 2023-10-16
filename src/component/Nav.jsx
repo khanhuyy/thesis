@@ -8,6 +8,7 @@ import axios from "axios";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { baseUrl } from "../Url";
 import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
@@ -97,9 +98,18 @@ const Nav = ({ setHamburger, hamburger }) => {
 
   }
 
-  const logouts = () => {
-    localStorage.setItem("Login", JSON.stringify(""))
-    setlogout(false)
+  const logouts = (e) => {
+    e.preventDefault();
+    signOut(auth)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    // localStorage.setItem("Login", JSON.stringify(""))
+    // setlogout(false)
   }
 
   return (
@@ -734,11 +744,13 @@ const Nav = ({ setHamburger, hamburger }) => {
 
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
             {/* Login button */}
-            {auth.currentUser != null ? (
+            {auth === undefined ? (
               <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
             ) : (
-              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={Display} onClick={logouts}>Logout</Button>
+              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button>
             )}
+            {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
+            <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button> */}
             <div>
               <img
                 src="https://img.icons8.com/ios-glyphs/256/hearts.png"

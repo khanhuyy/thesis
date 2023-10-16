@@ -7,6 +7,8 @@ import WomensWear from "./component/ProductPage/WomensWear";
 
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import Shop from "./component/shop/Shop";
+import Warehouse from "./component/warehouse/Warehouse";
 import AdminPageLogin from "./component/AdminDataBase/AdminPageLogin";
 import AdminPanel from "./component/AdminDataBase/AdminPanel";
 import SingleProduct from "./component/singlePage/SingleProduct";
@@ -26,6 +28,7 @@ const AllRoutes = () => {
       <Route path="/kids" element={<KidsWear />} />
       <Route path="/mens" element={<MensWear />} />
       <Route path="/womens" element={<WomensWear />} />
+      <Route path="/warehouses" element={<Warehouse />} />
       <Route
         path="/cart"
         element={
@@ -34,6 +37,7 @@ const AllRoutes = () => {
           </PrivateRoutes>
         }
       />
+      <Route path="/shops" element={<Shop />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       {/* <Route path="/address" element={<Address />} /> */}

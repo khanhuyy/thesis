@@ -16,7 +16,7 @@ const MobileNav = ({setHamburger,hamburger}) => {
     function handleInput() {
     
     }
-    console.log(auth);
+    console.log(hamburger);
     return (
         <Box border={"none"} >
             {hamburger ? <Box  w={"100%"} p={"1%"} border={"none"}>
