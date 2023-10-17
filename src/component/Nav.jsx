@@ -7,36 +7,18 @@ import MobNav2 from "./NavBar/MobNav2";
 import axios from "axios";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { baseUrl } from "../Url";
-import { auth } from "../firebase";
-import { signOut } from "firebase/auth";
+import { firebaseSignIn } from "../service/firebase";
+import { auth, signOut } from "firebase/auth";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const Nav = ({ setHamburger, hamburger }) => {
   const navigate = useNavigate()
-  console.log(auth);
-  const [logout, setlogout] = useState(false)
 
   let token = JSON.parse(localStorage.getItem("Login"))
 
-  useEffect(() => {
-    if (token) {
-      setlogout(true)
-    } else {
-      setlogout(false)
-    }
-  }, [logout])
-
   let Display
   let D2
-
-  if (logout) {
-    Display = "inline"
-    D2 = "none"
-  } else {
-    Display = "none"
-    D2 = "inline"
-  }
 
   const [search, setSearch] = useState("")
   const [DATA, setData] = useState([])
@@ -50,13 +32,9 @@ const Nav = ({ setHamburger, hamburger }) => {
   const fetchData = () => {
     let Data = search
     Data = Data.split(" ")
-    console.log(Data, "in-fetch")
-    console.log(Data[1])
 
-    // axios.get(`https://shy-teal-caterpillar-toga.cyclic.app/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
     axios.get(`${baseUrl}/${Data[0]}?q=${Data[1]}`).then((res) => setData(res.data))
       .catch((err) => console.log(err))
-    // console.log(ref1.current)
   }
 
 
@@ -64,12 +42,6 @@ const Nav = ({ setHamburger, hamburger }) => {
     if (search != "") {
       fetchData()
     }
-
-    // let time = setTimeout(() => {
-
-
-    // }, 1000);
-
   }, [search])
 
   const handleNavigate1 = (id) => {
@@ -94,8 +66,8 @@ const Nav = ({ setHamburger, hamburger }) => {
     };
   }, [windowDimension])
 
-  function handleInput() {
-
+  const handleInput = (e) => {
+    console.log("searching");
   }
 
   const logouts = (e) => {
@@ -111,6 +83,8 @@ const Nav = ({ setHamburger, hamburger }) => {
     // localStorage.setItem("Login", JSON.stringify(""))
     // setlogout(false)
   }
+
+  console.log(firebaseSignIn());
 
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
