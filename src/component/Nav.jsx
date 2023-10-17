@@ -7,8 +7,8 @@ import MobNav2 from "./NavBar/MobNav2";
 import axios from "axios";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { baseUrl } from "../Url";
-import { firebaseSignIn } from "../service/firebase";
-import { auth, signOut } from "firebase/auth";
+import firebase from "../service/firebase";
+import "firebase/compat/auth";
 
 // import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
@@ -72,9 +72,10 @@ const Nav = ({ setHamburger, hamburger }) => {
 
   const logouts = (e) => {
     e.preventDefault();
-    signOut(auth)
+    firebase.signOut(firebase.auth)
       .then((userCredential) => {
         console.log(userCredential);
+        console.log(firebase.auth);
         navigate('/');
       })
       .catch((error) => {
@@ -84,7 +85,10 @@ const Nav = ({ setHamburger, hamburger }) => {
     // setlogout(false)
   }
 
-  console.log(firebaseSignIn());
+  // firebase.signIn("admin@gmail.com", "123456")
+  //   .then((userCredential) => {
+  //     console.log(userCredential);
+  //   })
 
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
@@ -718,7 +722,7 @@ const Nav = ({ setHamburger, hamburger }) => {
 
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
             {/* Login button */}
-            {auth === undefined ? (
+            {firebase.auth == undefined ? (
               <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
             ) : (
               <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button>
