@@ -16,6 +16,20 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
+import {
+  doc,
+  onSnapshot,
+  updateDoc,
+  setDoc,
+  deleteDoc,
+  collection,
+  serverTimestamp,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+} from 'firebase/firestore';
 import React, { useRef, useState } from "react";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
@@ -29,12 +43,14 @@ import CardForMensAndWomen from "./CardForMensAndWomen";
 import Pagination from "./Pagination";
 import Nav from "../Nav";
 import MobileNav from "../NavBar/MobileNav";
-
-
+import firebase from "../../service/firebase";
+import db from "../../service/firestore";
 
 const MensWear = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [menProducts, setMenProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { productData } = useSelector((store) => store.ProductReducer);
   const [page, setPage] = useState(1)
   const [hamburger, setHamburger] = useState(false)
@@ -72,14 +88,34 @@ const MensWear = () => {
 
   // console.log(filters);
 
+  // useEffect(() => {
+  //   dispatch(getData("men", search));
+  // }, [dispatch, search]);
+  const collectionRef = collection(db, 'products');
   useEffect(() => {
-    dispatch(getData("men", search));
-  }, [dispatch, search]);
+    const q = query(
+      collectionRef
+    );
+
+    setLoading(true);
+    // const unsub = onSnapshot(q, (querySnapshot) => {
+    const unsub = onSnapshot(collectionRef, (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setMenProducts(items);
+      setLoading(false);
+    });
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  console.log(menProducts);
+  console.log(loading);
 
   useEffect(() => {
-    // for(let key in finalFilter){
-
-    // }
     setParams(finalFilter);
   }, [finalFilter]);
 
@@ -187,9 +223,9 @@ const MensWear = () => {
   };
 
 
-  if (productData.length < 1) {
-    return <Center style={{ marginTop: '50vh' }}><Spinner /> </Center>
-  }
+  // if (productData.length < 1) {
+  //   return <Center style={{ marginTop: '50vh' }}><Spinner /> </Center>
+  // }
 
 
 
@@ -456,8 +492,8 @@ const MensWear = () => {
               <Stack className="product-display">
                 <Stack borderLeft="1px solid  #e9e9ed" borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                   <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
-                    {productData.length >= 0 &&
-                      productData.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <Box onClick={()=>navigate(`/product/${e.id}`,{state:"men"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
+                    {menProducts.length >= 0 &&
+                      menProducts.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <Box onClick={()=>navigate(`/product/${e.id}`,{state:"men"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
                   </SimpleGrid>
                 </Stack>
                 <Center marginBottom="20px" >

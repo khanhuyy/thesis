@@ -83,7 +83,7 @@ const Card = ({ props }) => {
           </Box>
           <Stack p="1rem" spacing={0} alignItems={"flex-start"}>
             <Text as="b">{brand}</Text>
-            <Text>{title.trim().slice(0, 20)}...</Text>
+            {/* <Text>{title.trim().slice(0, 20)}...</Text> */}
           </Stack>
         </Box>
       </Box>

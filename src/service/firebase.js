@@ -55,59 +55,9 @@ class Firebase {
         .catch((error) => reject(error));
     });
 
-  reauthenticate = (currentPassword) => {
-    const user = this.auth.currentUser;
-    const cred = app.auth.EmailAuthProvider.credential(
-      user.email,
-      currentPassword
-    );
-
-    return user.reauthenticateWithCredential(cred);
-  };
-
-  updateEmail = (currentPassword, newEmail) =>
-    new Promise((resolve, reject) => {
-      this.reauthenticate(currentPassword)
-        .then(() => {
-          const user = this.auth.currentUser;
-          user
-            .updateEmail(newEmail)
-            .then(() => {
-              resolve("Email Successfully updated");
-            })
-            .catch((error) => reject(error));
-        })
-        .catch((error) => reject(error));
-    });
-
-  updateProfile = (id, updates) =>
-    this.db.collection("users").doc(id).update(updates);
-
-  onAuthStateChanged = () =>
-    new Promise((resolve, reject) => {
-      this.auth.onAuthStateChanged((user) => {
-        if (user) {
-          resolve(user);
-        } else {
-          reject(new Error("Auth State Changed failed"));
-        }
-      });
-    });
-
-  saveBasketItems = (items, userId) => {
-    this.db.collection("users").doc(userId).update({ basket: items });
+  getMenProducts = () => {
+    return this.db.collection("products");
   }
-
-  saveShopProducts = (items, shopId) => {
-    this.db.collection("shops").doc(shopId).update({ products: items });
-  }
-
-  setAuthPersistence = () =>
-    this.auth.setPersistence(app.auth.Auth.Persistence.LOCAL);
-
-  // // PRODUCT ACTIONS --------------
-
-  getSingleProduct = (id) => this.db.collection("products").doc(id).get();
 
   getProducts = (lastRefKey) => {
     let didTimeout = false;
@@ -166,6 +116,62 @@ class Firebase {
       })();
     });
   };
+
+  reauthenticate = (currentPassword) => {
+    const user = this.auth.currentUser;
+    const cred = app.auth.EmailAuthProvider.credential(
+      user.email,
+      currentPassword
+    );
+
+    return user.reauthenticateWithCredential(cred);
+  };
+
+  updateEmail = (currentPassword, newEmail) =>
+    new Promise((resolve, reject) => {
+      this.reauthenticate(currentPassword)
+        .then(() => {
+          const user = this.auth.currentUser;
+          user
+            .updateEmail(newEmail)
+            .then(() => {
+              resolve("Email Successfully updated");
+            })
+            .catch((error) => reject(error));
+        })
+        .catch((error) => reject(error));
+    });
+
+  updateProfile = (id, updates) =>
+    this.db.collection("users").doc(id).update(updates);
+
+  onAuthStateChanged = () =>
+    new Promise((resolve, reject) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          resolve(user);
+        } else {
+          reject(new Error("Auth State Changed failed"));
+        }
+      });
+    });
+
+  saveBasketItems = (items, userId) => {
+    this.db.collection("users").doc(userId).update({ basket: items });
+  }
+
+  saveShopProducts = (items, shopId) => {
+    this.db.collection("shops").doc(shopId).update({ products: items });
+  }
+
+  setAuthPersistence = () =>
+    this.auth.setPersistence(app.auth.Auth.Persistence.LOCAL);
+
+  // // PRODUCT ACTIONS --------------
+
+  getSingleProduct = (id) => this.db.collection("products").doc(id).get();
+
+  
 
   searchProducts = (searchKey) => {
     let didTimeout = false;
