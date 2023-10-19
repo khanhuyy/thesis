@@ -56,7 +56,7 @@ const Card = ({ props }) => {
                 height: "100%",
                 objectFit: "contain",
               }}
-              src={images['image1']}
+              src={image}
               alt="productImg"
             />
             <HStack
@@ -112,7 +112,7 @@ const Card = ({ props }) => {
             // border="1px solid red"
             position={"relative"}
           >
-            <CarouselPage obj={images} />
+            <CarouselPage obj={image} />
           </Box>
           <Button
             borderRadius={"0.05rem"}
