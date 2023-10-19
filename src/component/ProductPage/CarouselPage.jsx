@@ -4,10 +4,10 @@ import Carousel from "nuka-carousel";
 export const CarouselPage = ({ obj }) => {
  
 
-  const img1 = obj["image"];
-  const img2 = obj["image"];
-  const img3 = obj["image"];
-  const img4 = obj["image"];
+  const img1 = obj;
+  const img2 = obj;
+  const img3 = obj;
+  const img4 = obj;
 
  
   return (

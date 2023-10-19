@@ -13,7 +13,7 @@ import { textTospeechFun } from "../VoiceFun";
 import { useDispatch } from "react-redux";
 import { deleteAll } from "../../../redux/CartReducer/action";
 
-let voices = window.speechSynthesis.getVoices()[3];
+// let voices = window.speechSynthesis.getVoices()[3];
 
 const DebitCard = () => {
   const [tabIndex, setTabIndex] = useState(0);

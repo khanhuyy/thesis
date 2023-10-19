@@ -7,11 +7,14 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@cha
 import { useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
+import {collection, onSnapshot, query} from "firebase/firestore";
+import db from "../../service/firestore";
 const url = `https://glorious-robe-calf.cyclic.app`
 const SingleProduct = () => {
- const {id} = useParams()
- const toast = useToast()
-//  console.log('search',id)
+    const {id} = useParams()
+    const toast = useToast()
+    const [loading, setLoading] = useState(false)
+    const [product, setProduct] = useState()
     const [data, setData] = useState({
         rating: "",
         count: "",
@@ -35,6 +38,23 @@ const SingleProduct = () => {
     function singleGet() {
         return axios.get(`https://glorious-robe-calf.cyclic.app/kids/${id}`)
     }
+    const productsRef = collection(db, 'products');
+    useEffect(() => {
+        const q = query(
+            productsRef
+        );
+        setLoading(true);
+        // const unsub = onSnapshot(q, (querySnapshot) => {
+        const unsub = onSnapshot(productsRef, (querySnapshot) => {
+            const item = querySnapshot.data();
+            setProduct(item);
+            setLoading(false);
+        });
+        return () => {
+            unsub();
+        };
+    }, []);
+    console.log(product);
     useEffect(() => {
         singleGet()
             .then((res) => setData(res.data))

@@ -86,11 +86,6 @@ const MensWear = () => {
     setFilters(obj);
   };
 
-  // console.log(filters);
-
-  // useEffect(() => {
-  //   dispatch(getData("men", search));
-  // }, [dispatch, search]);
   const collectionRef = collection(db, 'products');
   useEffect(() => {
     const q = query(
@@ -111,10 +106,7 @@ const MensWear = () => {
       unsub();
     };
   }, []);
-
   console.log(menProducts);
-  console.log(loading);
-
   useEffect(() => {
     setParams(finalFilter);
   }, [finalFilter]);
@@ -149,7 +141,6 @@ const MensWear = () => {
         obj[filters[key]].push(key);
       }
     }
-    // console.log({obj})
     setFinalFilter(obj);
   };
 
@@ -493,7 +484,7 @@ const MensWear = () => {
                 <Stack borderLeft="1px solid  #e9e9ed" borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                   <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                     {menProducts.length >= 0 &&
-                      menProducts.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <Box onClick={()=>navigate(`/product/${e.id}`,{state:"men"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
+                      menProducts.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
                   </SimpleGrid>
                 </Stack>
                 <Center marginBottom="20px" >
