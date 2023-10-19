@@ -5,6 +5,7 @@ import { FiHeart } from "react-icons/fi";
 import { CarouselPage } from "./CarouselPage";
 
 const Card = ({ props }) => {
+  console.log(props);
   const [isHover, setIsHover] = React.useState(false);
   const {
     image,

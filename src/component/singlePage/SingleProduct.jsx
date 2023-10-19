@@ -7,7 +7,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@cha
 import { useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
-import {collection, onSnapshot, query} from "firebase/firestore";
+import {collection, onSnapshot, query, where} from "firebase/firestore";
 import db from "../../service/firestore";
 const url = `https://glorious-robe-calf.cyclic.app`
 const SingleProduct = () => {
@@ -41,15 +41,12 @@ const SingleProduct = () => {
     const productsRef = collection(db, 'products');
     useEffect(() => {
         const q = query(
-            productsRef
+            productsRef, where("id", "==", id)
         );
         setLoading(true);
-        // const unsub = onSnapshot(q, (querySnapshot) => {
-        const unsub = onSnapshot(productsRef, (querySnapshot) => {
-            const item = querySnapshot.data();
-            setProduct(item);
-            setLoading(false);
-        });
+        const unsub = onSnapshot(q, (querySnapshot) => {
+            setProduct(querySnapshot?.[0].docs()?.[0]);
+        })
         return () => {
             unsub();
         };

@@ -484,7 +484,11 @@ const MensWear = () => {
                 <Stack borderLeft="1px solid  #e9e9ed" borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                   <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                     {menProducts.length >= 0 &&
-                      menProducts.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) => <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
+                      menProducts.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) =>
+
+                          <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
+                            < CardForMensAndWomen key={e.id} props={e} />
+                          </Box>)}
                   </SimpleGrid>
                 </Stack>
                 <Center marginBottom="20px" >
