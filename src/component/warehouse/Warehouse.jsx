@@ -13,13 +13,10 @@ const Warehouse = () => {
     <Box >
       <Box>
         <Nav setHamburger={setHamburger} hamburger={hamburger} />
-        
+          
         <Footer />
       </Box>
-
     </Box>
-
-
   </Box>
   )
 }

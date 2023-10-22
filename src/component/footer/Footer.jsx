@@ -1,8 +1,6 @@
 import { Box, Grid, Image, SimpleGrid, Text } from '@chakra-ui/react'
 import React from 'react'
 import logo from "../../images/StyleHub.png";
-// import Footercont from './Footercont';
-import formImage from "../../images/formImage.png"
 import Footercont from './Footercont';
 
 const Footer = () => {
@@ -11,32 +9,6 @@ const Footer = () => {
         <Box w={["50%","40%","20%"]} m={"3% 0%"}>
             <Image src={logo} w={["40%","40%%","40%"]}/>
         </Box>
-
-        {/* care@healthkart.com
-0124-4616444
-The Presidency Tower, Tower-B, 2nd Floor, 46/4, Mehrauli Rd opp. government girls college, Anamika Enclave, Sector 14, Gurugram, Haryana */}
-
-
-
-{/* Blog
-Careers
-Site Map
-Corporate Information
-Whitehat
-CUSTOMER POLICIES
-
-Contact Us
-FAQ
-T&C
-Terms Of Use
-Track Orders
-Shipping
-Cancellation
-Returns
-Privacy policy
-Grievance Officer */}
-
-
         <SimpleGrid columns={[2,2,6]} gap={"1%"} pb={"6%"}>
             <Box w={"100%"}><Footercont arr={["About Us", "Conatct Us", "Refer & Earn","Loyalti Program", "Brand Directory","Careers"]} title={"Myntra"}/></Box>
             <Box w={"100%"}><Footercont arr={["Men", "Women", "Kids","Home & Living", "Beauty","Gritzo","Gift Cards","Myntra Insider"]} title={"ONLINE SHOPPING"}/></Box>
@@ -46,11 +18,9 @@ Grievance Officer */}
             {/* <Box w={"100%"}><Image src={formImage} borderRadius={"10px"} /></Box> */}
         </SimpleGrid>
         <hr/>  
-
         <SimpleGrid columns={[2,2]} gap={"10"} pb={"2%"}>
             <Text fontSize={["0.7rem","0.8rem","0.8rem"]}>Copyright © 2023, Myntra.com, or its affiliates</Text>
             <Text fontSize={["0.7rem","0.8rem","0.8rem"]}>Terms & Conditions | Delivery Policy | Privacy Policy | Disclaimer | Returns Policy</Text>
-
         </SimpleGrid>    
     </Box>
   )

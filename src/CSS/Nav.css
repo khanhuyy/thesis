@@ -358,6 +358,7 @@ cursor: pointer;
   height: 54px;
   padding-left: 7%;
   padding-right: 7%;
+  justify-items: center;
 }
 #nav ul {
   padding: 0;

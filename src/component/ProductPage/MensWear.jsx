@@ -47,10 +47,8 @@ import firebase from "../../service/firebase";
 import db from "../../service/firestore";
 
 const MensWear = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [menProducts, setMenProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { productData } = useSelector((store) => store.ProductReducer);
   const [page, setPage] = useState(1)
   const [hamburger, setHamburger] = useState(false)
@@ -64,11 +62,10 @@ const MensWear = () => {
 
 
   const [params, setParams] = useSearchParams();
-  const [finalFilter, setFinalFilter] = useState(/* {category:params.getAll("category")} ||  */{});
+  const [finalFilter, setFinalFilter] = useState({});
 
   const { search } = useLocation()
 
-  // console.log('11111111',search)
 
   const handleChange = ({ target }) => {
     const obj = { ...filters };
@@ -91,22 +88,19 @@ const MensWear = () => {
     const q = query(
       collectionRef
     );
-
-    setLoading(true);
-    // const unsub = onSnapshot(q, (querySnapshot) => {
     const unsub = onSnapshot(collectionRef, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
-        items.push(doc.data());
+        let data = doc.data();
+        data.id = doc.id;
+        items.push(data);
       });
       setMenProducts(items);
-      setLoading(false);
     });
     return () => {
       unsub();
     };
   }, []);
-  console.log(menProducts);
   useEffect(() => {
     setParams(finalFilter);
   }, [finalFilter]);

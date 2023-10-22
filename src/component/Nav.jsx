@@ -9,8 +9,9 @@ import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { baseUrl } from "../Url";
 import firebase from "../service/firebase";
 import "firebase/compat/auth";
-
-// import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/firestore";
+import db from "../service/firestore";
+import { formatURL } from "../utils/helper";
 
 const Nav = ({ setHamburger, hamburger }) => {
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ const Nav = ({ setHamburger, hamburger }) => {
 
   const [search, setSearch] = useState("")
   const [DATA, setData] = useState([])
+  const [categories, setCategories] = useState([])
   const [random, setRandom] = useState(true)
 
   const [windowDimension, detectHW] = useState({
@@ -85,10 +87,26 @@ const Nav = ({ setHamburger, hamburger }) => {
     // setlogout(false)
   }
 
-  // firebase.signIn("admin@gmail.com", "123456")
-  //   .then((userCredential) => {
-  //     console.log(userCredential);
-  //   })
+  const categoryRef = collection(db, 'categories');
+  useEffect(() => {
+    const q = query(
+      categoryRef
+    );
+    // setLoading(true);
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        data.id = doc.id;
+        items.push(data);
+      });
+      setCategories(items);
+      // setLoading(false);
+    });
+    return () => {
+      unsub();
+    };
+  }, []);
 
   return (
     // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
@@ -108,6 +126,26 @@ const Nav = ({ setHamburger, hamburger }) => {
           <div className="firstNavMain">
             <nav id="nav">
               <ul>
+                {/* categories */}
+                {
+                  categories?.length >= 0 &&
+                    // categories.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) =>
+                    // <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
+                    //       < CardForMensAndWomen key={e.id} props={e} />
+                    //     </Box>)
+                    categories?.map((e) =>
+                      <Link to={formatURL(e?.name)}>
+                        <span>
+                          {e?.name}
+                        </span>
+                      </Link>
+                      
+                    )
+                }
+              </ul>
+              
+              {/* <ul>
+                
                 <li>
                   <Link to={'/mens'}>
                     <span>
@@ -170,7 +208,7 @@ const Nav = ({ setHamburger, hamburger }) => {
                         </p>
                         <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
                         <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p> */}
+                        {/* <p>Dhotis</p>
                       </div>
                       <div>
                         <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
@@ -240,7 +278,7 @@ const Nav = ({ setHamburger, hamburger }) => {
                         <p>Jeans</p>
                         <p>Tract-Pents & Jooggers</p>
                         {/* <hr />
-              <p style={{color:"#EC407A"}}>Inner Wear & Sleep Wear</p> */}
+              <p style={{color:"#EC407A"}}>Inner Wear & Sleep Wear</p>
                         <p>Briefs & Trunks</p>
                         <p>Shrugs</p>
 
@@ -266,7 +304,6 @@ const Nav = ({ setHamburger, hamburger }) => {
                         </p>
                         <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
                         <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p> */}
                       </div>
                       <div>
                         <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
@@ -366,7 +403,6 @@ const Nav = ({ setHamburger, hamburger }) => {
                         </p>
                         <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
                         <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p> */}
                       </div>
                       <div>
                         <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
@@ -462,7 +498,6 @@ const Nav = ({ setHamburger, hamburger }) => {
                         </p>
                         <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
                         <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p> */}
                       </div>
                       <div>
                         <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
@@ -559,7 +594,6 @@ const Nav = ({ setHamburger, hamburger }) => {
                         </p>
                         <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
                         <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p> */}
                       </div>
                       <div>
                         <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
@@ -656,7 +690,6 @@ const Nav = ({ setHamburger, hamburger }) => {
                         </p>
                         <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
                         <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p> */}
                       </div>
                       <div>
                         <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
@@ -694,7 +727,7 @@ const Nav = ({ setHamburger, hamburger }) => {
                     </div>
                   </div>
                 </li>
-              </ul>
+              </ul> */}
             </nav>
           </div>
           <div className="secondNavMain">
@@ -720,6 +753,32 @@ const Nav = ({ setHamburger, hamburger }) => {
           </div>
           <div className="thirdNavMain">
 
+            
+            <div>
+              <Link to={'/warehouses'}>
+                <img
+                  src="https://img.icons8.com/?size=256&id=20156&format=png"
+                  style={{ width: "25px" }}
+                  alt=""
+                />
+              </Link>
+            </div>
+            <div>
+              <Link to={'/shops'}>
+                <img
+                  src="https://img.icons8.com/?size=50&id=489&format=png"
+                  style={{ width: "25px" }}
+                  alt=""
+                />
+              </Link>
+            </div>
+            <Link to={'/carts'}> <div>
+              <img
+                src="https://img.icons8.com/?size=50&id=9671&format=png"
+                style={{ width: "25px" }}
+                alt=""
+              />
+            </div></Link>
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
             {/* Login button */}
             {firebase.auth == undefined ? (
@@ -729,25 +788,6 @@ const Nav = ({ setHamburger, hamburger }) => {
             )}
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
             <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button> */}
-            <div>
-              <img
-                src="https://img.icons8.com/ios-glyphs/256/hearts.png"
-                style={{ width: "25px" }}
-                alt=""
-              />
-
-            </div>
-            <Link to={'/cart'}> <div>
-              <img
-                src="https://img.icons8.com/windows/256/shopping-bag-full.png"
-                style={{ width: "25px" }}
-                alt=""
-              />
-
-
-
-            </div></Link>
-
           </div>
         </div>
       ) : (

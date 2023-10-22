@@ -7,15 +7,15 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack,useToast } from '@cha
 import { useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
-import {collection, onSnapshot, query, where} from "firebase/firestore";
+import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/firestore";
 import db from "../../service/firestore";
+
 const url = `https://glorious-robe-calf.cyclic.app`
 const SingleProduct = () => {
     const {id} = useParams()
     const toast = useToast()
     const [loading, setLoading] = useState(false)
-    const [product, setProduct] = useState()
-    const [data, setData] = useState({
+    const [product, setProduct] = useState({
         rating: "",
         count: "",
         images: {
@@ -35,31 +35,18 @@ const SingleProduct = () => {
         gender: "",
         category: ""
     })
-    function singleGet() {
-        return axios.get(`https://glorious-robe-calf.cyclic.app/kids/${id}`)
-    }
-    const productsRef = collection(db, 'products');
+    const productRef = doc(db, 'products', id)
     useEffect(() => {
-        const q = query(
-            productsRef, where("id", "==", id)
-        );
-        setLoading(true);
-        const unsub = onSnapshot(q, (querySnapshot) => {
-            setProduct(querySnapshot?.[0].docs()?.[0]);
+        getDoc(productRef)
+        .then((doc) => {
+            let data = doc.data();
+            data.id = doc.id;
+            setProduct(data);
         })
-        return () => {
-            unsub();
-        };
     }, []);
-    console.log(product);
-    useEffect(() => {
-        singleGet()
-            .then((res) => setData(res.data))
-    }, [])
-    // data && console.log(data.images.image1)
+    console.log(product)
     
     const AddToCartToast = (title) => {
-  
       toast({
         title:title,
         // description: des, 
@@ -72,10 +59,8 @@ const SingleProduct = () => {
 
 
 const addToCart = () => {
-    // alert('working addtocart')
-    // "Added to Cart"
     AddToCartToast("Added to Cart")
-    axios.post(`${url}/cart`, data).then((res)=>res).catch((err)=>console.log(err))
+    axios.post(`${url}/carts`, product).then((res)=>res).catch((err)=>console.log(err))
 }
 
 
@@ -100,7 +85,7 @@ const addToCart = () => {
 
                     <BreadcrumbItem isCurrentPage>
                         <BreadcrumbLink as={"b"} fontSize={"13px"} cursor="text">
-                            {data?.brand}
+                            {product?.brand}
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                 </Breadcrumb>
@@ -108,12 +93,21 @@ const addToCart = () => {
             <div className='SingleFlex'>
 
                 <div>
-                    {console.log(data)}
-                    {data?.images ? <SinglePageGrid datas={[data.images.image1, data.images.image2, data.images.image3]} /> : ''}
+                    {product?.images ? <SinglePageGrid datas={[product.image, product.image, product.image]} /> : ''}
                     {/* <SinglePageGrid data={[data?.images?.image1,data?.images?.image2,data?.images?.image3]}/> */}
                 </div>
                 <div>
-                    {data ? <SingleProductSecond addToCart={addToCart} title={data.title} brand={data.brand} rating={data.rating} count={data.count} price={data.price} discount={data.productDiscountPercentage} size={data.sizes} /> : ''}
+                    {product ? 
+                    <SingleProductSecond 
+                        addToCart={addToCart} 
+                        title={product?.title} 
+                        brand={product?.brand} 
+                        rating={product?.rating} 
+                        count={product?.count} 
+                        price={product?.price} 
+                        discount={product?.productDiscountPercentage} 
+                        size={product?.sizes} /> 
+                    : ''}
                     {/* title,brand,rating,count,price,discount,size,ageGroup */}
                 </div>
             </div>

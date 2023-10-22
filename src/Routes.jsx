@@ -11,6 +11,7 @@ import Shop from "./component/shop/Shop";
 import Warehouse from "./component/warehouse/Warehouse";
 import AdminPageLogin from "./component/AdminDataBase/AdminPageLogin";
 import AdminPanel from "./component/AdminDataBase/AdminPanel";
+import Admin from "./component/singlePage/Admin";
 import SingleProduct from "./component/singlePage/SingleProduct";
 import { Address } from "./component/cart/Address";
 import Payment from "./pages/Payment";
@@ -25,12 +26,13 @@ const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/admin" element={<Admin />} />
       <Route path="/kids" element={<KidsWear />} />
       <Route path="/mens" element={<MensWear />} />
       <Route path="/womens" element={<WomensWear />} />
       <Route path="/warehouses" element={<Warehouse />} />
       <Route
-        path="/cart"
+        path="/carts"
         element={
           <PrivateRoutes>
             <CartPage />

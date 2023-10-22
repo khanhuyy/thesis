@@ -17,7 +17,7 @@ import { TbTruckReturn } from 'react-icons/tb';
 
 
 const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, discount, size, ageGroup }) => {
-  console.log(title, brand, rating, count, price)
+  // console.log(title, brand, rating, count, price)
   return (
     <Box>
       {/* <Heading Heading as='h3' size='lg' noOfLines={1}>{brand}</Heading> */}
@@ -61,7 +61,7 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
       <Text color={"green"} fontWeight={"600"} fontSize={"15px"} mt={"1%"}>inclusive of all taxes</Text>
       <Text fontWeight={"600"} fontSize={"22px"}>Select Size</Text>
       <Box mt={"2%"}>
-        {size.map((el) => {
+        {size?.map((el) => {
           return <button style={{ border: "1px solid black", margin: "1%", hight: "15px", borderRadius: "5px", padding: "5px" }}>&nbsp;&nbsp;  {el} &nbsp;&nbsp;</button>
         })}
       </Box>
