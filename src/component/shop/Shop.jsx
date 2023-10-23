@@ -32,7 +32,7 @@ const Shop = () => {
   const fetchData = () => {
     // let Data = search
     // Data = Data.split(" ")
-
+    console.log(`${baseUrl}/shops/1`);
     axios.get(`${baseUrl}/shops/1`)
       .then((doc) => {
         console.log(doc);
