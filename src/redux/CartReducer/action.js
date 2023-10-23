@@ -73,7 +73,7 @@ export const getCartProducts = (dispatch) => {
   dispatch({ type: GET_DATA_REQUEST });
 
   return axios
-    .get(`${baseUrl}/cart`)
+    .get(`${baseUrl}/carts`)
      
     .then((res) => {
       dispatch({ type: GET_DATA, payload: res.data });
@@ -90,7 +90,7 @@ export const updateCartProductQty = (id, qty) => (dispatch) => {
   // axios.get(`${baseUrl}/cart`)
  
   return axios.patch(
-    `${baseUrl}/cart/${id}`,
+    `${baseUrl}/carts/${id}`,
     { quantity: +qty }
   );
 };
@@ -99,7 +99,7 @@ export const deleteCartProduct = (id) => (dispatch) => {
   dispatch({ type: GET_DATA_REQUEST });
 
   // axios.get(`${baseUrl}/cart`)
-  axios.delete(`${baseUrl}/cart/${id}`);
+  axios.delete(`${baseUrl}/carts/${id}`);
 };
 
 
@@ -108,7 +108,7 @@ export const deleteAll = (dispatch) => {
     dispatch({ type: GET_DATA_REQUEST });
 
     axios
-      .delete(`${baseUrl}/cart`)
+      .delete(`${baseUrl}/carts`)
       // axios.get(`https://clumsy-miniskirt-tuna.cyclic.app/cart/dummy`)
       .then((res) => {
         dispatch({ type: GET_DATA,payload:[]});

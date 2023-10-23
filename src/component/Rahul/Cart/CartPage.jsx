@@ -15,7 +15,8 @@ import Navbar2 from "../Navbar2";
 import { useNavigate } from "react-router-dom";
 import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/firestore";
 import db from "../../../service/firestore"
-
+import axios from "axios";
+import { baseUrl } from "../../../Url";
 
 
 const CartPage = () => {
@@ -43,37 +44,48 @@ const CartPage = () => {
       initialValue
     );
     setTotalPrice(tP);
-    // console.log(TotalPrice);
   }, [bag]);
-  const cartRef = doc(db, 'carts', '1');
-  useEffect(() => {
-    getDoc(cartRef)
+  // const cartRef = doc(db, 'carts', '1');
+  // useEffect(() => {
+  //   getDoc(cartRef)
+  //     .then((doc) => {
+  //       let data = doc.data();
+  //       data.id = doc.id;
+  //       setCart(data);
+  //     })
+  // }, []);
+  // const cartItemsRef = collection(db, 'cartItems');
+  // useEffect(() => {
+  //   const q = query(
+  //     cartItemsRef, where('cartID', '==', '1')
+  //   );
+  //   // setLoading(true);
+  //   const unsub = onSnapshot(q, (querySnapshot) => {
+  //     const items = [];
+  //     querySnapshot?.forEach((doc) => {
+  //       let data = doc.data();
+  //       data.id = doc.id;
+  //       items.push(data);
+  //     });
+  //     setCartItems(items);
+  //     // setLoading(false);
+  //   });
+  //   return () => {
+  //     unsub();
+  //   };
+  // })
+
+  const fetchData = () => {
+    axios.get(`${baseUrl}/cartItems?cartID=1`)
       .then((doc) => {
-        let data = doc.data();
-        data.id = doc.id;
-        setCart(data);
+        setCartItems(doc.data);
+        console.log(doc.data);
       })
-  }, []);
-  const cartItemsRef = collection(db, 'cartItems');
+      .catch((err) => console.log(err))
+  }
   useEffect(() => {
-    const q = query(
-      cartItemsRef, where('cartID', '==', '1')
-    );
-    // setLoading(true);
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      const items = [];
-      querySnapshot?.forEach((doc) => {
-        let data = doc.data();
-        data.id = doc.id;
-        items.push(data);
-      });
-      setCartItems(items);
-      // setLoading(false);
-    });
-    return () => {
-      unsub();
-    };
-  })
+    fetchData()
+  }, [])
 
   const rColor = "#d3145a";
   
