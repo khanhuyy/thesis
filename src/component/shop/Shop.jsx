@@ -30,15 +30,13 @@ import { baseUrl } from "../../Url";
 const Shop = () => {
   const [localShop, setLocalShop] = useState();
   const fetchData = () => {
-    // let Data = search
-    // Data = Data.split(" ")
-    console.log(`${baseUrl}/shops/1`);
-    axios.get(`${baseUrl}/shops/1`)
+    axios.get(`${baseUrl}/productShops?shopID=1`)
       .then((doc) => {
         console.log(doc);
         setLocalShop(doc);
       })
       .catch((err) => console.log(err))
+    console.log(localShop);
   }
 
 

@@ -1,4 +1,54 @@
 {
+  "productShops": [
+    {
+      "productID": 1,
+      "shopeID": 1
+    },
+    {
+      "productID": 2,
+      "shopeID": 1
+    },
+    {
+      "productID": 3,
+      "shopeID": 1
+    },
+    {
+      "productID": 4,
+      "shopeID": 1
+    },
+    {
+      "productID": 5,
+      "shopeID": 1
+    },
+    {
+      "productID": 6,
+      "shopeID": 1
+    },
+    {
+      "productID": 7,
+      "shopeID": 1
+    },
+    {
+      "productID": 8,
+      "shopeID": 1
+    },
+    {
+      "productID": 9,
+      "shopeID": 1
+    },
+    {
+      "productID": 10,
+      "shopeID": 1
+    },
+    {
+      "productID": 11,
+      "shopeID": 1
+    },
+    {
+      "productID": 12,
+      "shopeID": 1
+    }
+  ],
   "products": [
     {
      "createdAt": "2023-10-22T18:21:44.037Z",
@@ -6,7 +56,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "806.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "1"
     },
     {
@@ -15,7 +66,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "263.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "2"
     },
     {
@@ -24,7 +76,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "171.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "3"
     },
     {
@@ -33,7 +86,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "146.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "4"
     },
     {
@@ -42,7 +96,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "858.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "5"
     },
     {
@@ -51,7 +106,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "391.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "6"
     },
     {
@@ -60,7 +116,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "403.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "7"
     },
     {
@@ -69,7 +126,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "153.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "8"
     },
     {
@@ -78,7 +136,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "556.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "9"
     },
     {
@@ -87,7 +146,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "478.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "10"
     },
     {
@@ -96,7 +156,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "798.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "11"
     },
     {
@@ -105,7 +166,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "175.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "12"
     },
     {
@@ -114,7 +176,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "709.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "13"
     },
     {
@@ -123,7 +186,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "381.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "14"
     },
     {
@@ -132,7 +196,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "940.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "15"
     },
     {
@@ -141,7 +206,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "609.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "16"
     },
     {
@@ -150,7 +216,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "88.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "17"
     },
     {
@@ -159,7 +226,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "175.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "18"
     },
     {
@@ -168,7 +236,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "496.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "19"
     },
     {
@@ -177,7 +246,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "694.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "20"
     },
     {
@@ -186,7 +256,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "522.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "21"
     },
     {
@@ -195,7 +266,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "75.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "22"
     },
     {
@@ -204,7 +276,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "152.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "23"
     },
     {
@@ -213,7 +286,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "960.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "24"
     },
     {
@@ -222,7 +296,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "569.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "25"
     },
     {
@@ -231,7 +306,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "337.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "26"
     },
     {
@@ -240,7 +316,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "124.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "27"
     },
     {
@@ -249,7 +326,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "190.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "28"
     },
     {
@@ -258,7 +336,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "311.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "29"
     },
     {
@@ -267,7 +346,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "818.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "30"
     },
     {
@@ -276,7 +356,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "410.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "31"
     },
     {
@@ -285,7 +366,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "459.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "32"
     },
     {
@@ -294,7 +376,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "453.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "33"
     },
     {
@@ -303,7 +386,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "703.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "34"
     },
     {
@@ -312,7 +396,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "231.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "35"
     },
     {
@@ -321,7 +406,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "182.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "36"
     },
     {
@@ -330,7 +416,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "55.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "37"
     },
     {
@@ -339,7 +426,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "23.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "38"
     },
     {
@@ -348,7 +436,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "82.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "39"
     },
     {
@@ -357,7 +446,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "221.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "40"
     },
     {
@@ -366,7 +456,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "82.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "41"
     },
     {
@@ -375,7 +466,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "356.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "42"
     },
     {
@@ -384,7 +476,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "424.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "43"
     },
     {
@@ -393,7 +486,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "337.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "44"
     },
     {
@@ -402,7 +496,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "39.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "45"
     },
     {
@@ -411,7 +506,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "368.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "46"
     },
     {
@@ -420,7 +516,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "571.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "47"
     },
     {
@@ -429,7 +526,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "636.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "48"
     },
     {
@@ -438,7 +536,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "371.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "49"
     },
     {
@@ -447,7 +546,8 @@
      "availableColors": [],
      "image": "https://loremflickr.com/640/480/fashion",
      "price": "265.00",
-     "sizes": [],
+     "sizes": [12, 23, 34],
+    "productFlag": 1,
      "id": "50"
     }
   ],
