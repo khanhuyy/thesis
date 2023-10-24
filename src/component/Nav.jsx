@@ -779,6 +779,13 @@ const Nav = ({ setHamburger, hamburger }) => {
                 alt=""
               />
             </div></Link>
+            <Link to={'/orders'}> <div>
+              <img
+                src="https://img.icons8.com/?size=50&id=4255&format=png"
+                style={{ width: "25px" }}
+                alt=""
+              />
+            </div></Link>
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
             {/* Login button */}
             {firebase.auth == undefined ? (

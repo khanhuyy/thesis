@@ -54,25 +54,25 @@ const DebitCard = () => {
       textTospeechFun(`Please Fill the address`);
       // console.log({ pin: pincode.length , name} );
     } else if (pincode.length === 6 && name !== "") {
-      if (cvv && cvv.length === 3) {
+      // if (cvv && cvv.length === 3) {
         localStorage.removeItem("cvv");
         // alert("working");
 
-        dispatch(deleteAll)
+        // dispatch(deleteAll)
 
 
         navigate("/orderSuccess");
-      } else {
-        // alert("Fill payment details");
-        toast({
-          title: "Please Fill payment details",
-          position: positions,
-          status: statuses[2],
-          isClosable: true,
-        });
+      // } else {
+      //   // alert("Fill payment details");
+      //   toast({
+      //     title: "Please Fill payment details",
+      //     position: positions,
+      //     status: statuses[2],
+      //     isClosable: true,
+      //   });
 
-        textTospeechFun(`Please Fill payment details`);
-      }
+      //   textTospeechFun(`Please Fill payment details`);
+      // }
     }
     // console.log('checking');
   };

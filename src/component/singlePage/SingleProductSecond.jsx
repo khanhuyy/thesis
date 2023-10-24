@@ -16,7 +16,7 @@ import { TbTruckReturn } from 'react-icons/tb';
 
 
 
-const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, discount, size, ageGroup }) => {
+const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
   // console.log(title, brand, rating, count, price)
   return (
     <Box>
@@ -67,7 +67,12 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
       </Box>
 
       <Box mt={"5%"} mb={"5%"} display={"flex"} flexDirection={["column","row"]}>
-        <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span>
+            {exist == true ? (
+              <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{}} >Product in cart now</Button>
+            ) : (
+              <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button>
+            )}
+        {/* <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span> */}
         <Button background={"white"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} border={"1px solid black"}>Wishlist</Button>
       </Box>
       {/* <hr /> */}
@@ -92,7 +97,8 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
 
       <Text fontWeight={"400"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>100% Original Products</Text>
       <Flex>
-        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Best Price:</Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Price From:</Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Commission:</Text>
         <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"} color={"orange"}>{price}</Text>
       </Flex>
       <Box>

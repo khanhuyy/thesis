@@ -9,12 +9,14 @@ import Nav from '../Nav'
 import Footer from '../footer/Footer'
 import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/firestore";
 import db from "../../service/firestore";
+import { baseUrl } from '../../Url'
 
 const url = `https://glorious-robe-calf.cyclic.app`
 const SingleProduct = () => {
     const {id} = useParams()
     const toast = useToast()
     const [loading, setLoading] = useState(false)
+    const [itemExisted, setItemExisted] = useState(false);
     const [product, setProduct] = useState({
         rating: "",
         count: "",
@@ -56,12 +58,35 @@ const SingleProduct = () => {
         isClosable: true,
       })
     }
-
-
-const addToCart = () => {
-    AddToCartToast("Added to Cart")
-    axios.post(`${url}/carts`, product).then((res)=>res).catch((err)=>console.log(err))
-}
+    const productInCart = () => {
+        axios.get(`${baseUrl}/cartItems?cartID=1&productID=${product.id}`)
+        .then((doc) => {
+            if (doc.data != null || doc.data?.length === 0) {
+                setItemExisted(true);
+            }
+        })
+        .catch((err) => console.log(err))
+    }
+    useEffect(() => {
+        const result = productInCart();;
+        setItemExisted(result);
+    }, []);
+    console.log(itemExisted);
+    const addToCart = () => {
+        // AddToCartToast("Added to Cart")
+        // axios.post(`${baseUrl}/carts/1`, product).then((res)=>res).catch((err)=>console.log(err))
+        axios.post(`${baseUrl}/carts`, {
+            id: 3,
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
 
 
 
@@ -106,7 +131,8 @@ const addToCart = () => {
                         count={product?.count} 
                         price={product?.price} 
                         discount={product?.productDiscountPercentage} 
-                        size={product?.sizes} /> 
+                        size={product?.sizes}
+                        exist={itemExisted} /> 
                     : ''}
                     {/* title,brand,rating,count,price,discount,size,ageGroup */}
                 </div>
