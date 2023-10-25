@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import Home from "./component/home/Home";
 import KidsWear from "./component/ProductPage/KidsWear";
 import MensWear from "./component/ProductPage/MensWear";
@@ -14,6 +14,7 @@ import AdminPageLogin from "./component/AdminDataBase/AdminPageLogin";
 import AdminPanel from "./component/AdminDataBase/AdminPanel";
 import Admin from "./component/singlePage/Admin";
 import SingleProduct from "./component/singlePage/SingleProduct";
+import ProductPagination from "./component/ProductPage/ProductPagination";
 import { Address } from "./component/cart/Address";
 import Payment from "./pages/Payment";
 import Otp from "./pages/Otp";
@@ -24,6 +25,7 @@ import CartPage from "./component/Rahul/Cart/CartPage";
 import OrderSucess from "./component/Rahul/PaymentPage/OrderSucess";
 
 const AllRoutes = () => {
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -33,6 +35,10 @@ const AllRoutes = () => {
       <Route path="/orders" element={<Order />} />
       <Route path="/womens" element={<WomensWear />} />
       <Route path="/warehouses" element={<Warehouse />} />
+      <Route path="/categories/:id" element={<ProductPagination id={() =>{
+        const params = useParams();
+        return params?.id;
+      }} />}/>
       <Route
         path="/carts"
         element={

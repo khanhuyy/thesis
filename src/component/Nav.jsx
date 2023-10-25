@@ -134,12 +134,16 @@ const Nav = ({ setHamburger, hamburger }) => {
                     //       < CardForMensAndWomen key={e.id} props={e} />
                     //     </Box>)
                     categories?.map((e) =>
-                      <Link to={formatURL(e?.name)}>
+                      // <Link to={formatURL(e?.name)}>
+                      //   <span>
+                      //     {e?.name}
+                      //   </span>
+                      // </Link>
+                      <Link to={`categories/${e.id}`}>
                         <span>
                           {e?.name}
                         </span>
                       </Link>
-                      
                     )
                 }
               </ul>

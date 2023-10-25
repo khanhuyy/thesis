@@ -45,36 +45,6 @@ const CartPage = () => {
     );
     setTotalPrice(tP);
   }, [bag]);
-  // const cartRef = doc(db, 'carts', '1');
-  // useEffect(() => {
-  //   getDoc(cartRef)
-  //     .then((doc) => {
-  //       let data = doc.data();
-  //       data.id = doc.id;
-  //       setCart(data);
-  //     })
-  // }, []);
-  // const cartItemsRef = collection(db, 'cartItems');
-  // useEffect(() => {
-  //   const q = query(
-  //     cartItemsRef, where('cartID', '==', '1')
-  //   );
-  //   // setLoading(true);
-  //   const unsub = onSnapshot(q, (querySnapshot) => {
-  //     const items = [];
-  //     querySnapshot?.forEach((doc) => {
-  //       let data = doc.data();
-  //       data.id = doc.id;
-  //       items.push(data);
-  //     });
-  //     setCartItems(items);
-  //     // setLoading(false);
-  //   });
-  //   return () => {
-  //     unsub();
-  //   };
-  // })
-
   const fetchData = () => {
     axios.get(`${baseUrl}/cartItems?cartID=1`)
       .then((doc) => {
@@ -100,8 +70,6 @@ const CartPage = () => {
     <Stack
       spacing={"0"}
       overflow={"hidden"}
-      // bgColor={"red"}
-      // border={"1px solid red"}
     >
       <Navbar2
         price={totalPrice}
@@ -127,7 +95,6 @@ const CartPage = () => {
             marginTop={"35px"}
             paddingRight={{ base: "0", sm: "0", md: "0", lg: "10px" }}
             paddingBottom={{ base: "1rem", sm: "1rem", md: "1rem", lg: "3rem" }}
-            // h={"85vh"}
             h={{ base: "70vh", sm: "70vh", md: "70vh", lg: "85vh" }}
             overflowY={{ base: "auto", sm: "auto", md: "auto", lg: "scroll" }}
           >

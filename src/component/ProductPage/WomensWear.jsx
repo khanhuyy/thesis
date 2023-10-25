@@ -28,7 +28,8 @@ import { useDispatch, useSelector } from "react-redux";
 import CardForMensAndWomen from "./CardForMensAndWomen";
 import Pagination from "./Pagination";
 import Nav from "../Nav";
-
+import axios from "axios";
+import { baseUrl } from "../../Url";
 
 const WomensWear = () => {
 const navigate = useNavigate()
@@ -46,11 +47,20 @@ const navigate = useNavigate()
 
   
   const [params, setParams] = useSearchParams();
-  const [finalFilter, setFinalFilter] = useState(/* {category:params.getAll("category")} ||  */{});
+  const [finalFilter, setFinalFilter] = useState();
 
   const {search} = useLocation()
-
-
+  const fetchData = () => {
+    axios.get(`${baseUrl}/cartItems?cartID=1`)
+      .then((doc) => {
+      //   setCartItems(doc.data);
+        console.log(doc.data);
+      })
+      .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
   const handleChange = ({ target }) => {
     const obj = { ...filters };
 
@@ -172,7 +182,7 @@ const navigate = useNavigate()
   };
 
 
-  if(productData.length <1) {
+  if(productData?.length <1) {
     return <Center style={{marginTop:'50vh'}}><Spinner /> </Center>
   }
  
@@ -211,7 +221,7 @@ const navigate = useNavigate()
 
             <BreadcrumbItem isCurrentPage>
               <BreadcrumbLink cursor="text">
-                {productData.length} items
+                {productData?.length} items
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
@@ -438,13 +448,13 @@ const navigate = useNavigate()
             <Stack className="product-display">
               <Stack borderLeft="1px solid  #e9e9ed"  borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                 <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
-                  {productData.length >= 0 &&
+                  {productData?.length >= 0 &&
                     productData.slice(((page-1)*15),(((page-1)*15)+15)).map((e) => <Box onClick={()=>navigate(`/product/${e.id}`,{state:"women"})}>< CardForMensAndWomen key={e.id} props={e} /></Box>)}
                 </SimpleGrid>
               </Stack>
                 <Center marginBottom="20px" > 
 
-<Pagination  page={page} setPage={setPage} totalPage={Math.ceil(productData?.length/15)} />
+{/* <Pagination  page={page} setPage={setPage} totalPage={Math.ceil(productData?.length/15)} /> */}
 </Center>
             </Stack>
           </Stack>
