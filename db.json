@@ -914,18 +914,116 @@
       "productFlag": 1,
       "warehouseID": 1,
       "id": "50"
-    }
-  ],
-  "comments": [
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "51",
+      "image": "https://img3.junaroad.com/uiproducts/18757753/zoom_0-1670408510.jpg",
+      "description": "white kurta pant set with dupatta",
+      "price": 2099,
+      "ogPrice": 4399,
+      "discount": 52,
+      "ownerID": 1
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d89"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/17825515/zoom_0-1624960100.jpg",
+      "description": "embroidered a-line kurta",
+      "price": 849,
+      "ogPrice": 1999,
+      "discount": 58,
+      "bySeller": "Span"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d8a"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18961552/zoom_0-1671859814.jpg",
+      "description": "cream kurta pant set with dupatta",
+      "price": 4249,
+      "ogPrice": 7999,
+      "discount": 47,
+      "bySeller": "Divena"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d8b"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18160271/zoom_0-1639497148.jpg",
+      "description": "white cotton kurta palazzo  set",
+      "price": 2099,
+      "ogPrice": 3999,
+      "discount": 48,
+      "bySeller": "Divena"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d8c"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18277823/zoom_0-1645868028.jpg",
+      "description": "white solid straight kurta",
+      "price": 999,
+      "ogPrice": 2499,
+      "discount": 60,
+      "bySeller": "W"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d8d"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18022427/zoom_0-1633446671.jpg",
+      "description": "white viscose kurta palazzo  set",
+      "price": 1749,
+      "ogPrice": 3999,
+      "discount": 56,
+      "bySeller": "Bitterlime"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d8e"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18421221/zoom_0-1656756785.jpg",
+      "description": "white rayon straight kurta",
+      "price": 999,
+      "ogPrice": 1699,
+      "discount": 41,
+      "bySeller": "JUNIPER"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d8f"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18220788/zoom_0-1642511633.jpg",
+      "description": "white rayon kurta palazzo  set",
+      "price": 2149,
+      "ogPrice": 3999,
+      "discount": 46,
+      "bySeller": "Bitterlime"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d90"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18260911/zoom_0-1644594401.jpg",
+      "description": "cream cotton blend kurta palazzo  set",
+      "price": 2549,
+      "ogPrice": 6440,
+      "discount": 60,
+      "bySeller": "SHOWOFF"
+    },
+    {
+      "_id": {
+        "$oid": "645282de07d8fdee9bed8d91"
+      },
+      "image": "https://img3.junaroad.com/uiproducts/18319457/zoom_0-1649055626.jpg",
+      "description": "white cotton blend straight kurta",
+      "price": 599,
+      "ogPrice": 1499,
+      "discount": 60,
+      "bySeller": "Aurelia"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  },
   "warehouses": [
     {
       "createdAt": 1697998691,

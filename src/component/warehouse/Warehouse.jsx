@@ -7,6 +7,7 @@ import {
   Center,
   Stack,
   Box,
+  Button,
 } from "@chakra-ui/react";
 import {
   doc,
@@ -41,6 +42,7 @@ const Warehouse = () => {
   useEffect(() => {
     fetchData()
   }, [])
+
   return (<Box mt={"0px"}>
 
     <Box >
@@ -62,7 +64,7 @@ const Warehouse = () => {
             <Breadcrumb separator="-" className={"breadcrummb"}>
               <BreadcrumbItem>
                 <BreadcrumbLink as={"b"} cursor="text" href="#">
-                  Mens Wear Online Store
+                  My Warehouse
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbItem isCurrentPage>
@@ -70,6 +72,7 @@ const Warehouse = () => {
                   {products?.length} items
                 </BreadcrumbLink>
               </BreadcrumbItem>
+              <Button onClick={() => navigate('/createProduct')}>Add new Product</Button>
             </Breadcrumb>
           </Stack>
 

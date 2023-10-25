@@ -23,6 +23,7 @@ import PrivateRoutes from "./component/PrivateRoutes/PrivateRoutes";
 import PaymentPage from "./component/Rahul/PaymentPage/PaymentPage";
 import CartPage from "./component/Rahul/Cart/CartPage";
 import OrderSucess from "./component/Rahul/PaymentPage/OrderSucess";
+import CreateProduct from "./component/singlePage/CreateProduct";
 
 const AllRoutes = () => {
 
@@ -30,15 +31,18 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/admin" element={<Admin />} />
+      {/* <Route path="/categories/:id" element={<ProductPagination id={() =>{
+        const params = useParams();
+        return params?.id;
+      }} />}/> */}
+      <Route path="/categories/:id" element={<ProductPagination />}/>
+      <Route path="/createProduct" element={<CreateProduct />}></Route>
       <Route path="/kids" element={<KidsWear />} />
       <Route path="/mens" element={<MensWear />} />
       <Route path="/orders" element={<Order />} />
       <Route path="/womens" element={<WomensWear />} />
       <Route path="/warehouses" element={<Warehouse />} />
-      <Route path="/categories/:id" element={<ProductPagination id={() =>{
-        const params = useParams();
-        return params?.id;
-      }} />}/>
+      
       <Route
         path="/carts"
         element={
