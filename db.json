@@ -1,4 +1,48 @@
 {
+  "attributes": [
+    {
+      "attributeFlag": 1,
+      "id": "1",
+      "name": "Size"
+    },
+    {
+      "attributeFlag": 1,
+      "id": "2",
+      "name": "Color"
+    }
+  ],
+  "attributeValues":[
+    {
+      "attributeValueFlag":1,
+      "id": "1",
+      "attributeID": "1",
+      "name:": 37
+    },
+    {
+      "attributeValueFlag":1,
+      "id": "2",
+      "attributeID": "1",
+      "name:": 40
+    },
+    {
+      "attributeValueFlag":1,
+      "id": "3",
+      "attributeID": "2",
+      "name:": "Black"
+    },
+    {
+      "attributeValueFlag":1,
+      "id": "4",
+      "attributeID": "2",
+      "name:": "White"
+    },
+    {
+      "attributeValueFlag":1,
+      "id": "5",
+      "attributeID": "2",
+      "name:": "Red"
+    }
+  ],
   "banners": [
     {
       "id": 1,
@@ -40,6 +84,9 @@
       "bannerFlag": 1,
       "image": "../imagess/banner8.webp"
     }
+  ],
+  "brands": [
+    
   ],
   "carts": [
     {
