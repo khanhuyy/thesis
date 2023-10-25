@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./component/home/Home";
 import KidsWear from "./component/ProductPage/KidsWear";
 import MensWear from "./component/ProductPage/MensWear";
+import Order from "./component/order/Order";
 import WomensWear from "./component/ProductPage/WomensWear";
 
 import Signin from "./pages/Signin";
@@ -29,6 +30,7 @@ const AllRoutes = () => {
       <Route path="/admin" element={<Admin />} />
       <Route path="/kids" element={<KidsWear />} />
       <Route path="/mens" element={<MensWear />} />
+      <Route path="/orders" element={<Order />} />
       <Route path="/womens" element={<WomensWear />} />
       <Route path="/warehouses" element={<Warehouse />} />
       <Route

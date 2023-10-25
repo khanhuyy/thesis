@@ -1,4 +1,46 @@
 {
+  "banners": [
+    {
+      "id": 1,
+      "bannerFlag": 1,
+      "image": "../imagess/banner1.webp"
+    },
+    {
+      "id": 2,
+      "bannerFlag": 1,
+      "image": "../imagess/banner2.webp"
+    },
+    {
+      "id": 3,
+      "bannerFlag": 1,
+      "image": "../imagess/banner3.jpg"
+    },
+    {
+      "id": 4,
+      "bannerFlag": 1,
+      "image": "../imagess/banner4.jpg"
+    },
+    {
+      "id": 5,
+      "bannerFlag": 1,
+      "image": "../imagess/banner5.jpg'"
+    },
+    {
+      "id": 6,
+      "bannerFlag": 1,
+      "image": "../imagess/banner6.webp"
+    },
+    {
+      "id": 7,
+      "bannerFlag": 1,
+      "image": "../imagess/banner.7.webp"
+    },
+    {
+      "id": 8,
+      "bannerFlag": 1,
+      "image": "../imagess/banner8.webp"
+    }
+  ],
   "carts": [
     {
       "id": 1,
@@ -27,10 +69,49 @@
       "cartID": 1,
       "productID": 2,
       "price": 100000,
+      "sellerPrice": 200000,
       "sizes": [
         100000
       ],
       "quantity": 2
+    }
+  ],
+  "orders": [
+    {
+      "orderFlag": 1,
+      "id": 1,
+      "cartID": 1,
+      "productID": 1,
+      "price": 100000,
+      "sellerPrice": 3200000,
+      "sizes": [
+        100000
+      ],
+      "quantity": 2
+    }
+  ],
+  "orderItems": [
+    {
+      "orderItemFlag": 1,
+      "id": 1,
+      "orderID": 1,
+      "productID": 1,
+      "price": 100000,
+      "sizes": [
+        100000
+      ],
+      "quantity": 5
+    },
+    {
+      "orderItemFlag": 1,
+      "id": 2,
+      "orderID": 1,
+      "productID": 2,
+      "price": 100000,
+      "sizes": [
+        100000
+      ],
+      "quantity": 1
     }
   ],
   "productShops": [

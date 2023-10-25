@@ -1,5 +1,5 @@
 import "./App.css";
-import AllRoutes from "./Routes";
+import AllRoutes from "./Routes.jsx";
 import CartEmpty from "./component/Rahul/Cart/CartEmpty";
 import CartPage from "./component/Rahul/Cart/CartPage";
 import Navbar2 from "./component/Rahul/Navbar2"; 

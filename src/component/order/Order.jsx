@@ -8,18 +8,15 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CartItem from "./CartItem";
-import CartEmpty from "./CartEmpty";
-import { getCartProducts } from "../../../redux/CartReducer/action";
-import Navbar2 from "../Navbar2";
+import OrderItem from "./OrderItem";
+import { getCartProducts } from "../../redux/CartReducer/action";
+import Navbar2 from "../Rahul/Navbar2";
 import { useNavigate } from "react-router-dom";
-import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/firestore";
-import db from "../../../service/firestore"
 import axios from "axios";
-import { baseUrl } from "../../../Url";
+import { baseUrl } from "../../Url";
 
 
-const CartPage = () => {
+const Order = () => {
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
@@ -30,7 +27,7 @@ const CartPage = () => {
   });
 
   const [cart, setCart] = useState();
-  const [cartItems, setCartItems] = useState();
+  const [orderItems, setOrderItems] = useState();
  
   useEffect(() => {
     dispatch(getCartProducts);
@@ -45,40 +42,11 @@ const CartPage = () => {
     );
     setTotalPrice(tP);
   }, [bag]);
-  // const cartRef = doc(db, 'carts', '1');
-  // useEffect(() => {
-  //   getDoc(cartRef)
-  //     .then((doc) => {
-  //       let data = doc.data();
-  //       data.id = doc.id;
-  //       setCart(data);
-  //     })
-  // }, []);
-  // const cartItemsRef = collection(db, 'cartItems');
-  // useEffect(() => {
-  //   const q = query(
-  //     cartItemsRef, where('cartID', '==', '1')
-  //   );
-  //   // setLoading(true);
-  //   const unsub = onSnapshot(q, (querySnapshot) => {
-  //     const items = [];
-  //     querySnapshot?.forEach((doc) => {
-  //       let data = doc.data();
-  //       data.id = doc.id;
-  //       items.push(data);
-  //     });
-  //     setCartItems(items);
-  //     // setLoading(false);
-  //   });
-  //   return () => {
-  //     unsub();
-  //   };
-  // })
 
   const fetchData = () => {
-    axios.get(`${baseUrl}/cartItems?cartID=1`)
+    axios.get(`${baseUrl}/orderItems?orderID=1`)
       .then((doc) => {
-        setCartItems(doc.data);
+        setOrderItems(doc.data);
         console.log(doc.data);
       })
       .catch((err) => console.log(err))
@@ -111,7 +79,7 @@ const CartPage = () => {
         handleClick={handleClick}
       />
 
-      {cartItems?.length && (
+      {orderItems?.length && (
         <Stack
           bgColor={"#eeeeee"}
           w={"100%"}
@@ -131,8 +99,8 @@ const CartPage = () => {
             h={{ base: "70vh", sm: "70vh", md: "70vh", lg: "85vh" }}
             overflowY={{ base: "auto", sm: "auto", md: "auto", lg: "scroll" }}
           >
-            {cartItems?.map((e, i) => (
-              <CartItem key={i} {...e} />
+            {orderItems?.map((e, i) => (
+              <OrderItem key={i} {...e} />
             ))}
             
           </Stack>
@@ -192,7 +160,7 @@ const CartPage = () => {
                   color={rColor}
                   fontWeight={450}
                 >
-                  đ{totalPrice + 99}
+                  ₹ {totalPrice + 99}
                 </Text>
               </Stack>
             </Stack>
@@ -257,10 +225,8 @@ const CartPage = () => {
           </Stack>
         </Stack>
       )}
-      {/* {!cart?.cartItems?.length && <CartEmpty />} */}
-      {!bag.length && <CartEmpty />}
     </Stack>
   );
 };
 
-export default CartPage;
+export default Order;

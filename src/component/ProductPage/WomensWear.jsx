@@ -28,13 +28,13 @@ import { useDispatch, useSelector } from "react-redux";
 import CardForMensAndWomen from "./CardForMensAndWomen";
 import Pagination from "./Pagination";
 import Nav from "../Nav";
-import Card from "./Card";
 
 
 const WomensWear = () => {
 const navigate = useNavigate()
   const dispatch = useDispatch();
-  const { productData } = useSelector((store) => store.ProductReducer);
+  // const { productData } = useSelector((store) => store.ProductReducer);
+  const { productData, setProductData } = useState();
   const [page, setPage] = useState(1)
 
   const [categoryList, setCategoryList] = useState([]);
@@ -50,7 +50,6 @@ const navigate = useNavigate()
 
   const {search} = useLocation()
 
-// console.log('11111111',search)
 
   const handleChange = ({ target }) => {
     const obj = { ...filters };
@@ -68,18 +67,6 @@ const navigate = useNavigate()
     setFilters(obj);
   };
 
-  // console.log(filters);
-
-  useEffect(() => {
-    dispatch(getData("women",search));
-  }, [dispatch,search]);
-
-  useEffect(() => {
-    // for(let key in finalFilter){
-
-    // }
-    setParams(finalFilter);
-  }, [finalFilter]);
 
   const generateFilterData = (productData, param, setData) => {
     let obj = {};

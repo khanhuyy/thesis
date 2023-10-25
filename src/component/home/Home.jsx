@@ -275,16 +275,39 @@ import Footer from '../footer/Footer'
 import { Box, Image } from '@chakra-ui/react'
 import MobNav2 from '../NavBar/MobNav2'
 import MobileNav from '../NavBar/MobileNav'
-
+import axios from 'axios';
+import { baseUrl } from '../../Url';
+import { useEffect } from 'react';
 
 const Home = () => {
   const [hamburger, setHamburger] = useState(false)
+  const [banners, setBanners] = useState();
+  const fetchData = () => {
+    axios.get(`${baseUrl}/banners`)
+      .then((doc) => {
+        console.log(doc.data);
+        setBanners(doc.data);
+      })
+      .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
+  console.log(banners)
+
   return (<Box mt={"0px"}>
 
     {hamburger ? <MobileNav setHamburger={setHamburger} hamburger={hamburger} /> : <Box >
       <Box>
         <Nav setHamburger={setHamburger} hamburger={hamburger} />
         <Carousel autoPlay interval={"2000"} infiniteLoop>
+          {/* {
+            banners?.length && <>
+              {banners.map((banner) => (
+                <Image src={banner.image} alt="banner img" w={"100%"} />
+              ))}
+            </>
+          } */}
           <Image src={b1} alt="" w={"100%"} />
           <Image src={b2} alt="" w={"100%"} />
           <Image src={b3} alt="" w={"100%"} />

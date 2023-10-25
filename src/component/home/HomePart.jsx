@@ -1,6 +1,7 @@
 import React from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
-import { Image,Heading  } from '@chakra-ui/react'
+import { Image,Heading } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const HomePart = ({text,data,length}) => {
     // console.log(data,text,length)
@@ -10,7 +11,11 @@ const HomePart = ({text,data,length}) => {
 
        <SimpleGrid columns={[length-4,length-2,length]} spacing={0} mt={"4%"}>
         {data.map((el)=>{
-            return <Image src={el}/>
+            return <>
+              <Link>
+                <Image src={el}/>
+              </Link>
+            </>
         })}
 
        </SimpleGrid>
