@@ -105,7 +105,7 @@ const Warehouse = () => {
                     {products?.length >= 0 &&
                       products?.map((e) =>
 
-                          <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
+                          <Box key={e.id} onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
                             < CardForMensAndWomen key={e.id} props={e} />
                           </Box>)}
                   </SimpleGrid>

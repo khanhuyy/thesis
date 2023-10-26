@@ -17,6 +17,7 @@ import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/fires
 import db from "../../../service/firestore"
 import axios from "axios";
 import { baseUrl } from "../../../Url";
+import Nav from "../../Nav";
 
 
 const CartPage = () => {
@@ -71,13 +72,7 @@ const CartPage = () => {
       spacing={"0"}
       overflow={"hidden"}
     >
-      <Navbar2
-        price={totalPrice}
-        bag={bag}
-        show={true}
-        items={bag.length}
-        handleClick={handleClick}
-      />
+      <Nav />
 
       {cartItems?.length && (
         <Stack

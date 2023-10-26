@@ -14,6 +14,7 @@ import Navbar2 from "../Rahul/Navbar2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../Url";
+import Nav from "../Nav";
 
 
 const Order = () => {
@@ -71,13 +72,7 @@ const Order = () => {
       // bgColor={"red"}
       // border={"1px solid red"}
     >
-      <Navbar2
-        price={totalPrice}
-        bag={bag}
-        show={true}
-        items={bag.length}
-        handleClick={handleClick}
-      />
+      <Nav />
 
       {orderItems?.length && (
         <Stack

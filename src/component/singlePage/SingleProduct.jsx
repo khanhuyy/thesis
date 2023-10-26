@@ -46,7 +46,7 @@ const SingleProduct = () => {
             setProduct(data);
         })
     }, []);
-    console.log(product)
+    // console.log(product)
     
     const AddToCartToast = (title) => {
       toast({
@@ -61,7 +61,9 @@ const SingleProduct = () => {
     const productInCart = () => {
         axios.get(`${baseUrl}/cartItems?cartID=1&productID=${product.id}`)
         .then((doc) => {
-            if (doc.data != null || doc.data?.length === 0) {
+            if (doc.data == null || doc.data?.length == 0) {
+                setItemExisted(false);
+            } else {
                 setItemExisted(true);
             }
         })
@@ -73,19 +75,17 @@ const SingleProduct = () => {
     }, []);
     console.log(itemExisted);
     const addToCart = () => {
-        // AddToCartToast("Added to Cart")
-        // axios.post(`${baseUrl}/carts/1`, product).then((res)=>res).catch((err)=>console.log(err))
-        axios.post(`${baseUrl}/carts`, {
-            id: 3,
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        axios.post(`${baseUrl}/cartItems`, {
+                "cartID": 1,
+                "productID": id,
+                "price": 100000, // todo
+                "quantity": 1
+            }).then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
 

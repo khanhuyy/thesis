@@ -139,7 +139,7 @@ const Nav = ({ setHamburger, hamburger }) => {
                       //     {e?.name}
                       //   </span>
                       // </Link>
-                      <Link to={`categories/${e.id}`}>
+                      <Link key={e.id} to={`/categories/${e.id}`} relative='path'>
                         <span>
                           {e?.name}
                         </span>

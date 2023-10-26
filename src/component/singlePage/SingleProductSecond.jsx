@@ -11,11 +11,6 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { AiOutlineMobile } from 'react-icons/ai';
 import { TbTruckReturn } from 'react-icons/tb';
 
-
-
-
-
-
 const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
   // console.log(title, brand, rating, count, price)
   return (
@@ -62,12 +57,12 @@ const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, di
       <Text fontWeight={"600"} fontSize={"22px"}>Select Size</Text>
       <Box mt={"2%"}>
         {size?.map((el) => {
-          return <button style={{ border: "1px solid black", margin: "1%", hight: "15px", borderRadius: "5px", padding: "5px" }}>&nbsp;&nbsp;  {el} &nbsp;&nbsp;</button>
+          return <button key={el} style={{ border: "1px solid black", margin: "1%", hight: "15px", borderRadius: "5px", padding: "5px" }}>&nbsp;&nbsp;  {el} &nbsp;&nbsp;</button>
         })}
       </Box>
 
       <Box mt={"5%"} mb={"5%"} display={"flex"} flexDirection={["column","row"]}>
-            {exist == true ? (
+            {exist === true ? (
               <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{}} >Product in cart now</Button>
             ) : (
               <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button>
