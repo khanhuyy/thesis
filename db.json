@@ -90,7 +90,8 @@
     {
       "id": 1,
       "userID": 1,
-      "total": 1000
+      "total": 1000,
+      "paymentMethod": "CASH"
     },
     {
       "id": 2,

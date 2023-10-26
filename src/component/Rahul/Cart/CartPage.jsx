@@ -30,7 +30,7 @@ const CartPage = () => {
     return store.CartReducer;
   });
 
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState({});
   const [cartItems, setCartItems] = useState();
  
   useEffect(() => {
@@ -46,24 +46,39 @@ const CartPage = () => {
     );
     setTotalPrice(tP);
   }, [bag]);
-  const fetchData = () => {
-    axios.get(`${baseUrl}/cartItems?cartID=1`)
+  const fetchCart = () => {
+    axios.get(`${baseUrl}/carts/1`)
       .then((doc) => {
-        setCartItems(doc.data);
-        console.log(doc.data);
+        setCart(doc.data);
       })
       .catch((err) => console.log(err))
   }
   useEffect(() => {
-    fetchData()
+    fetchCart()
+  }, [])
+
+  const fetchCartItems = () => {
+    axios.get(`${baseUrl}/cartItems?cartID=1`)
+      .then((doc) => {
+        setCartItems(doc.data);
+      })
+      .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchCartItems()
   }, [])
 
   const rColor = "#d3145a";
   
   const handleClick = () => {
-    localStorage.setItem("totalPrice", totalPrice + 99);
-    console.log("navigate");
-    navigate("/paymentPage");
+    if (cart?.paymentMethod === "CASH") {
+      localStorage.setItem("totalPrice", totalPrice + 99);
+      console.log("navigate");
+      navigate("/paymentPage");
+    } else {
+      // create debt order
+    }
+    
   };
   
 
