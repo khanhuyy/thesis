@@ -285,7 +285,6 @@ const Home = () => {
   const fetchData = () => {
     axios.get(`${baseUrl}/banners`)
       .then((doc) => {
-        console.log(doc.data);
         setBanners(doc.data);
       })
       .catch((err) => console.log(err))
@@ -293,7 +292,6 @@ const Home = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  console.log(banners)
 
   return (<Box mt={"0px"}>
 

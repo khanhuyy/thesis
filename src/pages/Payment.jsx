@@ -10,9 +10,6 @@ import { GET_LOGOUT_SUCCESS } from '../redux/AuthReducer/ActionTypes'
 
 
 const Payment = () => {
-  // const location=useLocation()
-  // console.log('location', location)
-  // const {totalAmount,totalMRP,totalMRPDiscount}=location.state
   const expiryRef=useRef({month:"",year:""})
   const paymentRef=useRef({name:"",cardNm:"",cvc:""})
   const [check,setCheck]=useState({isloading:false,status:false})

@@ -70,12 +70,42 @@ const CartPage = () => {
 
   const rColor = "#d3145a";
   
+  const createOrder = () => {
+    axios.get(`${baseUrl}/orders`)
+      .then((doc) => {
+        setCartItems(doc.data);
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const createProduct = () => {
+    axios.post(`${baseUrl}/products`, {
+        "createdAt": TimeRanges.now(),
+        "brandID": 37,
+        "availableColors": [],
+        "image": "https://loremflickr.com/640/480/fashion", // todo
+        "price": "806",
+        "sizes": [
+            12,
+            23,
+            34
+        ],
+        "productFlag": 1,
+        "warehouseID": 1,
+        "id": "1"
+    }).then((doc) => {
+        setCategories(doc.data);
+    })
+    .catch((err) => console.log(err));
+}
+
   const handleClick = () => {
     if (cart?.paymentMethod === "CASH") {
       localStorage.setItem("totalPrice", totalPrice + 99);
       console.log("navigate");
       navigate("/paymentPage");
     } else {
+      createOrder();
       // create debt order
     }
     

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar2 from "../Navbar2";
 import { getCartProducts } from "../../../redux/CartReducer/action";
 import { useNavigate } from "react-router-dom";
+import Nav from "../../Nav";
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const PaymentPage = () => {
       // bgColor={"red"}
       // border={"1px solid red"}
     >
-      <Navbar2 />
+      <Nav />
       <Stack bgColor={"#eeeeee"} w={"100vw"} 
       // p={"3rem 8rem 0"} 
       pl={{ base: "0.3rem", sm: "0.3rem", md: "0.3rem", lg: "8rem" }}

@@ -91,7 +91,8 @@
       "id": 1,
       "userID": 1,
       "total": 1000,
-      "paymentMethod": "CASH"
+      "paymentMethod": "CASH",
+      "quantity": 3
     },
     {
       "id": 2,
@@ -1133,7 +1134,6 @@
       "name": "Ziemann - Heathcote",
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/82.jpg",
       "products": [],
-      
       "id": "2"
     },
     {
