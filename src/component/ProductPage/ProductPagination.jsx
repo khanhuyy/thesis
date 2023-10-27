@@ -15,21 +15,11 @@ import {
   Stack,
   Text,
   Box,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack
 } from "@chakra-ui/react";
-import {
-  doc,
-  onSnapshot,
-  updateDoc,
-  setDoc,
-  deleteDoc,
-  collection,
-  serverTimestamp,
-  getDocs,
-  query,
-  where,
-  orderBy,
-  limit,
-} from 'firebase/firestore';
 import React, { useRef, useState } from "react";
 
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
@@ -37,20 +27,18 @@ import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import Footer from '../footer/Footer'
 import { useEffect } from "react";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
-import { getData } from "../../redux/ProductReducer/action";
-import { useDispatch, useSelector } from "react-redux";
 import CardForMensAndWomen from "./CardForMensAndWomen";
 import Pagination from "./Pagination";
 import Nav from "../Nav";
 import MobileNav from "../NavBar/MobileNav";
-import firebase from "../../service/firebase";
-import db from "../../service/firestore";
-import { baseUrl
- } from "../../Url";
+import { baseUrl } from "../../Url";
+import axios from "axios";
 
 const ProductPaganation = ({id}) => {
   const navigate = useNavigate();
-  const [menProducts, setMenProducts] = useState([]);
+  // filter
+  const [brands, setBrands] = useState()
+  const [categories, setCategories] = useState() // level 2
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1)
   const [hamburger, setHamburger] = useState(false)
@@ -58,7 +46,10 @@ const ProductPaganation = ({id}) => {
   const [categoryList, setCategoryList] = useState([]);
   const [brandList, setBrandList] = useState([]);
 
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    "categoryIds": [],
+    "brandIds": []
+  });
   const [sort, setSort] = useState("");
   const [_sort, setSortBy] = useState("Recommended");
 
@@ -68,44 +59,52 @@ const ProductPaganation = ({id}) => {
 
   const { search } = useLocation()
 
+  const fetchBrands = () => {
+    axios.get(`${baseUrl}/brands`).then(
+      (doc) => {
+        setBrands(doc.data);
+      })
+      .catch((err) => console.log(err)
+    )
+  }
+  useEffect(() => {
+    fetchBrands()
+  }, [])
+
+  const fetchCategories = () => {
+    axios.get(`${baseUrl}/categories?level=${2}&parentId=${1}`).then(
+      (doc) => {
+        setCategories(doc.data)
+      })
+      .catch((err) => console.log(err)
+    )
+  }
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+
+
+  const fetchProducts = () => {
+    axios.get(`${baseUrl}/products?categoryIds_like=${filters["categoryIds"]}`).then(
+      (doc) => {
+        setProducts(doc.data);
+      })
+      .catch((err) => console.log(err)
+    )
+  }
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
 
   const handleChange = ({ target }) => {
-    const obj = { ...filters };
-
-    if (target.name === "gender") {
-      obj["gender"] = target.value;
-    } else {
-      if (target.checked) {
-        obj[target.value] = target.name;
-      } else {
-        delete obj[target.value];
-      }
-    }
-
-    setFilters(obj);
+    setFilters({...filters,categoryIds:[...new Set([...filters.categoryIds,target.value])]});
   };
-
-  const collectionRef = collection(db, 'products');
-  useEffect(() => {
-    const q = query(
-      collectionRef
-    );
-    const unsub = onSnapshot(collectionRef, (querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        data.id = doc.id;
-        items.push(data);
-      });
-      setMenProducts(items);
-    });
-    return () => {
-      unsub();
-    };
-  }, []);
   useEffect(() => {
     setParams(finalFilter);
   }, [finalFilter]);
+
+  console.log(filters);
 
   const generateFilterData = (products, param, setData) => {
     let obj = {};
@@ -128,23 +127,23 @@ const ProductPaganation = ({id}) => {
     // generateFilterData(products,'category')
   }, [products]);
 
-  const dataForFilter = (filters) => {
-    const obj = { category: [], brand: [] };
-    for (let key in filters) {
-      if (key === "gender") {
-        obj[key] = filters[key];
-      } else {
-        obj[filters[key]].push(key);
-      }
-    }
-    setFinalFilter(obj);
-  };
+  // const dataForFilter = (filters) => {
+  //   const obj = { category: [], brand: [] };
+  //   for (let key in filters) {
+  //     if (key === "gender") {
+  //       obj[key] = filters[key];
+  //     } else {
+  //       obj[filters[key]].push(key);
+  //     }
+  //   }
+  //   setFinalFilter(obj);
+  // };
 
-  // console.log({sort})
+  // // console.log({sort})
 
-  useEffect(() => {
-    dataForFilter(filters);
-  }, [filters]);
+  // useEffect(() => {
+  //   dataForFilter(filters);
+  // }, [filters]);
 
   useEffect(() => {
     if (sort === "asc" || sort === "desc") {
@@ -219,7 +218,8 @@ const ProductPaganation = ({id}) => {
   return (
     <Box>
       {hamburger ? <Box ><MobileNav setHamburger={setHamburger} hamburger={hamburger} /></Box> : <Box >
-        <Nav setHamburger={setHamburger} hamburger={hamburger}/>
+        {/* <Nav setHamburger={setHamburger} hamburger={hamburger}/> */}
+        <Nav />
         <Stack p={"1.50rem"}>
           <Stack
             spacing={2}
@@ -312,20 +312,16 @@ const ProductPaganation = ({id}) => {
                   <SearchIcon />
                 </HStack>
 
-                {categoryList.map((e, i) => (
-
-                  // console.log(e)
-                  // <Checkbox key={i} style={{ textTransform: "capitalize" }}> {e} </Checkbox>
-
+                {categories?.map((e) => (
                   <Checkbox
-                    key={i}
-                    name={"category"}
-                    value={e}
+                    key={e?.id}
+                    name={"categoryIds"}
+                    value={e.id}
                     isChecked={finalFilter?.category?.includes(`${e}`)}
                     onChange={handleChange}
                     style={{ textTransform: "capitalize" }}
                   >
-                    {e}
+                    {e?.name}
                   </Checkbox>
                 ))}
               </Stack>
@@ -339,16 +335,16 @@ const ProductPaganation = ({id}) => {
                   <Text as={"b"}> BRAND </Text>
                   <SearchIcon />
                 </HStack>
-                {brandList.slice(0, 8).map((e, i) => (
+                {brands?.map((e) => (
                   <Checkbox
-                    key={i}
-                    name={"brand"}
-                    value={e}
+                    key={e?.id}
+                    name={"brandIds"}
+                    value={e.id}
                     isChecked={finalFilter?.brand?.includes(`${e}`)}
                     onChange={handleChange}
                     style={{ textTransform: "capitalize" }}
                   >
-                    {e}
+                    {e?.name}
                   </Checkbox>
                 ))}
               </Stack>
@@ -361,7 +357,7 @@ const ProductPaganation = ({id}) => {
                 <HStack direction={"row"} justifyContent={"space-between"}>
                   <Text as={"b"}> price </Text>
                 </HStack>
-                {prices.map((e, i) => (
+                {/* {prices.map((e, i) => (
                   <Checkbox
                     key={i}
                     name={"price"}
@@ -373,7 +369,14 @@ const ProductPaganation = ({id}) => {
                     {e}{" "}
                   </Checkbox>
                   // <FilterByCat key={i} children={e} />
-                ))}
+                ))} */}
+                <RangeSlider aria-label={['min', 'max']} defaultValue={[10, 30]}>
+                  <RangeSliderTrack>
+                    <RangeSliderFilledTrack />
+                  </RangeSliderTrack>
+                  <RangeSliderThumb index={0} />
+                  <RangeSliderThumb index={1} />
+                </RangeSlider>
               </Stack>
               <Stack
                 direction={"column"}
@@ -420,21 +423,16 @@ const ProductPaganation = ({id}) => {
 
               w="85rem"
               p={"20px 0"}
-            // minW={'75rem'}
             >
-              {/* <Stack w={"20%"} textAlign="right" placeItems={'right'} placeContent='right' */}
               <Stack w="100%" p={"0 18px"} alignItems={"flex-end"}>
                 <Stack
                   w={"16rem"}
-                  //  border={"1px solid black"}
                   borderRadius={"12"}
                   boxShadow=" rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;"
                 >
                   <Menu isOpen={isOpenMenu}>
                     <MenuButton
                       as={Button}
-                      // outline="none"
-                      // box-shadow="none"
                       _focusVisible={"none"}
                       w={"100%"}
                       rightIcon={<ChevronDownIcon />}
@@ -479,8 +477,8 @@ const ProductPaganation = ({id}) => {
               <Stack className="product-display">
                 <Stack borderLeft="1px solid  #e9e9ed" borderTop="1px solid  #e9e9ed" p={"15px 15px"}>
                   <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
-                    {menProducts.length >= 0 &&
-                      menProducts.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) =>
+                    {products?.length >= 0 &&
+                      products.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) =>
 
                           <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
                             < CardForMensAndWomen key={e.id} props={e} />
