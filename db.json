@@ -85,7 +85,33 @@
       "image": "../imagess/banner8.webp"
     }
   ],
-  "brands": [],
+  "brands": [
+    {
+      "brandFlag": 1,
+      "id": "1",
+      "name": "Adidas"
+    },
+    {
+      "brandFlag": 1,
+      "id": "2",
+      "name": "Nike"
+    },
+    {
+      "brandFlag": 1,
+      "id": "3",
+      "name": "Dell"
+    },
+    {
+      "brandFlag": 1,
+      "id": "4",
+      "name": "LG"
+    },
+    {
+      "brandFlag": 1,
+      "id": "5",
+      "name": "Biore"
+    }
+  ],
   "carts": [
     {
       "id": 1,
@@ -169,6 +195,62 @@
       "id": "6",
       "name": "Studio",
       "level": "1"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "7",
+      "name": "Shirt",
+      "level": "2",
+      "parentId": "1"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "8",
+      "name": "Pant",
+      "level": "2",
+      "parentId": "1"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "9",
+      "name": "Watch",
+      "level": "2",
+      "parentId": "1"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "10",
+      "name": "Accesories",
+      "level": "2",
+      "parentId": "1"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "11",
+      "name": "Shoes",
+      "level": "2",
+      "parentId": "1"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "12",
+      "name": "Perfume",
+      "level": "2",
+      "parentId": "2"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "13",
+      "name": "Dress",
+      "level": "2",
+      "parentId": "2"
+    },
+    {
+      "categoryFlag": 1,
+      "id": "14",
+      "name": "Other",
+      "level": "2",
+      "parentId": "2"
     }
   ],
   "orders": [
@@ -273,6 +355,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1"
+      ],
       "warehouseID": 1,
       "id": "1"
     },
@@ -288,6 +373,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1"
+      ],
       "warehouseID": 1,
       "id": "2"
     },
@@ -303,6 +391,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1"
+      ],
       "warehouseID": 1,
       "id": "3"
     },
@@ -318,6 +409,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "2"
+      ],
       "warehouseID": 1,
       "id": "4"
     },
@@ -333,6 +427,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "2"
+      ],
       "warehouseID": 1,
       "id": "5"
     },
@@ -348,6 +445,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "2"
+      ],
       "warehouseID": 1,
       "id": "6"
     },
@@ -363,6 +463,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "2"
+      ],
       "warehouseID": 1,
       "id": "7"
     },
@@ -378,6 +481,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "2"
+      ],
       "warehouseID": 1,
       "id": "8"
     },
@@ -393,6 +499,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1"
+      ],
       "warehouseID": 1,
       "id": "9"
     },
@@ -408,6 +517,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1"
+      ],
       "warehouseID": 1,
       "id": "10"
     },
@@ -423,6 +535,9 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1"
+      ],
       "warehouseID": 1,
       "id": "11"
     },
@@ -438,6 +553,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "12"
     },
@@ -453,6 +573,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "13"
     },
@@ -468,6 +593,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "14"
     },
@@ -483,6 +613,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "15"
     },
@@ -498,6 +633,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "16"
     },
@@ -513,6 +653,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "17"
     },
@@ -528,6 +673,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "18"
     },
@@ -543,6 +693,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "19"
     },
@@ -558,6 +713,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "20"
     },
@@ -573,6 +733,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "21"
     },
@@ -588,6 +753,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "22"
     },
@@ -603,6 +773,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "23"
     },
@@ -618,6 +793,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "24"
     },
@@ -633,6 +813,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "25"
     },
@@ -648,6 +833,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "26"
     },
@@ -663,6 +853,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "27"
     },
@@ -678,6 +873,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "28"
     },
@@ -693,6 +893,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "29"
     },
@@ -708,6 +913,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "30"
     },
@@ -723,6 +933,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "31"
     },
@@ -738,6 +953,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "32"
     },
@@ -753,6 +973,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "33"
     },
@@ -768,6 +993,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "34"
     },
@@ -783,6 +1013,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "35"
     },
@@ -798,6 +1033,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "36"
     },
@@ -813,6 +1053,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "37"
     },
@@ -828,6 +1073,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "38"
     },
@@ -843,6 +1093,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "39"
     },
@@ -858,6 +1113,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "40"
     },
@@ -873,6 +1133,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "41"
     },
@@ -888,6 +1153,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "42"
     },
@@ -903,6 +1173,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "43"
     },
@@ -918,6 +1193,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "44"
     },
@@ -933,6 +1213,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "45"
     },
@@ -948,6 +1233,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "46"
     },
@@ -963,6 +1253,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "47"
     },
@@ -978,6 +1273,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "48"
     },
@@ -993,6 +1293,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "49"
     },
@@ -1008,6 +1313,11 @@
         34
       ],
       "productFlag": 1,
+      "categoryIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "warehouseID": 1,
       "id": "50"
     },
@@ -1118,6 +1428,24 @@
       "ogPrice": 1499,
       "discount": 60,
       "bySeller": "Aurelia"
+    },
+    {
+      "createdAt": "2023-10-27T06:35:42.378Z",
+      "brandID": 37,
+      "availableColors": [],
+      "image": "https://loremflickr.com/640/480/fashion",
+      "price": "806",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "warehouseID": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "SvMAA17"
     }
   ],
   "warehouses": [

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import SinglePageGrid from './SinglePageGrid'
 import "../../CSS/SingleProduct.css"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Input, InputGroup, Stack, Text, Button, ButtonGroup, Select } from '@chakra-ui/react'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Input, InputGroup, Stack, Text, Button, ButtonGroup, Select, filter } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
@@ -11,11 +11,13 @@ import { baseUrl } from '../../Url'
 const CreateProduct = () => {
     const [categories, setCategories] = useState();
     const [attributes, setAttributes] = useState();
+    const [attributeValues, setAttributeValues] = useState();
     const [warehouses, setWarehouses] = useState();
     const [selectedAttribute, setSelectedAttribute] = useState();
+    const [productAttributes, setProductAttributes] = useState();
     const [selectedCategory, setSelectedCategory] = useState();
     const [selectedWarehouse, setSelectedWarehouse] = useState();
-
+    const currentdate = new Date();
     const fetchAttribute = () => {
         axios.get(`${baseUrl}/attributes`)
           .then((doc) => {
@@ -49,9 +51,9 @@ const CreateProduct = () => {
         fetchWarehouses()
     }, [])
 
-    const handleAttribute = (e) => {
+    const addNewProductAttribute = (e) => {
         const qty = e.target.value;
-        setSelectedAttribute(qty);
+        setProductAttributes(qty);
     }
 
     const handleCategory = (e) => {
@@ -66,7 +68,7 @@ const CreateProduct = () => {
 
     const createProduct = () => {
         axios.post(`${baseUrl}/products`, {
-            "createdAt": TimeRanges.now(),
+            "createdAt": currentdate,
             "brandID": 37,
             "availableColors": [],
             "image": "https://loremflickr.com/640/480/fashion", // todo
@@ -78,7 +80,7 @@ const CreateProduct = () => {
             ],
             "productFlag": 1,
             "warehouseID": 1,
-            "id": "1"
+            "categoryIds": ["7"]
         }).then((doc) => {
             setCategories(doc.data);
         })
@@ -103,11 +105,17 @@ const CreateProduct = () => {
                 </Select>
                 <br />
                 <Text fontSize='2xl' as='b'>Attribute</Text>
-                <Select  variant="flushed" value={selectedAttribute} onChange={ handleAttribute } textAlign={'left'} maxW={"max-content"}   >
+                <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
                     {attributes?.length && attributes?.map((attribute) => (
                         <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
                     ))}
                 </Select>
+                <Text fontSize='2xl'>Sizes</Text>
+                {/* <Select  variant="flushed" value={selectedAttribute} onChange={ handleAttribute } textAlign={'left'} maxW={"max-content"}   >
+                    {attributes?.length && attributes?.map((attribute) => (
+                        <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
+                    ))}
+                </Select> */}
                 <br />
                 <Text fontSize='2xl' as='b'>Price</Text>
                 <Input placeholder='Price'/>
