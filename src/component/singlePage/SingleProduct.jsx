@@ -17,6 +17,7 @@ const SingleProduct = () => {
     const toast = useToast()
     const [loading, setLoading] = useState(false)
     const [itemExisted, setItemExisted] = useState(false);
+    const [cart, setCart] = useState();
     const [product, setProduct] = useState({
         rating: "",
         count: "",
@@ -73,10 +74,28 @@ const SingleProduct = () => {
         const result = productInCart();;
         setItemExisted(result);
     }, []);
-    console.log(itemExisted);
     const addToCart = () => {
         axios.post(`${baseUrl}/cartItems`, {
                 "cartID": 1,
+                "productID": id,
+                "price": 100000, // todo
+                "quantity": 1
+            }).then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    const fetchData = () => {
+        axios.get(`${baseUrl}/carts/${1}`)
+        .then((doc) => {
+                setCart(doc.data);
+            })
+        .catch((err) => console.log(err))
+      }
+    const updateCart = () => {
+        axios.put(`${baseUrl}/carts/${1}`, {
                 "productID": id,
                 "price": 100000, // todo
                 "quantity": 1
@@ -125,6 +144,7 @@ const SingleProduct = () => {
                     {product ? 
                     <SingleProductSecond 
                         addToCart={addToCart} 
+                        id={product?.id}
                         title={product?.title} 
                         brand={product?.brand} 
                         rating={product?.rating} 
@@ -134,7 +154,6 @@ const SingleProduct = () => {
                         size={product?.sizes}
                         exist={itemExisted} /> 
                     : ''}
-                    {/* title,brand,rating,count,price,discount,size,ageGroup */}
                 </div>
             </div>
             <Footer />

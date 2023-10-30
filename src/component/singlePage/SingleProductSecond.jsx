@@ -11,8 +11,7 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { AiOutlineMobile } from 'react-icons/ai';
 import { TbTruckReturn } from 'react-icons/tb';
 
-const SingleProductSecond = ({ addToCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
-  // console.log(title, brand, rating, count, price)
+const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
   return (
     <Box>
       {/* <Heading Heading as='h3' size='lg' noOfLines={1}>{brand}</Heading> */}

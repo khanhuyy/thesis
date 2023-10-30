@@ -8,6 +8,8 @@ import {
   Stack,
   Box,
   Button,
+  Image,
+  Text
 } from "@chakra-ui/react";
 import {
   doc,
@@ -32,8 +34,26 @@ const Warehouse = () => {
   const [hamburger, setHamburger] = useState(false)
   const navigate = useNavigate();
   const [products, setProducts] = useState();
+  const [warehouse, setWarehouse] = useState();
+
+  const vendor = JSON.parse(localStorage.getItem('user'))
+
+  const fetchWarehouse = () => {
+    axios.get(`${baseUrl}/warehouses?ownerID=${vendor.id}`)
+      .then((doc) => {
+        setWarehouse(doc.data[0]);
+        
+      })
+      .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchWarehouse()
+  }, [])
+
+
   const fetchData = () => {
-    axios.get(`${baseUrl}/products?warehouseID=1`)
+    // axios.get(`${baseUrl}/products?warehouseID=${warehouse?.id}`)
+    axios.get(`${baseUrl}/products?warehouseID=2`)
       .then((doc) => {
         setProducts(doc.data);
       })
@@ -41,24 +61,30 @@ const Warehouse = () => {
   }
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [])  
 
   return (<Box mt={"0px"}>
 
     <Box >
       <Box>
         <Nav setHamburger={setHamburger} hamburger={hamburger} />
-        <Box>Avatar
-          <Box>Info</Box>
-          <Box>Info</Box>
-          <Box>Info</Box>
+        <Box bg='#F0F8FF' w='100%' p={4} color='white' > 
+          <Image borderRadius='full'
+            boxSize='150px' 
+            src={vendor.avatar} /> <Text color='black'>Products</Text>
+          <Text color='black'>Followers</Text>
+          <Text color='black'>Followings</Text>
+          <Text color='black'>Rates: 4.8</Text>
         </Box>
-        <Box>Products</Box>
-        <Stack p={"1.50rem"}>
+        <br/>
+        <Text size='2xl' as='b'>Description</Text>
+        <Box>{vendor.description}</Box>
+        <Box>{vendor.description}</Box>
+        <Box>{vendor.description}</Box>
+        <Stack p={"2.50rem"}>
           <Stack
             spacing={2}
             align="stretch"
-            // border={"1px solid black"}
             marginBottom="20px"
           >
             <Breadcrumb separator="-" className={"breadcrummb"}>
@@ -69,7 +95,7 @@ const Warehouse = () => {
               </BreadcrumbItem>
               <BreadcrumbItem isCurrentPage>
                 <BreadcrumbLink cursor="text">
-                  {products?.length} items
+                  {products?.length} products
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <Button onClick={() => navigate('/createProduct')}>Add new Product</Button>
@@ -82,8 +108,6 @@ const Warehouse = () => {
             direction={"row"}
             justifyContent={"space-between"}
           >
-            <Stack></Stack>
-
             <Stack
               className="right-side-menu"
               w="85rem"
@@ -111,8 +135,9 @@ const Warehouse = () => {
                   </SimpleGrid>
                 </Stack>
                 <Center marginBottom="20px" >
-
-                  {/* <Pagination page={1} totalPage={Math.ceil(shop?.products?.length / 15)} /> */}
+                  {(products?.length >= 0) && 
+                    <Pagination page={1} totalPage={Math.ceil(products?.length / 15)} />
+                  }
                 </Center>
               </Stack>
             </Stack>

@@ -17,6 +17,7 @@ const Nav = ({ setHamburger, hamburger }) => {
   const navigate = useNavigate()
 
   let token = JSON.parse(localStorage.getItem("Login"))
+  const [logout, setLogout] = useState()
 
   let Display
   let D2
@@ -53,6 +54,9 @@ const Nav = ({ setHamburger, hamburger }) => {
 
   }
 
+  const handleSearch = () => {
+    console.log("Searching...")
+  }
   // const ref1 = useRef()
   const detectSize = () => {
     detectHW({
@@ -68,23 +72,10 @@ const Nav = ({ setHamburger, hamburger }) => {
     };
   }, [windowDimension])
 
-  const handleInput = (e) => {
-    console.log("searching");
-  }
-
-  const logouts = (e) => {
-    e.preventDefault();
-    firebase.signOut(firebase.auth)
-      .then((userCredential) => {
-        console.log(userCredential);
-        console.log(firebase.auth);
-        navigate('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    // localStorage.setItem("Login", JSON.stringify(""))
-    // setlogout(false)
+  const handleLogout = (e) => {
+    window.localStorage.removeItem('user')
+    navigate('/');
+    setLogout(true)
   }
 
   const categoryRef = collection(db, 'categories');
@@ -92,7 +83,6 @@ const Nav = ({ setHamburger, hamburger }) => {
     const q = query(
       categoryRef
     );
-    // setLoading(true);
     const unsub = onSnapshot(q, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -101,17 +91,14 @@ const Nav = ({ setHamburger, hamburger }) => {
         items.push(data);
       });
       setCategories(items);
-      // setLoading(false);
     });
     return () => {
       unsub();
     };
-  }, []);
-
+  }, [])
+  const user = JSON.parse(localStorage.getItem('user'))
   return (
-    // <div style={{border:"1px solid black", height:'80px'}}>Nav</div>
     <div style={{ position: 'sticky', top: "0", backgroundColor: 'white', marginTop: "0px", boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", zIndex: 100 }}>
-      {/* style={{backgroundColor:'white', position:"fixed", top:0, left:0}} */}
       {windowDimension.winWidth > 1024 ? (
         <div className="NavMain" style={{ backgroundColor: 'white', marginTop: 0 }} >
           <Link to='/'>
@@ -250,494 +237,13 @@ const Nav = ({ setHamburger, hamburger }) => {
                     </div>
                   </div>
                 </li>
-                <li>
-                  <Link to={'/womens'}>
-                    <span>
-                      Women
-                    </span>
-                  </Link>
-                  <div class="subMenu">
-                    <div id="furniture" class="submenuList">
-                      <div>
-                        <p style={{ color: "#EC407A" }}>
-                          Indian & Fashion Wear
-                        </p>
-                        <p>Kurtas & Suits</p>
-                        <p>Kurtis</p>
-                        <p>Sarees</p>
-                        <p>Ethic Wear</p>
-                        <p>Legging, Selvars</p>
-                        <p>Skirts</p>
-                        <p>Plazos</p>
-                        <p>Jacket</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Belt, Scarves & more</p>
-                        <p style={{ color: "#EC407A" }}>Watches & Wearables</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Western Wear</p>
-                        <p>Dress</p>
-                        <p>Tops</p>
-                        <p>T-shirts</p>
-                        <p>Jeans</p>
-                        <p>Tract-Pents & Jooggers</p>
-                        {/* <hr />
-              <p style={{color:"#EC407A"}}>Inner Wear & Sleep Wear</p>
-                        <p>Briefs & Trunks</p>
-                        <p>Shrugs</p>
-
-                        <p>Jacket & Coats</p>
-                        <p>Blazers</p>
-                        <p>Thermals</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Plus Size</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Footwears</p>
-                        <p>Shoes</p>
-                        <p>Casual Shoes</p>
-                        <p>Formal Shoes</p>
-                        <p>Sport Shoes</p>
-                        <p>Sneakers</p>
-                        <p>Sendal & Footwear</p>
-                        <p>Flip Flops</p>
-                        <p>Socks</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Personal care & Grooming
-                        </p>
-                        <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
-                        <p style={{ color: "#EC407A" }}>Watches</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
-                        <p>Sports Shoes</p>
-                        <p>Sports Sendals</p>
-                        <p>Active T-Shirts</p>
-                        <p>Track Pants</p>
-                        <p>Tractsuits</p>
-                        <p>Jacktes</p>
-                        <p>Accessories</p>
-                        <p>Swimming Suits</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Gadgets</p>
-                        <p>Fitness Gadgets</p>
-                        <p>Headphones</p>
-                        <p>Speakers</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Fashion Accessories</p>
-                        <p>Wallets</p>
-                        <p>Belts</p>
-                        <p>Perfumes</p>
-                        <p>Treamer</p>
-                        <p>Deodrant</p>
-                        <p>Ties</p>
-                        <p>Accessories Gift-Set</p>
-                        <p>Caps & Hats</p>
-
-                        <p>Phone Cases</p>
-                        <p>Rings & Neckles</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Bag & Bag-Packs</p>
-                        <p style={{ color: "#EC407A" }}>Luggage & Trolly </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <Link to={'/kids'}>
-                    <span>
-                      Kids
-                    </span>
-                  </Link>
-                  <div class="subMenu">
-                    <div id="electronics" class="submenuList">
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Top-Wear</p>
-                        <p>T-Shirt</p>
-                        <p>Casual Shirts</p>
-                        <p>Formal Shirts</p>
-                        <p>Sweat Shirt</p>
-                        <p>Jacket</p>
-                        <p>Sweater</p>
-                        <p>Suits</p>
-                        <p>Rain Jacket</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Indian & Festive Wear
-                        </p>
-                        <p>Kurta & Kurts's Set</p>
-                        <p>Sherwani</p>
-                        <p>Dhotis</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Bottom-Wear</p>
-                        <p>Jeans</p>
-                        <p>Casual Trousers</p>
-                        <p>Formal Trousers</p>
-                        <p>Shorts</p>
-                        <p>Tract-Pents & Jooggers</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Inner Wear & Sleep Wear
-                        </p>
-                        <p>Briefs & Trunks</p>
-                        <p>Boxers</p>
-
-                        <p>Vests</p>
-                        <p>Spleepwear & Loungewear</p>
-                        <p>Thermals</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Plus Size</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Footwears</p>
-                        <p>Shoes</p>
-                        <p>Casual Shoes</p>
-                        <p>Formal Shoes</p>
-                        <p>Sport Shoes</p>
-                        <p>Sneakers</p>
-                        <p>Sendal & Footwear</p>
-                        <p>Flip Flops</p>
-                        <p>Socks</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Personal care & Grooming
-                        </p>
-                        <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
-                        <p style={{ color: "#EC407A" }}>Watches</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
-                        <p>Sports Shoes</p>
-                        <p>Sports Sendals</p>
-                        <p>Active T-Shirts</p>
-                        <p>Track Pants</p>
-                        <p>Tractsuits</p>
-                        <p>Jacktes</p>
-                        <p>Accessories</p>
-                        <p>Swimming Suits</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Gadgets</p>
-                        <p>Fitness Gadgets</p>
-                        <p>Headphones</p>
-                        <p>Speakers</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Fashion Accessories</p>
-                        <p>Wallets</p>
-                        <p>Belts</p>
-                        <p>Perfumes</p>
-                        <p>Treamer</p>
-                        <p>Deodrant</p>
-                        <p>Ties</p>
-                        <p>Accessories Gift-Set</p>
-                        <p>Caps & Hats</p>
-
-                        <p>Phone Cases</p>
-                        <p>Rings & Neckles</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Bag & Bag-Packs</p>
-                        <p style={{ color: "#EC407A" }}>Luggage & Trolly </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <Link to={"/womens"}><li>
-                  Home & Living
-                  <div class="subMenu">
-                    <div id="home_appliances" class="submenuList">
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Top-Wear</p>
-                        <p>T-Shirt</p>
-                        <p>Casual Shirts</p>
-                        <p>Formal Shirts</p>
-                        <p>Sweat Shirt</p>
-                        <p>Jacket</p>
-                        <p>Sweater</p>
-                        <p>Suits</p>
-                        <p>Rain Jacket</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Indian & Festive Wear
-                        </p>
-                        <p>Kurta & Kurts's Set</p>
-                        <p>Sherwani</p>
-                        <p>Dhotis</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Bottom-Wear</p>
-                        <p>Jeans</p>
-                        <p>Casual Trousers</p>
-                        <p>Formal Trousers</p>
-                        <p>Shorts</p>
-                        <p>Tract-Pents & Jooggers</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Inner Wear & Sleep Wear
-                        </p>
-                        <p>Briefs & Trunks</p>
-                        <p>Boxers</p>
-
-                        <p>Vests</p>
-                        <p>Spleepwear & Loungewear</p>
-                        <p>Thermals</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Plus Size</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Footwears</p>
-                        <p>Shoes</p>
-                        <p>Casual Shoes</p>
-                        <p>Formal Shoes</p>
-                        <p>Sport Shoes</p>
-                        <p>Sneakers</p>
-                        <p>Sendal & Footwear</p>
-                        <p>Flip Flops</p>
-                        <p>Socks</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Personal care & Grooming
-                        </p>
-                        <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
-                        <p style={{ color: "#EC407A" }}>Watches</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
-                        <p>Sports Shoes</p>
-                        <p>Sports Sendals</p>
-                        <p>Active T-Shirts</p>
-                        <p>Track Pants</p>
-                        <p>Tractsuits</p>
-                        <p>Jacktes</p>
-                        <p>Accessories</p>
-                        <p>Swimming Suits</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Gadgets</p>
-                        <p>Fitness Gadgets</p>
-                        <p>Headphones</p>
-                        <p>Speakers</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Fashion Accessories</p>
-                        <p>Wallets</p>
-                        <p>Belts</p>
-                        <p>Perfumes</p>
-                        <p>Treamer</p>
-                        <p>Deodrant</p>
-                        <p>Ties</p>
-                        <p>Accessories Gift-Set</p>
-                        <p>Caps & Hats</p>
-
-                        <p>Phone Cases</p>
-                        <p>Rings & Neckles</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Bag & Bag-Packs</p>
-                        <p style={{ color: "#EC407A" }}>Luggage & Trolly </p>
-                      </div>
-                    </div>
-                  </div>
-                </li></Link>
-                <Link  to={"/womens"}>
-                <li>
-                  Beauty
-                  <div class="subMenu">
-                    <div id="kids_toys" class="submenuList">
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Top-Wear</p>
-                        <p>T-Shirt</p>
-                        <p>Casual Shirts</p>
-                        <p>Formal Shirts</p>
-                        <p>Sweat Shirt</p>
-                        <p>Jacket</p>
-                        <p>Sweater</p>
-                        <p>Suits</p>
-                        <p>Rain Jacket</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Indian & Festive Wear
-                        </p>
-                        <p>Kurta & Kurts's Set</p>
-                        <p>Sherwani</p>
-                        <p>Dhotis</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Bottom-Wear</p>
-                        <p>Jeans</p>
-                        <p>Casual Trousers</p>
-                        <p>Formal Trousers</p>
-                        <p>Shorts</p>
-                        <p>Tract-Pents & Jooggers</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Inner Wear & Sleep Wear
-                        </p>
-                        <p>Briefs & Trunks</p>
-                        <p>Boxers</p>
-
-                        <p>Vests</p>
-                        <p>Spleepwear & Loungewear</p>
-                        <p>Thermals</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Plus Size</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Footwears</p>
-                        <p>Shoes</p>
-                        <p>Casual Shoes</p>
-                        <p>Formal Shoes</p>
-                        <p>Sport Shoes</p>
-                        <p>Sneakers</p>
-                        <p>Sendal & Footwear</p>
-                        <p>Flip Flops</p>
-                        <p>Socks</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Personal care & Grooming
-                        </p>
-                        <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
-                        <p style={{ color: "#EC407A" }}>Watches</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
-                        <p>Sports Shoes</p>
-                        <p>Sports Sendals</p>
-                        <p>Active T-Shirts</p>
-                        <p>Track Pants</p>
-                        <p>Tractsuits</p>
-                        <p>Jacktes</p>
-                        <p>Accessories</p>
-                        <p>Swimming Suits</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Gadgets</p>
-                        <p>Fitness Gadgets</p>
-                        <p>Headphones</p>
-                        <p>Speakers</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Fashion Accessories</p>
-                        <p>Wallets</p>
-                        <p>Belts</p>
-                        <p>Perfumes</p>
-                        <p>Treamer</p>
-                        <p>Deodrant</p>
-                        <p>Ties</p>
-                        <p>Accessories Gift-Set</p>
-                        <p>Caps & Hats</p>
-
-                        <p>Phone Cases</p>
-                        <p>Rings & Neckles</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Bag & Bag-Packs</p>
-                        <p style={{ color: "#EC407A" }}>Luggage & Trolly </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                </Link>
-                <li>
-                  Studio
-                  <div class="subMenu">
-                    <div id="sports_fashion" class="submenuList">
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Top-Wear</p>
-                        <p>T-Shirt</p>
-                        <p>Casual Shirts</p>
-                        <p>Formal Shirts</p>
-                        <p>Sweat Shirt</p>
-                        <p>Jacket</p>
-                        <p>Sweater</p>
-                        <p>Suits</p>
-                        <p>Rain Jacket</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Indian & Festive Wear
-                        </p>
-                        <p>Kurta & Kurts's Set</p>
-                        <p>Sherwani</p>
-                        <p>Dhotis</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Bottom-Wear</p>
-                        <p>Jeans</p>
-                        <p>Casual Trousers</p>
-                        <p>Formal Trousers</p>
-                        <p>Shorts</p>
-                        <p>Tract-Pents & Jooggers</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Inner Wear & Sleep Wear
-                        </p>
-                        <p>Briefs & Trunks</p>
-                        <p>Boxers</p>
-
-                        <p>Vests</p>
-                        <p>Spleepwear & Loungewear</p>
-                        <p>Thermals</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Plus Size</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Footwears</p>
-                        <p>Shoes</p>
-                        <p>Casual Shoes</p>
-                        <p>Formal Shoes</p>
-                        <p>Sport Shoes</p>
-                        <p>Sneakers</p>
-                        <p>Sendal & Footwear</p>
-                        <p>Flip Flops</p>
-                        <p>Socks</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Personal care & Grooming
-                        </p>
-                        <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
-                        <p style={{ color: "#EC407A" }}>Watches</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
-                        <p>Sports Shoes</p>
-                        <p>Sports Sendals</p>
-                        <p>Active T-Shirts</p>
-                        <p>Track Pants</p>
-                        <p>Tractsuits</p>
-                        <p>Jacktes</p>
-                        <p>Accessories</p>
-                        <p>Swimming Suits</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Gadgets</p>
-                        <p>Fitness Gadgets</p>
-                        <p>Headphones</p>
-                        <p>Speakers</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Fashion Accessories</p>
-                        <p>Wallets</p>
-                        <p>Belts</p>
-                        <p>Perfumes</p>
-                        <p>Treamer</p>
-                        <p>Deodrant</p>
-                        <p>Ties</p>
-                        <p>Accessories Gift-Set</p>
-                        <p>Caps & Hats</p>
-
-                        <p>Phone Cases</p>
-                        <p>Rings & Neckles</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Bag & Bag-Packs</p>
-                        <p style={{ color: "#EC407A" }}>Luggage & Trolly </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
               </ul> */}
             </nav>
           </div>
           <div className="secondNavMain">
             <div>
               <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
-              <span onClick={handleInput}>
+              <span onClick={handleSearch}>
                 <SearchIcon />
               </span>
               {search !== "" && DATA?.length > 0 ? <> <Box   >
@@ -756,46 +262,84 @@ const Nav = ({ setHamburger, hamburger }) => {
             </div>
           </div>
           <div className="thirdNavMain">
-
+            {(user !== undefined && user !== null) ? (
+              (user.role == "ADMIN") ? (
+                <>
+                  <div>
+                    <Link to={'/warehouses'}>
+                      <img
+                        src="https://img.icons8.com/?size=256&id=20156&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to={'/shops'}>
+                      <img
+                        src="https://img.icons8.com/?size=50&id=489&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <Link to={'/carts'}> <div>
+                    <img
+                      src="https://img.icons8.com/?size=50&id=9671&format=png"
+                      style={{ width: "25px" }}
+                      alt=""
+                    />
+                  </div></Link>
+                  <Link to={'/orders'}> <div>
+                    <img
+                      src="https://img.icons8.com/?size=50&id=4255&format=png"
+                      style={{ width: "25px" }}
+                      alt=""
+                    />
+                  </div></Link>
+                </>
+              ) : (
+                (user.role == "SELLER") ? (
+                  <>
+                    <Link to={'/carts'}> <div>
+                      <img
+                        src="https://img.icons8.com/?size=50&id=9671&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </div></Link>
+                    <Link to={'/orders'}> <div>
+                      <img
+                        src="https://img.icons8.com/?size=50&id=4255&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </div></Link>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <Link to={'/warehouses'}>
+                        <img
+                          src="https://img.icons8.com/?size=256&id=20156&format=png"
+                          style={{ width: "25px" }}
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                  </>
+                )
+              )
+            ) : (
+              <></>
+            )}
             
-            <div>
-              <Link to={'/warehouses'}>
-                <img
-                  src="https://img.icons8.com/?size=256&id=20156&format=png"
-                  style={{ width: "25px" }}
-                  alt=""
-                />
-              </Link>
-            </div>
-            <div>
-              <Link to={'/shops'}>
-                <img
-                  src="https://img.icons8.com/?size=50&id=489&format=png"
-                  style={{ width: "25px" }}
-                  alt=""
-                />
-              </Link>
-            </div>
-            <Link to={'/carts'}> <div>
-              <img
-                src="https://img.icons8.com/?size=50&id=9671&format=png"
-                style={{ width: "25px" }}
-                alt=""
-              />
-            </div></Link>
-            <Link to={'/orders'}> <div>
-              <img
-                src="https://img.icons8.com/?size=50&id=4255&format=png"
-                style={{ width: "25px" }}
-                alt=""
-              />
-            </div></Link>
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
             {/* Login button */}
-            {firebase.auth == undefined ? (
+            {(localStorage.getItem('user') == undefined || localStorage.getItem('user') == null) ? (
               <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
             ) : (
-              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button>
+              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={handleLogout}>Logout</Button>
             )}
             {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
             <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button> */}

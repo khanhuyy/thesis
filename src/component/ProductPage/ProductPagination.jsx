@@ -83,9 +83,8 @@ const ProductPaganation = ({id}) => {
     fetchCategories()
   }, [])
 
-
   const fetchProducts = () => {
-    axios.get(`${baseUrl}/products?categoryIds_like=${filters["categoryIds"]}`).then(
+    axios.get(`${baseUrl}/products?categoryIds_like=${filters["categoryIds"]}&brandIds_like=${filters["brandIds"]}`).then(
       (doc) => {
         setProducts(doc.data);
       })
@@ -94,11 +93,14 @@ const ProductPaganation = ({id}) => {
   }
   useEffect(() => {
     fetchProducts()
-  }, [])
-
+  }, [finalFilter])
 
   const handleChange = ({ target }) => {
-    setFilters({...filters,categoryIds:[...new Set([...filters.categoryIds,target.value])]});
+    if (target.name == "categoryIds") {
+      setFilters({...filters, categoryIds:[...new Set([...filters.categoryIds, target.value])]});
+    } else if (target.name == "brandIDs") {
+      setFilters({...filters, brandIds:[...new Set([...filters.brandIds, target.value])]});
+    }
   };
   useEffect(() => {
     setParams(finalFilter);
@@ -106,51 +108,11 @@ const ProductPaganation = ({id}) => {
 
   console.log(filters);
 
-  const generateFilterData = (products, param, setData) => {
-    let obj = {};
-
-    // let arr = []
-    for (let item of products) {
-      obj[item[param]] = true;
-    }
-
-    setData(Object.keys(obj));
-  };
-
-  // console.log({ categoryList });
-
-  useEffect(() => {
-    if (categoryList.length < 1) {
-      generateFilterData(products, "category", setCategoryList);
-      generateFilterData(products, "brand", setBrandList);
-    }
-    // generateFilterData(products,'category')
-  }, [products]);
-
-  // const dataForFilter = (filters) => {
-  //   const obj = { category: [], brand: [] };
-  //   for (let key in filters) {
-  //     if (key === "gender") {
-  //       obj[key] = filters[key];
-  //     } else {
-  //       obj[filters[key]].push(key);
-  //     }
-  //   }
-  //   setFinalFilter(obj);
-  // };
-
-  // // console.log({sort})
-
-  // useEffect(() => {
-  //   dataForFilter(filters);
-  // }, [filters]);
-
   useEffect(() => {
     if (sort === "asc" || sort === "desc") {
       setFinalFilter({ ...finalFilter, _sort: "price", _order: sort })
     }
     else if (sort === "") {
-
       const newFilter = { ...filters }
       delete finalFilter['_sort']
       setFinalFilter(newFilter)
@@ -166,10 +128,10 @@ const ProductPaganation = ({id}) => {
   // price[i][4]
 
   const prices = [
-    "Rs. 159 to Rs. 1619",
-    "Rs. 1619 to Rs. 3079",
-    "Rs. 3079 to Rs. 4539",
-    "Rs. 4539 to Rs. 5999",
+    "159đ to 1619đ",
+    "1619đ to 3079đ",
+    "3079đ to 4539đ",
+    "4539đ to 5999đ",
   ];
 
   const Discounts = [
@@ -207,14 +169,6 @@ const ProductPaganation = ({id}) => {
   const menuListMouseLeaveEvent = () => {
     setIsOpenMenu(false);
   };
-
-
-  // if (products.length < 1) {
-  //   return <Center style={{ marginTop: '50vh' }}><Spinner /> </Center>
-  // }
-
-
-
   return (
     <Box>
       {hamburger ? <Box ><MobileNav setHamburger={setHamburger} hamburger={hamburger} /></Box> : <Box >
@@ -294,13 +248,23 @@ const ProductPaganation = ({id}) => {
                   cursor='pointer'
                   // border="1px solid black"
                   fontSize={".8rem"}
+                  color={"green"}
+                  onClick={() => setFinalFilter({})}
+                >
+                  CONFIRM
+                </Button>
+                <Button
+                  as={"b"}
+                  variant='text'
+                  cursor='pointer'
+                  // border="1px solid black"
+                  fontSize={".8rem"}
                   color={"#fe3f6c"}
                   onClick={() => setFinalFilter({})}
                 >
                   CLEAR ALL
                 </Button>
               </Stack>
-
               <Stack
                 direction={"column"}
                 textAlign="left"
@@ -357,19 +321,6 @@ const ProductPaganation = ({id}) => {
                 <HStack direction={"row"} justifyContent={"space-between"}>
                   <Text as={"b"}> price </Text>
                 </HStack>
-                {/* {prices.map((e, i) => (
-                  <Checkbox
-                    key={i}
-                    name={"price"}
-                    value={e}
-                    onChange={handleChange}
-                    style={{ textTransform: "capitalize" }}
-                  >
-                    {" "}
-                    {e}{" "}
-                  </Checkbox>
-                  // <FilterByCat key={i} children={e} />
-                ))} */}
                 <RangeSlider aria-label={['min', 'max']} defaultValue={[10, 30]}>
                   <RangeSliderTrack>
                     <RangeSliderFilledTrack />
@@ -420,7 +371,6 @@ const ProductPaganation = ({id}) => {
 
             <Stack
               className="right-side-menu"
-
               w="85rem"
               p={"20px 0"}
             >

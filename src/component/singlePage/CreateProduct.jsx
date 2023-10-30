@@ -90,7 +90,7 @@ const CreateProduct = () => {
     return (
         <div>
             <Nav />
-            <Stack>
+            <Stack width='50%' display='block'>
                 <Text fontSize='2xl' as='b'>Name</Text>
                 <Input placeholder='Name'/>
                 <br />

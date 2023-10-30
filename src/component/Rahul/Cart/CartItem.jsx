@@ -109,8 +109,14 @@ const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,first
       <CloseButton onClick={handleDelete} size='md'  />
         </Box>
         <Stack direction={'row'} align={'baseline'} >
-        <Text fontSize={'20px'}>  ₹{price * qty} </Text>
-        <p  className="cutPrice" fontSize={'15px'} > ₹{ogPrice * qty} </p>
+        <Text fontSize={'20px'}>  {price * qty}đ </Text>
+        {(ogPrice) ?
+          (
+            <p  className="cutPrice" fontSize={'15px'} > {ogPrice * qty}đ </p>
+          ) : (
+            <p  className="cutPrice" fontSize={'15px'} >  </p>
+          )
+        }
         </Stack>
         <Text as={'sub'} textAlign={'right'} fontSize={'14px'} >Free shipping</Text>
       </Stack>

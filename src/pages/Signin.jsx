@@ -26,117 +26,175 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast";
-// import Swal from "sweetalert2";
-import { async } from "@firebase/util";
+import { baseUrl } from "../Url";
 
 export const Signin = () => {
   const [isAuth,setAuth] = useState(false)
   const [ph, setph] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setuser] = useState("");
-  const [otp, setotp] = useState("");
-  const [change, setchnage] = useState(true);
+  const [user, setUser] = useState();
+  const [userID, setUserID] = useState();
+  const [userCart, setUserCart] = useState();
   const toast = useToast()
-
-  const [change2, setchange2] = useState(true);
-
-  ///
   const navigate = useNavigate();
-  const [data, setdata] = useState([]);
-  const [checkemail, setcheckemail] = useState("");
-  const [checkpss, setcheckpss] = useState("");
-
-  const onsubmit = async () => {
-    data.map((item) => {
-      if (checkemail === "admin123@gmail.com" && checkpss === "admin") {
-        navigate("/Admin");
-      } else if (item.Email === checkemail && item.Password === checkpss) {
-        toast({
-          position: 'top',
-          title: `Login successful`,
-          status: 'success',
-          isClosable: true,
-          duration: 1500,
-        })
-        // setAuth(true)
-        // localStorage.setItem("Login",JSON.stringify(isAuth))
-        navigate("/");
-      }
-    });
-  };
-
   const onSignin = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        // toast.success("Otp Send Successfully");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log(auth);
-    ;
+    e.preventDefault()
+    axios.get(`${baseUrl}/users?email=${email}&password=${password}`)
+    .then((doc) => {
+      setUser(doc.data[0])
+      if (doc.data?.length > 0) {
+        // const userData = getUserCart(doc.data[0].id)
+        localStorage.setItem('user', JSON.stringify(doc.data[0]))
+      }
+      navigate("/")
+    })
+    .catch((err) => console.log(err))
   };
+
+  // const getUserCart = (userID) => {
+  //   axios.get(`${baseUrl}/carts?ownerId=${userID}`)
+  //   .then((doc) => {
+  //     var userData = userD
+  //     userData.cart = doc.data[0]
+  //     return userData
+  //   })
+  //   .catch((err) => console.log(err))
+  // }
 
   return(
-    <form>
-      <InputGroup mt={30} size={"sm"} variant={"outline"}>
-        <Input
-          p={"15px 10px"}
-          focusBorderColor="#f4f4f4"
-          maxLength={30}
-          minLength={10}
-          type="tel"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </InputGroup>
+    <>
+      <div>
+        {
+          <Box>
+            {/* <Toaster toastOptions={{ duration: 1000 }} /> */}
+            <Box id="recaptcha-container"> </Box>
 
-      <InputGroup mt={30} size={"sm"} variant={"outline"}>
-        <Input
-          p={"15px 10px"}
-          focusBorderColor="#f4f4f4"
-          maxLength={30}
-          minLength={5}
-          type="tel"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </InputGroup>
-      <Button
-        w={"100%"}
-        mt={8}
-        mb={4}
-        variant="solid"
-        backgroundColor="#ff3f6c"
-        color={"#fff"}
-        borderRadius="0"
-        colorScheme={"none"}
-        type="submit"
-        onClick={onSignin}
-      >
-        Login
-      </Button>
-      <Button w={"100%"}
-        mt={8}
-        mb={4}
-        variant="solid"
-        backgroundColor="#ff3f6c"
-        color={"#fff"}
-        borderRadius="0"
-        colorScheme={"none"}
-        type="submit"
-        onClick={() => navigate("/signup")}
-      >
-        Sign Up
-      </Button>
-    </form>
+            <Center w={"full"} bgColor="#fceeea" h={"100vh"}>
+              <VStack w={"420px"} spacing="0">
+                <Box>
+                  <Image src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2022/9/21/8fca3ae9-d245-443b-a142-8d568247794c1663700243878-offer-banner-300-600x240-code-_-MYNTRA400.jpg" />
+                </Box>
+
+                <Box w={"100%"} p={"40px 30px 10px 30px"} bgColor="white">
+                  <FormControl isRequired>
+                    <FormLabel display={"flex"} as="div">
+                      <Center>
+                        <HStack
+                          w="full"
+                          alignItems={"baseline"}
+                          gap="0"
+                          spacing={"5px"}
+                        >
+                          <Heading
+                            fontWeight={"600"}
+                            as={"h2"}
+                            color="#424553"
+                            fontSize="24px"
+                            size="lg"
+                          >
+                            Login
+                          </Heading>
+                        </HStack>
+                      </Center>
+                    </FormLabel>
+
+                    <InputGroup mt={30} size={"sm"} variant={"outline"}>
+                      <Input
+                        p={"15px 10px"}
+                        focusBorderColor="#f4f4f4"
+                        maxLength={30}
+                        minLength={30}
+                        type="tel"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </InputGroup>
+
+                    <InputGroup mt={30} size={"sm"} variant={"outline"}>
+                      <Input
+                        p={"15px 10px"}
+                        focusBorderColor="#f4f4f4"
+                        maxLength={30}
+                        minLength={30}
+                        type="tel"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </InputGroup>
+
+                    <FormHelperText mt={8} color={"#a7a9af"} textAlign="left">
+                      By continuing, I agree to the&nbsp;
+                      <ChakraLink
+                        fontWeight={"bold"}
+                        _hover={{ textDecoration: "none" }}
+                        color={"#ff3f6c"}
+                        href="#"
+                      >
+                        Terms of Use&nbsp;
+                      </ChakraLink>
+                      &&nbsp;
+                      <ChakraLink
+                        fontWeight={"bold"}
+                        _hover={{ textDecoration: "none" }}
+                        color={"#ff3f6c"}
+                        href="#"
+                      >
+                        Privacy Policy&nbsp;
+                      </ChakraLink>
+                    </FormHelperText>
+
+                    <Button
+                      w={"100%"}
+                      mt={8}
+                      mb={4}
+                      variant="solid"
+                      backgroundColor="#ff3f6c"
+                      color={"#fff"}
+                      borderRadius="0"
+                      colorScheme={"none"}
+                      type="submit"
+                      onClick={onSignin}
+                    >
+                      Login
+                    </Button>
+                  </FormControl>
+
+                  <Text mb={10} color={"#a7a9af"} textAlign="left">
+                    Have trouble logging in?
+                    <ChakraLink
+                      fontWeight={"bold"}
+                      _hover={{ textDecoration: "none" }}
+                      color={"#ff3f6c"}
+                      href="#"
+                    >
+                      &nbsp;Get help
+                    </ChakraLink>
+                  </Text>
+                  <Text mb={10} color={"#a7a9af"} textAlign="left">
+                    No account yet
+                    <ChakraLink
+                      fontWeight={"bold"}
+                      _hover={{ textDecoration: "none" }}
+                      color={"#ff3f6c"}
+                      to
+                    >
+                      <Link to={`/signup`} >
+                        <span>&nbsp;Signup</span>
+                      </Link>
+                    </ChakraLink>
+                  </Text>
+                </Box>
+              </VStack>
+
+            </Center>
+           
+          </Box>
+        }
+      </div>
+    </>
   )
 };
 

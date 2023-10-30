@@ -34,6 +34,7 @@ export const Signup = () => {
   const [ph, setph] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [user, setuser] = useState("");
   const [otp, setotp] = useState("");
   const [change, setchnage] = useState(true);
@@ -125,18 +126,6 @@ export const Signup = () => {
                               fontSize="24px"
                               size="lg"
                             >
-                              Login
-                            </Heading>
-                            <Text fontSize={"18px"} color="#5a5e6d">
-                              or
-                            </Text>
-                            <Heading
-                              fontWeight={"600"}
-                              as={"h2"}
-                              color="#424553"
-                              fontSize="24px"
-                              size="lg"
-                            >
                               Signup
                             </Heading>
                           </HStack>
@@ -166,6 +155,18 @@ export const Signup = () => {
                           placeholder="Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </InputGroup>
+                      <InputGroup mt={30} size={"sm"} variant={"outline"}>
+                        <Input
+                          p={"15px 10px"}
+                          focusBorderColor="#f4f4f4"
+                          maxLength={30}
+                          minLength={30}
+                          type="tel"
+                          placeholder="Confirm Password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                       </InputGroup>
 
@@ -215,6 +216,19 @@ export const Signup = () => {
                         href="#"
                       >
                         &nbsp;Get help
+                      </ChakraLink>
+                    </Text>
+                    <Text mb={10} color={"#a7a9af"} textAlign="left">
+                      Already have account
+                      <ChakraLink
+                        fontWeight={"bold"}
+                        _hover={{ textDecoration: "none" }}
+                        color={"#ff3f6c"}
+                        to
+                      >
+                        <Link to={`/signin`} >
+                          <span>&nbsp;Signin</span>
+                        </Link>
                       </ChakraLink>
                     </Text>
                   </Box>

@@ -23,7 +23,7 @@ const PaymentPage = () => {
     // console.log('store', store);
     return store.CartReducer;
   });
-  // console.log(cartData);
+  const cartItems = JSON.parse(localStorage.getItem('cartItems'))
 
   return (
     <Stack
@@ -52,19 +52,15 @@ const PaymentPage = () => {
 
           <AddressForm />
           <Text mt={"20px"} fontSize={"19px"}>
-            Cart Items ({bag.length})
+            Cart Items ({cartItems.length})
           </Text>
           <Stack>
-            {bag.map((e, i) => (
+            {cartItems?.map((e, i) => (
               <CartItems key={i} {...e} />
             ))}
-            {/* <CartItems />
-            <CartItems />
-            <CartItems />
-            <CartItems /> */}
           </Stack>
           <Button
-            onClick={() => navigate("/cart")}
+            onClick={() => navigate("/carts")}
             bgColor={"white"}
             borderRadius={"0"}
             m={0}

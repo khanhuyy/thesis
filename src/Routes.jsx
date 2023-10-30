@@ -4,6 +4,7 @@ import Home from "./component/home/Home";
 import KidsWear from "./component/ProductPage/KidsWear";
 import MensWear from "./component/ProductPage/MensWear";
 import Order from "./component/order/Order";
+import OrderPagination from "./component/order/OrderPagination";
 import WomensWear from "./component/ProductPage/WomensWear";
 
 import Signin from "./pages/Signin";
@@ -39,7 +40,7 @@ const AllRoutes = () => {
       <Route path="/createProduct" element={<CreateProduct />}></Route>
       <Route path="/kids" element={<KidsWear />} />
       <Route path="/mens" element={<MensWear />} />
-      <Route path="/orders" element={<Order />} />
+      <Route path="/orders" element={<OrderPagination />} />
       <Route path="/womens" element={<WomensWear />} />
       <Route path="/warehouses" element={<Warehouse />} />
       
