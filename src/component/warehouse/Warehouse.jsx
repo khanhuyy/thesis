@@ -9,7 +9,8 @@ import {
   Box,
   Button,
   Image,
-  Text
+  Text,
+  Container
 } from "@chakra-ui/react";
 import {
   doc,
@@ -68,19 +69,31 @@ const Warehouse = () => {
     <Box >
       <Box>
         <Nav setHamburger={setHamburger} hamburger={hamburger} />
-        <Box bg='#F0F8FF' w='100%' p={4} color='white' > 
-          <Image borderRadius='full'
-            boxSize='150px' 
-            src={vendor.avatar} /> <Text color='black'>Products</Text>
-          <Text color='black'>Followers</Text>
-          <Text color='black'>Followings</Text>
-          <Text color='black'>Rates: 4.8</Text>
-        </Box>
+        {/* <Box bg='#F0F8FF' w='100%' p={4} color='white' >  */}
+        <Container bg='#F0F8FF' maxW='80%'>
+          <div style={{ display: "inline-flex" }}>
+            <div>
+              <Image borderRadius='full'
+                boxSize='150px' 
+                src={vendor.avatar} /> <Text color='black'>Products</Text>
+            </div>
+            <div>
+              <Text color='black'>Followers</Text>
+              <Text color='black'>Followings</Text>
+              <Text color='black'>Rates: 4.8</Text>
+            </div>
+          </div>
+          
+          
+        {/* </Box> */}
+          <Text size='2xl' as='b'>Description</Text>
+          <Box>{vendor.description}</Box>
+          <Box>{vendor.description}</Box>
+          <Box>{vendor.description}</Box>
         <br/>
-        <Text size='2xl' as='b'>Description</Text>
-        <Box>{vendor.description}</Box>
-        <Box>{vendor.description}</Box>
-        <Box>{vendor.description}</Box>
+        </Container>
+
+        <Container bg='#FFFFFF' maxW='80%'>
         <Stack p={"2.50rem"}>
           <Stack
             spacing={2}
@@ -143,8 +156,11 @@ const Warehouse = () => {
             </Stack>
           </Stack>
         </Stack>
+        </Container>
+
         <Footer />
       </Box>
+      
     </Box>
   </Box>
   )

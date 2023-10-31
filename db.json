@@ -119,6 +119,20 @@
       "total": 700000,
       "paymentMethod": "CASH",
       "quantity": 3
+    },
+    {
+      "id": "2",
+      "ownerId": "2",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3
+    },
+    {
+      "id": "3",
+      "ownerId": "3",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3
     }
   ],
   "cartItems": [
@@ -203,6 +217,13 @@
       "price": 100000,
       "quantity": 1,
       "id": "ziB-lJ2"
+    },
+    {
+      "cartID": 1,
+      "productID": "SvMAA17",
+      "price": 100000,
+      "quantity": 1,
+      "id": "ZeLGHDe"
     }
   ],
   "categories": [

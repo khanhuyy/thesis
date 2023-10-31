@@ -15,7 +15,7 @@ const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,first
   const toast = useToast();
   const statuses = ["success", "error", "warning", "info"];
   const positions = ["top"];
-  const size = sizes[0]
+  const size = sizes?.[0]
   const ogPrice = Math.ceil((price * 100)/discount)
 
   const img2 = image;

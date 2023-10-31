@@ -53,8 +53,7 @@ const ProductPaganation = ({id}) => {
   const [sort, setSort] = useState("");
   const [_sort, setSortBy] = useState("Recommended");
 
-
-  const [params, setParams] = useSearchParams();
+  const [params, setParams] = useState();
   const [finalFilter, setFinalFilter] = useState({});
 
   const { search } = useLocation()
@@ -93,7 +92,7 @@ const ProductPaganation = ({id}) => {
   }
   useEffect(() => {
     fetchProducts()
-  }, [finalFilter])
+  }, [filters])
 
   const handleChange = ({ target }) => {
     if (target.name == "categoryIds") {
@@ -103,29 +102,9 @@ const ProductPaganation = ({id}) => {
     }
   };
   useEffect(() => {
-    setParams(finalFilter);
-  }, [finalFilter]);
-
-  console.log(filters);
-
-  useEffect(() => {
-    if (sort === "asc" || sort === "desc") {
-      setFinalFilter({ ...finalFilter, _sort: "price", _order: sort })
-    }
-    else if (sort === "") {
-      const newFilter = { ...filters }
-      delete finalFilter['_sort']
-      setFinalFilter(newFilter)
-    }
-    else {
-      setFinalFilter({ ...finalFilter, _sort: sort });
-    }
-  }, [sort]);
-
-
-
-  // price[i][1]
-  // price[i][4]
+    setParams({...filters});
+    console.log(filters);
+  }, [filters]);
 
   const prices = [
     "159đ to 1619đ",

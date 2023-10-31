@@ -11,6 +11,7 @@ import { baseUrl } from '../../Url'
 const CreateProduct = () => {
     const [categories, setCategories] = useState();
     const [attributes, setAttributes] = useState();
+    const [brands, setBrands] = useState();
     const [attributeValues, setAttributeValues] = useState();
     const [warehouses, setWarehouses] = useState();
     const [selectedAttribute, setSelectedAttribute] = useState();
@@ -26,7 +27,7 @@ const CreateProduct = () => {
           .catch((err) => console.log(err))
       }
     useEffect(() => {
-    fetchAttribute()
+        fetchAttribute()
     }, [])
 
     const fetchCategories = () => {
@@ -91,44 +92,51 @@ const CreateProduct = () => {
         <div>
             <Nav />
             <Stack width='50%' display='block'>
-                <Text fontSize='2xl' as='b'>Name</Text>
+                <Text fontSize='3xl' as='b'>Name</Text>
                 <Input placeholder='Name'/>
                 <br />
-                <Text fontSize='2xl' as='b'>Image</Text>
+                <Text fontSize='3xl' as='b'>Image</Text>
                 <Input placeholder='Image'/>
                 <br />
-                <Text fontSize='2xl' as='b'>Category</Text>
+                <Text fontSize='3xl' as='b'>Category</Text>
                 <Select variant="flushed" value={selectedCategory} onChange={ handleCategory } textAlign={'left'} maxW={"max-content"}   >
                     {categories?.length && categories?.map((category) => (
                         <option key={category?.id} value={category?.id}>{category?.name}</option>
                     ))}
                 </Select>
                 <br />
-                <Text fontSize='2xl' as='b'>Attribute</Text>
+                <Text fontSize='3xl' as='b'>Brand</Text>
                 <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
                     {attributes?.length && attributes?.map((attribute) => (
                         <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
                     ))}
                 </Select>
-                <Text fontSize='2xl'>Sizes</Text>
+                <br />
+                <Text fontSize='3xl' as='b'>Attribute</Text>
+                <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
+                    {attributes?.length && attributes?.map((attribute) => (
+                        <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
+                    ))}
+                </Select>
+                <Text fontSize='3xl'>Sizes</Text>
                 {/* <Select  variant="flushed" value={selectedAttribute} onChange={ handleAttribute } textAlign={'left'} maxW={"max-content"}   >
                     {attributes?.length && attributes?.map((attribute) => (
                         <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
                     ))}
                 </Select> */}
                 <br />
-                <Text fontSize='2xl' as='b'>Price</Text>
+                <Text fontSize='3xl' as='b'>Price</Text>
                 <Input placeholder='Price'/>
-                <Text fontSize='2xl' as='b'>Quantity</Text>
+                <Text fontSize='3xl' as='b'>Quantity</Text>
                 <Input placeholder='Quantity' />
-                <Text fontSize='2xl' as='b'>Warehouse</Text>
+                <Text fontSize='3xl' as='b'>Warehouse</Text>
                 <Select  variant="flushed" value={selectedWarehouse} onChange={ handleWarehouse } textAlign={'left'} maxW={"max-content"}   >
                     {warehouses?.length && warehouses?.map((warehouse) => (
                         <option key={warehouse?.id} value={warehouse?.id}>{warehouse?.name}</option>
                     ))}
                 </Select>
                 <br />
-                <Text fontSize='2xl' as='b'>Another</Text>
+                <Text fontSize='3xl' as='b'>Another</Text>
                 <Button onClick={createProduct} colorScheme='blue'>Add Product</Button>
             </Stack>
             
