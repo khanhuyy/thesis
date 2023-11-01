@@ -38,17 +38,16 @@ const SingleProduct = () => {
         gender: "",
         category: ""
     })
-    const productRef = doc(db, 'products', id)
-    useEffect(() => {
-        getDoc(productRef)
+    const fetchProduct = () => {
+        axios.get(`${baseUrl}/products/${id}`)
         .then((doc) => {
-            let data = doc.data();
-            data.id = doc.id;
-            setProduct(data);
-        })
-    }, []);
-    // console.log(product)
-    
+            setProduct(doc.data);
+            })
+        .catch((err) => console.log(err))
+      }
+    useEffect(() => {
+        fetchProduct()
+    }, [])
     const AddToCartToast = (title) => {
       toast({
         title:title,
@@ -60,7 +59,7 @@ const SingleProduct = () => {
       })
     }
     const productInCart = () => {
-        axios.get(`${baseUrl}/cartItems?cartID=1&productID=${product.id}`)
+        axios.get(`${baseUrl}/cartItems?cartID=1&productID=${id}`)
         .then((doc) => {
             if (doc.data == null || doc.data?.length == 0) {
                 setItemExisted(false);
@@ -120,11 +119,11 @@ const SingleProduct = () => {
             >
                 <Breadcrumb className={"breadcrummb"}>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>
-                        <BreadcrumbLink href="#">Clothing</BreadcrumbLink>
+                        <BreadcrumbLink href="/">Clothing</BreadcrumbLink>
                     </BreadcrumbItem>
 
                     <BreadcrumbItem isCurrentPage>
@@ -137,7 +136,7 @@ const SingleProduct = () => {
             <div className='SingleFlex'>
 
                 <div>
-                    {product?.images ? <SinglePageGrid datas={[product.image, product.image, product.image]} /> : ''}
+                    {product?.image ? <SinglePageGrid datas={[product.image, product.image, product.image]} /> : ''}
                     {/* <SinglePageGrid data={[data?.images?.image1,data?.images?.image2,data?.images?.image3]}/> */}
                 </div>
                 <div>

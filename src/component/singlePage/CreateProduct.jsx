@@ -15,9 +15,15 @@ const CreateProduct = () => {
     const [attributeValues, setAttributeValues] = useState();
     const [warehouses, setWarehouses] = useState();
     const [selectedAttribute, setSelectedAttribute] = useState();
+    const [selectedBrand, setSelectedBrand] = useState();
     const [productAttributes, setProductAttributes] = useState();
     const [selectedCategory, setSelectedCategory] = useState();
     const [selectedWarehouse, setSelectedWarehouse] = useState();
+    const [ imageUrl, setImageUrl ] = useState();
+    const [ name, setName ] = useState()
+    const [ quantity, setQuantity ] = useState()
+    const [ price, setPrice ] = useState()
+
     const currentdate = new Date();
     const fetchAttribute = () => {
         axios.get(`${baseUrl}/attributes`)
@@ -28,6 +34,16 @@ const CreateProduct = () => {
       }
     useEffect(() => {
         fetchAttribute()
+    }, [])
+    const getBrands = () => {
+        axios.get(`${baseUrl}/brands`)
+        .then((doc) => {
+            setBrands(doc.data)
+        })
+        .catch((err) => console.log(err))
+    }
+    useEffect(() => {
+        getBrands()
     }, [])
 
     const fetchCategories = () => {
@@ -57,6 +73,11 @@ const CreateProduct = () => {
         setProductAttributes(qty);
     }
 
+    const handleBrand = (e) => {
+        const brand = e.target.value;
+        setSelectedBrand(brand);
+    }
+    
     const handleCategory = (e) => {
         const qty = e.target.value;
         setSelectedCategory(qty);
@@ -69,11 +90,13 @@ const CreateProduct = () => {
 
     const createProduct = () => {
         axios.post(`${baseUrl}/products`, {
+            "name": name,
             "createdAt": currentdate,
-            "brandID": 37,
+            "brandID": selectedBrand?.id,
             "availableColors": [],
-            "image": "https://loremflickr.com/640/480/fashion", // todo
-            "price": "806",
+            "image": imageUrl,
+            "price": price,
+            "quantity": quantity,
             "sizes": [
                 12,
                 23,
@@ -92,23 +115,23 @@ const CreateProduct = () => {
         <div>
             <Nav />
             <Stack width='50%' display='block'>
-                <Text fontSize='3xl' as='b'>Name</Text>
+                <Text fontSize='3xl' as='b' onChange={(e) => setName(e.target.value)}>Name</Text>
                 <Input placeholder='Name'/>
                 <br />
-                <Text fontSize='3xl' as='b'>Image</Text>
-                <Input placeholder='Image'/>
+                <Text fontSize='3xl' as='b'>Image URL</Text>
+                <Input placeholder='Image URL' onChange={(e) => setImageUrl(e.target.value)}/>
+                <br />
+                <Text fontSize='3xl' as='b'>Brand</Text>
+                <Select  variant="flushed" value={selectedBrand} onChange={ handleBrand } textAlign={'left'} maxW={"max-content"}   >
+                    {brands?.length && brands?.map((brand) => (
+                        <option key={brand?.id} value={brand?.id}>{brand?.name}</option>
+                    ))}
+                </Select>
                 <br />
                 <Text fontSize='3xl' as='b'>Category</Text>
                 <Select variant="flushed" value={selectedCategory} onChange={ handleCategory } textAlign={'left'} maxW={"max-content"}   >
                     {categories?.length && categories?.map((category) => (
                         <option key={category?.id} value={category?.id}>{category?.name}</option>
-                    ))}
-                </Select>
-                <br />
-                <Text fontSize='3xl' as='b'>Brand</Text>
-                <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
-                    {attributes?.length && attributes?.map((attribute) => (
-                        <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
                     ))}
                 </Select>
                 <br />
@@ -118,17 +141,12 @@ const CreateProduct = () => {
                         <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
                     ))}
                 </Select>
-                <Text fontSize='3xl'>Sizes</Text>
-                {/* <Select  variant="flushed" value={selectedAttribute} onChange={ handleAttribute } textAlign={'left'} maxW={"max-content"}   >
-                    {attributes?.length && attributes?.map((attribute) => (
-                        <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
-                    ))}
-                </Select> */}
+                <Text fontSize='3xl' as='b'>Sizes</Text>
                 <br />
                 <Text fontSize='3xl' as='b'>Price</Text>
-                <Input placeholder='Price'/>
+                <Input placeholder='Price' onChange={(e) => setPrice(e.target.value)} />
                 <Text fontSize='3xl' as='b'>Quantity</Text>
-                <Input placeholder='Quantity' />
+                <Input placeholder='Quantity' onChange={(e) => setQuantity(e.target.value)} />
                 <Text fontSize='3xl' as='b'>Warehouse</Text>
                 <Select  variant="flushed" value={selectedWarehouse} onChange={ handleWarehouse } textAlign={'left'} maxW={"max-content"}   >
                     {warehouses?.length && warehouses?.map((warehouse) => (
@@ -136,7 +154,7 @@ const CreateProduct = () => {
                     ))}
                 </Select>
                 <br />
-                <Text fontSize='3xl' as='b'>Another</Text>
+                {/* <Text fontSize='3xl' as='b'>Another</Text> */}
                 <Button onClick={createProduct} colorScheme='blue'>Add Product</Button>
             </Stack>
             

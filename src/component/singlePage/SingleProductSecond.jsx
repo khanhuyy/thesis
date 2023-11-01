@@ -64,7 +64,7 @@ const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price
             {exist === true ? (
               <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{}} >Product in cart now</Button>
             ) : (
-              <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button>
+              <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Cart</Button>
             )}
         {/* <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span> */}
         <Button background={"white"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} border={"1px solid black"}>Wishlist</Button>

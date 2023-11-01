@@ -5,8 +5,6 @@ import { FiHeart } from "react-icons/fi";
 import { CarouselPage } from "./CarouselPage";
 
 const Card = ({ props }) => {
-  // console.log(props);
-  // console.log(props.id);
   const [isHover, setIsHover] = React.useState(false);
   const {
     image,
@@ -20,14 +18,12 @@ const Card = ({ props }) => {
     sizes,
     productDiscountPercentage,
   } = props;
-  // console.log('props', sizes[0]);
   return (
     <Stack
       height={"380px"}
       width={"220px"}
       spacing="0"
       bg="rgb(255, 255, 255)"
-      // border={"1px solid red"}
       alignItems="flex-start"
       boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
       onMouseOver={() => setIsHover(true)}

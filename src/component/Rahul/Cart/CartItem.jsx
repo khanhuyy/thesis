@@ -5,6 +5,8 @@ import { deleteCartProduct, getCartProducts, updateCartProductQty } from "../../
 import { useToast } from '@chakra-ui/react';
 import {collection, onSnapshot, query, where, getDoc, doc } from "firebase/firestore";
 import db from "../../../service/firestore"
+import axios from "axios";
+import { baseUrl } from "../../../Url";
 
 
 const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,firstName  ,gender  ,images  ,lastName  ,offerType ,title  ,userID  ,id}) => {
@@ -19,7 +21,9 @@ const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,first
   const ogPrice = Math.ceil((price * 100)/discount)
 
   const img2 = image;
-
+  const deleteCartItem = () => {
+    axios.delete(`${baseUrl}/cartItems/${id}`)
+  }
 
   const handleQty = (e) => {
 
@@ -32,41 +36,19 @@ const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,first
   }
 
   const handleDelete = () => {
+    deleteCartItem()
 
-    setFlag((prev)=> !prev)
-  dispatch(deleteCartProduct(id))
-
-  toast({
+    toast({
       title: "Product Deleted",
       position: positions,
       status: statuses[0],
       isClosable: true,
     });
 
-    dispatch(getCartProducts)
+    
   }
 
   const [cartItems, setCartItems] = useState();
-  const cartItemsRef = collection(db, 'cartItems');
-  useEffect(() => {
-    const q = query(
-      cartItemsRef, where('cartID', '==', '1')
-    );
-    // setLoading(true);
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      const items = [];
-      querySnapshot?.forEach((doc) => {
-        let data = doc.data();
-        data.id = doc.id;
-        items.push(data);
-      });
-      setCartItems(items);
-      // setLoading(false);
-    });
-    return () => {
-      unsub();
-    };
-  })
 
   return (
     <Stack spacing={'0'} display={'flex'} flexDirection={'rows'} justifyContent={'center'} gap={'2px'} alignContent={'center'} overflow={'hidden'}  minH={'200px'} >

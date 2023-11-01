@@ -141,7 +141,6 @@ const Warehouse = () => {
                   <SimpleGrid columns={[1, 1, 2, 3, 4, 5]} m="auto" gap="40px">
                     {products?.length >= 0 &&
                       products?.map((e) =>
-
                           <Box key={e.id} onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
                             < CardForMensAndWomen key={e.id} props={e} />
                           </Box>)}
