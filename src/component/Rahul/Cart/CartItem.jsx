@@ -10,7 +10,7 @@ import { baseUrl } from "../../../Url";
 
 
 const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,firstName  ,gender  ,images  ,lastName  ,offerType ,title  ,userID  ,id}) => {
-  
+  const [ display, setDisplay ] = useState(true)
   const [qty, setQty] = useState(quantity)
   const [flag, setFlag] = useState(false)
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,first
 
   const handleDelete = () => {
     deleteCartItem()
-
+    setDisplay(false)
     toast({
       title: "Product Deleted",
       position: positions,
@@ -51,7 +51,7 @@ const CartItem = ({ Price, brand ,discount, price,sizes, image, quantity  ,first
   const [cartItems, setCartItems] = useState();
 
   return (
-    <Stack spacing={'0'} display={'flex'} flexDirection={'rows'} justifyContent={'center'} gap={'2px'} alignContent={'center'} overflow={'hidden'}  minH={'200px'} >
+    display && <Stack spacing={'0'} display={'flex'} flexDirection={'rows'} justifyContent={'center'} gap={'2px'} alignContent={'center'} overflow={'hidden'}  minH={'200px'} >
       <Image 
      
         w={"150px"}

@@ -30,6 +30,7 @@ import Nav from "../Nav";
 import db from "../../service/firestore";
 import axios from "axios";
 import { baseUrl } from "../../Url";
+import "../../CSS/Warehouse.css";
 
 const Warehouse = () => {
   const [hamburger, setHamburger] = useState(false)
@@ -71,7 +72,7 @@ const Warehouse = () => {
         <Nav setHamburger={setHamburger} hamburger={hamburger} />
         {/* <Box bg='#F0F8FF' w='100%' p={4} color='white' >  */}
         <Container bg='#F0F8FF' maxW='80%'>
-          <div style={{ display: "inline-flex" }}>
+          <div className="warehouse">
             <div>
               <Image borderRadius='full'
                 boxSize='150px' 
@@ -86,11 +87,13 @@ const Warehouse = () => {
           
           
         {/* </Box> */}
-          <Text size='2xl' as='b'>Description</Text>
-          <Box>{vendor.description}</Box>
-          <Box>{vendor.description}</Box>
-          <Box>{vendor.description}</Box>
-        <br/>
+          <Container bg='#00aeff' maxW='80%'>
+            <Text size='2xl' as='b'>Description</Text>
+            <Box>{vendor.description}</Box>
+            <Box>{vendor.description}</Box>
+            <Box>{vendor.description}</Box>
+          </Container>
+          <br/>
         </Container>
 
         <Container bg='#FFFFFF' maxW='80%'>

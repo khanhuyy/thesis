@@ -12,10 +12,11 @@ import { useNavigate } from "react-router-dom";
 import { textTospeechFun } from "../VoiceFun";
 import { useDispatch } from "react-redux";
 import { deleteAll } from "../../../redux/CartReducer/action";
-
+import axios from "axios";
+import { baseUrl } from "../../../Url";
 // let voices = window.speechSynthesis.getVoices()[3];
 
-const DebitCard = () => {
+const DebitCard = (cart) => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const [tabView] = useMediaQuery("(max-width: 1105px)");
@@ -31,6 +32,7 @@ const DebitCard = () => {
   const toast = useToast();
   const statuses = ["success", "error", "warning", "info"];
   const positions = ["top"];
+  const user = JSON.parse(localStorage.getItem('user'))
 
   const handleFinalSubmit = () => {
 
@@ -50,14 +52,26 @@ const DebitCard = () => {
     //     localStorage.removeItem("cvv");
     //     navigate("/orderSuccess");
     // }
-    toast({
-      title: "Please Fill the address",
-      position: positions,
-      status: statuses[2],
-      isClosable: true,
-    });
+    // toast({
+    //   title: "Please Fill the address",
+    //   position: positions,
+    //   status: statuses[2],
+    //   isClosable: true,
+    // });
     textTospeechFun(`Order Success`);
-    localStorage.removeItem("cvv");
+    // const createOrder = () => {
+    axios.post(`${baseUrl}/orders`, {
+      "ownerID": `${user?.id}`,
+      "total": 700000, // todo 
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "cartID": cart?.id || 123
+    })
+    .then((doc) => {
+      
+    })
+    .catch((err) => console.log(err))
+    // };
     navigate("/orderSuccess");
   };
 
@@ -212,7 +226,7 @@ const DebitCard = () => {
               }}
               onClick={handleFinalSubmit}
             >
-              BUY NOW {`(₹ ${totalPrice})`}
+              BUY NOW {`(${totalPrice}đ)`}
             </Button>
           )}
 
@@ -238,7 +252,7 @@ const DebitCard = () => {
               }}
               onClick={handleFinalSubmit}
             >
-              BUY NOW {`(₹ ${totalPrice})`}
+              BUY NOW {`(${totalPrice}đ)`}
             </Button>
           )}
         </Stack>

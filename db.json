@@ -125,7 +125,7 @@
       "ownerId": "2",
       "total": 700000,
       "paymentMethod": "CASH",
-      "quantity": 3
+      "quantity": 1
     },
     {
       "id": "3",
@@ -136,40 +136,6 @@
     }
   ],
   "cartItems": [
-    {
-      "id": 1,
-      "cartID": 1,
-      "productID": 1,
-      "price": 100000,
-      "sizes": [
-        100000
-      ],
-      "quantity": 2,
-      "image": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/193.jpg"
-    },
-    {
-      "id": 2,
-      "cartID": 1,
-      "productID": 2,
-      "price": 100000,
-      "sellerPrice": 200000,
-      "sizes": [
-        100000
-      ],
-      "quantity": 2,
-      "image": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/324.jpg"
-    },
-    {
-      "cartID": 1,
-      "productID": "XeznAtmWuKzobYcfkHFF",
-      "price": 100000,
-      "quantity": 1,
-      "id": 3,
-      "sizes": [
-        123123
-      ],
-      "image": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/917.jpg"
-    },
     {
       "id": "4",
       "cartID": "2",
@@ -234,6 +200,13 @@
       "price": 100000,
       "quantity": 1,
       "id": "0YuLO_m"
+    },
+    {
+      "cartID": 1,
+      "productID": "6",
+      "price": 100000,
+      "quantity": 1,
+      "id": "lneQ6Ak"
     }
   ],
   "categories": [
@@ -346,6 +319,30 @@
       "quantity": 2,
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/193.jpg",
       "total": 700099
+    },
+    {
+      "ownerID": "1",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "cartID": 123,
+      "id": 2
+    },
+    {
+      "ownerID": "1",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "cartID": 123,
+      "id": 3
+    },
+    {
+      "ownerID": "1",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "cartID": 123,
+      "id": 4
     }
   ],
   "orderItems": [

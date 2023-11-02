@@ -57,11 +57,17 @@ const CartPage = () => {
   const rColor = "#d3145a";
   
   const createOrder = () => {
-    axios.get(`${baseUrl}/orders`)
-      .then((doc) => {
-        setCartItems(doc.data);
-      })
-      .catch((err) => console.log(err))
+    axios.post(`${baseUrl}/orders`, {
+      "ownerId": `${user?.id}`,
+      "total": 700000, // todo 
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "cartID": cart?.id || 123
+    })
+    .then((doc) => {
+      
+    })
+    .catch((err) => console.log(err))
   }
 
   const createProduct = () => {
