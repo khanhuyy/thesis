@@ -175,38 +175,15 @@
       "productID": "SvMAA17",
       "price": 100000,
       "quantity": 1,
-      "id": "syq0xrY",
-      "image": "https://randomwordgenerator.com/img/picture-generator/51e8dd434950b10ff3d8992cc12c30771037dbf85254794e73287ad3944a_640.jpg"
-    },
-    {
-      "cartID": 1,
-      "productID": "SvMAA17",
-      "price": 100000,
-      "quantity": 1,
       "id": "ziB-lJ2",
       "image": "https://randomwordgenerator.com/img/picture-generator/57e9dd464a5aa414f1dc8460962e33791c3ad6e04e50744172297bd59445c7_640.jpg"
     },
     {
       "cartID": 1,
-      "productID": "5",
+      "productID": "13",
       "price": 100000,
       "quantity": 1,
-      "id": "HfHXGNR",
-      "image": "https://randomwordgenerator.com/img/picture-generator/55e2dd4a4f56a414f1dc8460962e33791c3ad6e04e507749772772d69544c4_640.jpg"
-    },
-    {
-      "cartID": 1,
-      "productID": "-ZaFG5O",
-      "price": 100000,
-      "quantity": 1,
-      "id": "0YuLO_m"
-    },
-    {
-      "cartID": 1,
-      "productID": "6",
-      "price": 100000,
-      "quantity": 1,
-      "id": "lneQ6Ak"
+      "id": "fQFhBnX"
     }
   ],
   "categories": [
@@ -343,6 +320,14 @@
       "quantity": 3,
       "cartID": 123,
       "id": 4
+    },
+    {
+      "ownerID": "1",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "cartID": 123,
+      "id": 5
     }
   ],
   "orderItems": [
@@ -426,7 +411,7 @@
       "createdAt": "2023-10-22T18:21:44.037Z",
       "brandID": 37,
       "availableColors": [],
-      "image": "https://loremflickr.com/640/480/fashion",
+      "image": "https://m.media-amazon.com/images/I/71wAR5-lggL._AC_UY1100_.jpg",
       "price": "806.00",
       "sizes": [
         12,
@@ -444,7 +429,7 @@
       "createdAt": "2023-10-21T19:03:44.895Z",
       "brandID": 57,
       "availableColors": [],
-      "image": "https://loremflickr.com/640/480/fashion",
+      "image": "https://assets.ajio.com/medias/sys_master/root/20230602/iFtY/64795bf3d55b7d0c633c68ac/-473Wx593H-462329145-green-MODEL.jpg",
       "price": "263.00",
       "sizes": [
         12,
@@ -462,7 +447,7 @@
       "createdAt": "2023-10-22T04:33:22.414Z",
       "brandID": 5,
       "availableColors": [],
-      "image": "https://loremflickr.com/640/480/fashion",
+      "image": "https://assets.ajio.com/medias/sys_master/root/20230906/vVWa/64f80929afa4cf41f5b34d62/-473Wx593H-461119105-blue-MODEL.jpg",
       "price": "171.00",
       "sizes": [
         12,
@@ -615,7 +600,7 @@
       ],
       "productFlag": 1,
       "categoryIds": [
-        "1"
+        "7"
       ],
       "warehouseID": "4",
       "id": "11"
@@ -661,6 +646,90 @@
       "id": "13"
     },
     {
+      "createdAt": "2023-10-21T20:57:51.524Z",
+      "brandID": 62,
+      "availableColors": [],
+      "image": "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNoaXJ0fGVufDB8fDB8fHww",
+      "price": "709.00",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "brandIds": [
+        "2"
+      ],
+      "warehouseID": "4",
+      "id": "13"
+    },
+    {
+      "createdAt": "2023-10-21T20:57:51.524Z",
+      "brandID": 62,
+      "availableColors": [],
+      "image": "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1698969600&semt=ais",
+      "price": "709.00",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "brandIds": [
+        "1"
+      ],
+      "warehouseID": "4",
+      "id": "13"
+    },
+    {
+      "createdAt": "2023-10-21T20:57:51.524Z",
+      "brandID": 62,
+      "availableColors": [],
+      "image": "https://img.freepik.com/free-photo/vertical-shot-concentrated-businessman-listening-carefully-with-crossed-hands_181624-29443.jpg",
+      "price": "709.00",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "brandIds": [
+        "1"
+      ],
+      "warehouseID": "4",
+      "id": "13"
+    },
+    {
+      "createdAt": "2023-10-21T20:57:51.524Z",
+      "brandID": 62,
+      "availableColors": [],
+      "image": "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/7488102/2019/8/22/8002a744-0dad-4dbb-9481-cf0090134c3b1566454086786-Dennis-Lingo-Men-Pink-Slim-Fit-Solid-Casual-Shirt-9891566454-1.jpg",
+      "price": "709.00",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "brandIds": [
+        "1"
+      ],
+      "warehouseID": "4",
+      "id": "13"
+    },
+    {
       "createdAt": "2023-10-22T16:54:52.923Z",
       "brandID": 41,
       "availableColors": [],
@@ -693,9 +762,10 @@
       ],
       "productFlag": 1,
       "categoryIds": [
-        "1",
-        "2",
-        "3"
+        "8"
+      ],
+      "brandIds": [
+        "2"
       ],
       "warehouseID": "4",
       "id": "15"

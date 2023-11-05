@@ -83,9 +83,17 @@ const ProductPaganation = ({id}) => {
   }, [])
 
   const fetchProducts = () => {
-    axios.get(`${baseUrl}/products?categoryIds_like=${filters["categoryIds"]}&brandIds_like=${filters["brandIds"]}`).then(
+    
+    var url = `${baseUrl}/products?`
+    if (filters["categoryIds"].length > 0) {
+      url += `categoryIds_like=${filters["categoryIds"]}`
+    } else if (filters["brandIds"].length > 1) {
+      url += `brandIds_like=${filters["brandIds"]}`
+    }
+    axios.get(url).then(
       (doc) => {
         setProducts(doc.data);
+        console.log(products)
       })
       .catch((err) => console.log(err)
     )
