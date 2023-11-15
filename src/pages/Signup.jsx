@@ -22,12 +22,16 @@ import {
   Link as ChakraLink,
   Button,
   useToast,
+  Radio,
+  RadioGroup,
+  Stack
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 // import Swal from "sweetalert2";
 import { async } from "@firebase/util";
+import { baseUrl } from "../Url";
 
 export const Signup = () => {
   const [isAuth,setAuth] = useState(false)
@@ -38,6 +42,7 @@ export const Signup = () => {
   const [user, setuser] = useState("");
   const [otp, setotp] = useState("");
   const [change, setchnage] = useState(true);
+  const [role, setRole] = useState('SELLER');
   const toast = useToast()
 
   const [change2, setchange2] = useState(true);
@@ -84,15 +89,28 @@ export const Signup = () => {
   }
 
   const onSingup = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    axios.get(`${baseUrl}/users?email=${email}`).then(
+      (doc) => {
+        if (doc.data?.length > 0) {
+          return
+        }
+      }
+    )
+    axios.post(`${baseUrl}/users`, {
+      "userFlag": 1,
+      "email": email,
+      "password": password,
+      "role": role
+
+  }).then((doc) => {
+      console.log(doc);
+  })
+  .catch((err) => console.log(err));
   };
+
+  const onChangeRole = (e) => {
+    setRole(e?.target?.value)
+  }
 
   return (
     <>
@@ -169,7 +187,18 @@ export const Signup = () => {
                           onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                       </InputGroup>
-
+                      <Text></Text>
+                      <Text as='b'>You will wanna be?</Text>
+                      <RadioGroup defaultValue='2'>
+                        <Stack spacing={5} direction='row'>
+                          <Radio colorScheme='red' value='SELLER' onClick={onChangeRole}>
+                            Seller
+                          </Radio>
+                          <Radio colorScheme='green' value='VENDOR' onClick={onChangeRole}>
+                            Vendor
+                          </Radio>
+                        </Stack>
+                      </RadioGroup>
                       <FormHelperText mt={8} color={"#a7a9af"} textAlign="left">
                         By continuing, I agree to the&nbsp;
                         <ChakraLink

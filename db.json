@@ -1657,6 +1657,48 @@
       "randomField": "asdfasf",
       "avatar": "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
       "description": "cream cotton blend kurta palazzo  set some description set some description set some description set some description"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "it5RLuV"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "tYAMSd6"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "efRoMQc"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "P_OkJ8h"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "sk4YYgE"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "5QJjThE"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin1@gmail.com",
+      "password": "12345",
+      "id": "-Nt6g2V"
     }
   ],
   "warehouses": [
