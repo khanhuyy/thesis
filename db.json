@@ -1699,6 +1699,32 @@
       "email": "admin1@gmail.com",
       "password": "12345",
       "id": "-Nt6g2V"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "role": "SELLER",
+      "id": "ptKHEe9"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@gmail.com",
+      "password": "12345",
+      "id": "6OSBLyt"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin1@gmail.com",
+      "password": "12345",
+      "role": "SELLER",
+      "id": "9WoQEoi"
+    },
+    {
+      "userFlag": 1,
+      "email": "admin@@gmail.com",
+      "password": "12345",
+      "id": "po-WBF9"
     }
   ],
   "warehouses": [

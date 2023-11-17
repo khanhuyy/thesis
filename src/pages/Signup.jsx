@@ -89,23 +89,44 @@ export const Signup = () => {
   }
 
   const onSingup = (e) => {
+    let exist = false
     axios.get(`${baseUrl}/users?email=${email}`).then(
       (doc) => {
         if (doc.data?.length > 0) {
+          exist = true
           return
         }
       }
     )
-    axios.post(`${baseUrl}/users`, {
+    if (exist) {
+      toast({
+        title: 'Email existed',
+        description: "Please login or try another email",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position:"top"
+      })
+      return
+    }
+  axios.post(`${baseUrl}/users`, {
       "userFlag": 1,
       "email": email,
       "password": password,
       "role": role
 
   }).then((doc) => {
-      console.log(doc);
+    
   })
   .catch((err) => console.log(err));
+  axios.get(`${baseUrl}/users?email=${email}`).then(
+    (doc) => {
+      if (doc.data?.length > 0) {
+        localStorage.setItem('user', JSON.stringify(doc.data[0]))
+        navigate("/")
+      }
+    }
+  )
   };
 
   const onChangeRole = (e) => {
