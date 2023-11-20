@@ -1621,6 +1621,36 @@
         "7"
       ],
       "id": "-ZaFG5O"
+    },
+    {
+      "createdAt": "2023-11-19T22:14:41.714Z",
+      "availableColors": [],
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "warehouseID": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "o5b84jF"
+    },
+    {
+      "createdAt": "2023-11-19T22:16:15.229Z",
+      "availableColors": [],
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "warehouseID": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "9BdbkIw"
     }
   ],
   "users": [

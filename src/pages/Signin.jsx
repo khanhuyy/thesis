@@ -52,15 +52,6 @@ export const Signin = () => {
     .catch((err) => console.log(err))
   };
 
-  // const getUserCart = (userID) => {
-  //   axios.get(`${baseUrl}/carts?ownerId=${userID}`)
-  //   .then((doc) => {
-  //     var userData = userD
-  //     userData.cart = doc.data[0]
-  //     return userData
-  //   })
-  //   .catch((err) => console.log(err))
-  // }
 
   return(
     <>

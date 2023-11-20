@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import SinglePageGrid from './SinglePageGrid'
 import "../../CSS/SingleProduct.css"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Input, InputGroup, Stack, Text, Button, ButtonGroup, Select, filter } from '@chakra-ui/react'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Input, InputGroup, Stack, Text, Button, ButtonGroup, Select, filter, Container, useToast } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
@@ -23,6 +23,7 @@ const CreateProduct = () => {
     const [ name, setName ] = useState()
     const [ quantity, setQuantity ] = useState()
     const [ price, setPrice ] = useState()
+    const toast = useToast()
 
     const currentdate = new Date();
     const fetchAttribute = () => {
@@ -89,6 +90,7 @@ const CreateProduct = () => {
     }
 
     const createProduct = () => {
+        axios.get()
         axios.post(`${baseUrl}/products`, {
             "name": name,
             "createdAt": currentdate,
@@ -106,7 +108,14 @@ const CreateProduct = () => {
             "warehouseID": 1,
             "categoryIds": ["7"]
         }).then((doc) => {
-            setCategories(doc.data);
+            toast({
+                title: 'Created',
+                description: "Product's created. PLease check in shop",
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+                position:"top"
+            })
         })
         .catch((err) => console.log(err));
     }
@@ -115,11 +124,13 @@ const CreateProduct = () => {
         <div>
             <Nav />
             <Stack width='50%' display='block'>
+                <Container background={'light-blue'}>
                 <Text fontSize='3xl' as='b' onChange={(e) => setName(e.target.value)}>Name</Text>
                 <Input placeholder='Name'/>
-                <br />
+                <br /><br/>
                 <Text fontSize='3xl' as='b'>Image URL</Text>
                 <Input placeholder='Image URL' onChange={(e) => setImageUrl(e.target.value)}/>
+                <br />
                 <br />
                 <Text fontSize='3xl' as='b'>Brand</Text>
                 <Select  variant="flushed" value={selectedBrand} onChange={ handleBrand } textAlign={'left'} maxW={"max-content"}   >
@@ -128,6 +139,7 @@ const CreateProduct = () => {
                     ))}
                 </Select>
                 <br />
+                <br />
                 <Text fontSize='3xl' as='b'>Category</Text>
                 <Select variant="flushed" value={selectedCategory} onChange={ handleCategory } textAlign={'left'} maxW={"max-content"}   >
                     {categories?.length && categories?.map((category) => (
@@ -135,18 +147,21 @@ const CreateProduct = () => {
                     ))}
                 </Select>
                 <br />
+                <br />
                 <Text fontSize='3xl' as='b'>Attribute</Text>
                 <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
                     {attributes?.length && attributes?.map((attribute) => (
                         <option key={attribute?.id} value={attribute?.id}>{attribute?.name}</option>
                     ))}
                 </Select>
-                <Text fontSize='3xl' as='b'>Sizes</Text>
+                <br />
                 <br />
                 <Text fontSize='3xl' as='b'>Price</Text>
                 <Input placeholder='Price' onChange={(e) => setPrice(e.target.value)} />
+                <br /><br />
                 <Text fontSize='3xl' as='b'>Quantity</Text>
                 <Input placeholder='Quantity' onChange={(e) => setQuantity(e.target.value)} />
+                <br /><br />
                 <Text fontSize='3xl' as='b'>Warehouse</Text>
                 <Select  variant="flushed" value={selectedWarehouse} onChange={ handleWarehouse } textAlign={'left'} maxW={"max-content"}   >
                     {warehouses?.length && warehouses?.map((warehouse) => (
@@ -154,8 +169,10 @@ const CreateProduct = () => {
                     ))}
                 </Select>
                 <br />
+                <br />
                 {/* <Text fontSize='3xl' as='b'>Another</Text> */}
                 <Button onClick={createProduct} colorScheme='blue'>Add Product</Button>
+                </Container>
             </Stack>
             
             <Footer />
