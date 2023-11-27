@@ -33,9 +33,9 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState();
   const user = JSON.parse(localStorage.getItem("user"));
   const fetchCart = () => {
-    axios.get(`${baseUrl}/carts/${user?.id}`)
+    axios.get(`${baseUrl}/carts?ownerId=${user?.id}&isComplete=false`)
       .then((doc) => {
-        setCart(doc.data);
+        setCart(doc.data?.[0]);
       })
       .catch((err) => console.log(err))
   }
@@ -44,7 +44,7 @@ const CartPage = () => {
   }, [])
 
   const fetchCartItems = () => {
-    axios.get(`${baseUrl}/cartItems?cartID=${user?.id}`)
+    axios.get(`${baseUrl}/cartItems?cartID=${cart?.id}`)
       .then((doc) => {
         setCartItems(doc.data);
       })
@@ -258,7 +258,7 @@ const CartPage = () => {
         )}</>
       )}
       {/* {!cart?.cartItems?.length && <CartEmpty />} */}
-      {!bag.length && <CartEmpty />}
+      {!cartItems?.length && <CartEmpty />}
     </Stack>
   );
 };

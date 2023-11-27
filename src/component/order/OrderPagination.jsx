@@ -1,4 +1,5 @@
 import {
+  Box,
   Button, 
   Image,
   Stack,
@@ -75,6 +76,7 @@ const OrderPagination = () => {
             overflowY={{ base: "auto", sm: "auto", md: "auto", lg: "scroll" }}
           >
             {orders?.map((e) => (
+              <Box onClick={()=>navigate(`${e.id}`, {state:""})}>
               <Stack spacing={'0'} display={'flex'} flexDirection={'rows'} justifyContent={'center'} gap={'2px'} alignContent={'center'} overflow={'hidden'}  minH={'200px'} >
               <Image 
                 w={"150px"}
@@ -110,6 +112,7 @@ const OrderPagination = () => {
                 </Stack>
                 </Stack>
               </Stack>
+              </Box>
             ))}
             
           </Stack>

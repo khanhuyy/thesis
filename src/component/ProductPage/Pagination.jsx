@@ -1,7 +1,7 @@
 import { Stack, Button } from '@chakra-ui/react'
 import React from 'react'
 
-const Pagination = ({page, setPage, totalPage}) => {
+const Pagination = ({page, setPage, totalPage, isOwner=false}) => {
       
     
   return (

@@ -24,9 +24,6 @@ const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price
           spacing={"0.2rem"}
           p="0.15rem 0.5rem"
           width={"max-content"}
-          //   position={"absolute"}
-          //   bottom={"2.5%"}
-          //   left={"5%"}
           bgColor={"white"}
           boxShadow={"0 0 3px rgba(0,0,0,0.4)"}
         >

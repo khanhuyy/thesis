@@ -55,7 +55,7 @@ const Warehouse = () => {
 
   const fetchData = () => {
     // axios.get(`${baseUrl}/products?warehouseID=${warehouse?.id}`)
-    axios.get(`${baseUrl}/products?warehouseID=2`)
+    axios.get(`${baseUrl}/products?ownerId=${vendor.id}`)
       .then((doc) => {
         setProducts(doc.data);
       })
@@ -71,7 +71,7 @@ const Warehouse = () => {
       <Box>
         <Nav setHamburger={setHamburger} hamburger={hamburger} />
         {/* <Box bg='#F0F8FF' w='100%' p={4} color='white' >  */}
-        <Container bg='#F0F8FF' maxW='80%'>
+        <Container bg='#F0F8FF' maxW='70%'>
           <div className="warehouse">
             <div>
               <Image borderRadius='full'
@@ -79,15 +79,20 @@ const Warehouse = () => {
                 src={vendor.avatar} /> <Text color='black'>Products</Text>
             </div>
             <div>
-              <Text color='black'>Followers</Text>
-              <Text color='black'>Followings</Text>
-              <Text color='black'>Rates: 4.8</Text>
+              <Text color='black'>Total Products: {products?.length}</Text>
+              <Text color='black'>Followings: 3</Text>
+              <Text color='black'>Response chat ratio: </Text>
+            </div>
+            <div>
+              <Text color='black'>Followers: 12k</Text>
+              <Text color='black'>Rates: 4.5 Stars</Text>
+              <Text color='black'>Joined in: 4 years ago</Text>
             </div>
           </div>
           
           
         {/* </Box> */}
-          <Container bg='#00aeff' maxW='80%'>
+          <Container bg='#00aeff' maxW='70%'>
             <Text size='2xl' as='b'>Description</Text>
             <Box>{vendor.description}</Box>
             <Box>{vendor.description}</Box>
@@ -151,7 +156,7 @@ const Warehouse = () => {
                 </Stack>
                 <Center marginBottom="20px" >
                   {(products?.length >= 0) && 
-                    <Pagination page={1} totalPage={Math.ceil(products?.length / 15)} />
+                    <Pagination page={1} totalPage={Math.ceil(products?.length / 15) } isOwner={true} />
                   }
                 </Center>
               </Stack>

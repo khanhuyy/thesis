@@ -1,0 +1,23 @@
+.order-container {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.info {
+    width: 20%;
+    background-color: aliceblue;
+    top: 0;
+    left: 0;
+    height: 350px;
+}
+
+.order-info {
+    width: 80%;
+    background-color: white;
+
+}
+
+.align-right {
+    text-align: right;
+}

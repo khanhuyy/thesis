@@ -118,26 +118,38 @@
       "ownerId": "1",
       "total": 700000,
       "paymentMethod": "CASH",
-      "quantity": 3
+      "quantity": 3,
+      "isComplete": true
     },
     {
       "id": "2",
       "ownerId": "2",
       "total": 700000,
       "paymentMethod": "CASH",
-      "quantity": 1
+      "quantity": 1,
+      "isComplete": true
     },
     {
       "id": "3",
       "ownerId": "3",
       "total": 700000,
       "paymentMethod": "CASH",
-      "quantity": 3
+      "quantity": 3,
+      "isComplete": true
+    },
+    {
+      "id": "4",
+      "ownerId": "1",
+      "total": 700000,
+      "paymentMethod": "CASH",
+      "quantity": 3,
+      "isComplete": false
     }
   ],
   "cartItems": [
     {
       "id": "4",
+      "ownerId": "1",
       "cartID": "2",
       "productID": 1,
       "price": 100000,
@@ -184,6 +196,20 @@
       "price": 100000,
       "quantity": 1,
       "id": "fQFhBnX"
+    },
+    {
+      "cartID": 1,
+      "productID": "1",
+      "price": 100000,
+      "quantity": 1,
+      "id": "-sajqXp"
+    },
+    {
+      "cartID": 1,
+      "productID": "1",
+      "price": 100000,
+      "quantity": 1,
+      "id": "VvBOpcP"
     }
   ],
   "categories": [
@@ -296,38 +322,6 @@
       "quantity": 2,
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/193.jpg",
       "total": 700099
-    },
-    {
-      "ownerID": "1",
-      "total": 700000,
-      "paymentMethod": "CASH",
-      "quantity": 3,
-      "cartID": 123,
-      "id": 2
-    },
-    {
-      "ownerID": "1",
-      "total": 700000,
-      "paymentMethod": "CASH",
-      "quantity": 3,
-      "cartID": 123,
-      "id": 3
-    },
-    {
-      "ownerID": "1",
-      "total": 700000,
-      "paymentMethod": "CASH",
-      "quantity": 3,
-      "cartID": 123,
-      "id": 4
-    },
-    {
-      "ownerID": "1",
-      "total": 700000,
-      "paymentMethod": "CASH",
-      "quantity": 3,
-      "cartID": 123,
-      "id": 5
     }
   ],
   "orderItems": [
@@ -1651,6 +1645,88 @@
         "7"
       ],
       "id": "9BdbkIw"
+    },
+    {
+      "createdAt": "2023-11-26T22:44:20.886Z",
+      "availableColors": [],
+      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "warehouseID": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "r3aQzIp"
+    },
+    {
+      "createdAt": "2023-11-26T22:44:52.744Z",
+      "availableColors": [],
+      "image": "",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "productFlag": 1,
+      "warehouseID": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "JV7-Rbx"
+    },
+    {
+      "createdAt": "2023-11-26T22:48:59.416Z",
+      "availableColors": [],
+      "image": "",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "ownerId": "1",
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "VsmmOk8"
+    },
+    {
+      "createdAt": "2023-11-26T22:52:26.713Z",
+      "availableColors": [],
+      "image": "",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "ownerId": "1",
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "W4SYLR7"
+    },
+    {
+      "createdAt": "2023-11-26T22:55:25.251Z",
+      "availableColors": [],
+      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
+      "price": "123098890",
+      "quantity": "12",
+      "sizes": [
+        12,
+        23,
+        34
+      ],
+      "ownerId": "1",
+      "productFlag": 1,
+      "categoryIds": [
+        "7"
+      ],
+      "id": "1WQRhGB"
     }
   ],
   "users": [
@@ -1660,6 +1736,7 @@
       "email": "admin@gmail.com",
       "password": "12345",
       "role": "ADMIN",
+      "avatar": "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
       "randomField": "asdfasf"
     },
     {
@@ -1763,14 +1840,14 @@
       "name": "Hickle, Herzog and Graham",
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/585.jpg",
       "id": "1",
-      "ownerID": 1
+      "ownerId": 1
     },
     {
       "createdAt": 1697998631,
       "name": "Ziemann - Heathcote",
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/82.jpg",
       "id": "2",
-      "ownerID": "4"
+      "ownerId": "4"
     },
     {
       "createdAt": 1697998571,

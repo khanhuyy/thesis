@@ -19,24 +19,24 @@ const SingleProduct = () => {
     const [itemExisted, setItemExisted] = useState(false);
     const [cart, setCart] = useState();
     const [product, setProduct] = useState({
-        rating: "",
-        count: "",
-        images: {
-            image1: "",
-            image2: "",
-            image3: "",
-            image4: ""
-        },
-        image: "",
-        brand: "",
-        title: "",
-        sizes: [
-        ],
-        price: "",
-        productDiscountPercentage: "",
-        quantity: 0,
-        gender: "",
-        category: ""
+        // rating: "",
+        // count: "",
+        // images: {
+        //     image1: "",
+        //     image2: "",
+        //     image3: "",
+        //     image4: ""
+        // },
+        // image: "",
+        // brand: "",
+        // title: "",
+        // sizes: [
+        // ],
+        // price: "",
+        // productDiscountPercentage: "",
+        // quantity: 0,
+        // gender: "",
+        // category: ""
     })
     const fetchProduct = () => {
         axios.get(`${baseUrl}/products/${id}`)
@@ -58,8 +58,20 @@ const SingleProduct = () => {
         isClosable: true,
       })
     }
+    const user = JSON.parse(localStorage.getItem("user"));
+    const fetchCart = () => {
+        axios.get(`${baseUrl}/carts?ownerId=${user?.id}&isComplete=false`)
+        .then((doc) => {
+            setCart(doc.data?.[0]);
+        })
+        .catch((err) => console.log(err))
+        
+    }
+    useEffect(() => {
+        fetchCart()
+    }, [])
     const productInCart = () => {
-        axios.get(`${baseUrl}/cartItems?cartID=1&productID=${id}`)
+        axios.get(`${baseUrl}/cartItems?cartID=${cart?.id}&productID=${id}`)
         .then((doc) => {
             if (doc.data == null || doc.data?.length == 0) {
                 setItemExisted(false);

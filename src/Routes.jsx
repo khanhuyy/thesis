@@ -4,6 +4,7 @@ import Home from "./component/home/Home";
 import KidsWear from "./component/ProductPage/KidsWear";
 import MensWear from "./component/ProductPage/MensWear";
 import Order from "./component/order/Order";
+import OrderDetail from "./component/order/OrderDetail";
 import OrderPagination from "./component/order/OrderPagination";
 import WomensWear from "./component/ProductPage/WomensWear";
 
@@ -24,7 +25,7 @@ import PrivateRoutes from "./component/PrivateRoutes/PrivateRoutes";
 import PaymentPage from "./component/Rahul/PaymentPage/PaymentPage";
 import CartPage from "./component/Rahul/Cart/CartPage";
 import OrderSucess from "./component/Rahul/PaymentPage/OrderSucess";
-import CreateProduct from "./component/singlePage/CreateProduct";
+import CreateNewProduct from "./component/singlePage/CreateNewProduct";
 
 const AllRoutes = () => {
 
@@ -37,10 +38,11 @@ const AllRoutes = () => {
         return params?.id;
       }} />}/> */}
       <Route path="/categories/:id" element={<ProductPagination />}/>
-      <Route path="/createProduct" element={<CreateProduct />}></Route>
+      <Route path="/createProduct" element={<CreateNewProduct />}></Route>
       <Route path="/kids" element={<KidsWear />} />
       <Route path="/mens" element={<MensWear />} />
       <Route path="/orders" element={<OrderPagination />} />
+      <Route path="/orders/:orderId" element={<OrderDetail />} />
       <Route path="/womens" element={<WomensWear />} />
       <Route path="/warehouses" element={<Warehouse />} />
       
