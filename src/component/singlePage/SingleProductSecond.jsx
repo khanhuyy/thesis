@@ -5,21 +5,26 @@ import {
   ListIcon,
   OrderedList,
   UnorderedList,
+  Container
 } from '@chakra-ui/react'
 import { FaStar } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci';
 import { AiOutlineMobile } from 'react-icons/ai';
 import { TbTruckReturn } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 
 const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
+  const navigate = useNavigate();
   return (
     <Box>
+      
       {/* <Heading Heading as='h3' size='lg' noOfLines={1}>{brand}</Heading> */}
       <Text as={"b"} fontSize='25px'>{brand}</Text>
       <br />
-      {/* <h4>{title}</h4> */}
+      <Button style={{right: "0"}} onClick={()=>navigate(`/products/${id}/update`)}>Update</Button>
+
       <Text fontWeight={"500"} fontSize='20px'>{title}</Text>
-      <Box mt={"2%"} mb={"2%"}>
+      <Box mt={"2%"} mb={"2%"} style={{display: "inline-block"}}>
         <HStack
           spacing={"0.2rem"}
           p="0.15rem 0.5rem"
@@ -39,6 +44,7 @@ const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price
           </Text>
         </HStack>
       </Box>
+
       {/* <hr /> */}
       <Box>
         <Text fontSize={"18px"} as={"b"}>

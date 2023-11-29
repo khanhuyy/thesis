@@ -12,7 +12,8 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { AiOutlineMobile } from 'react-icons/ai';
 import { TbTruckReturn } from 'react-icons/tb';
 
-const CreateNewProduct = () => {
+const UpdateProduct = () => {
+    const { id } = useParams()
     const navigate = useNavigate()
     const [categories, setCategories] = useState();
     const [attributes, setAttributes] = useState();
@@ -22,12 +23,13 @@ const CreateNewProduct = () => {
     const [selectedAttribute, setSelectedAttribute] = useState();
     const [selectedBrand, setSelectedBrand] = useState();
     const [productAttributes, setProductAttributes] = useState();
+    const [product, setProduct] = useState();
     const [selectedCategory, setSelectedCategory] = useState();
     const [selectedWarehouse, setSelectedWarehouse] = useState();
     const [ imageUrl, setImageUrl ] = useState("");
     const [ name, setName ] = useState()
     const [ quantity, setQuantity ] = useState()
-    const [ price, setPrice ] = useState()
+    const [ price, setPrice ] = useState(product?.price)
     const toast = useToast()
     const user = JSON.parse(localStorage.getItem('user'));
     const currentdate = new Date();
@@ -63,6 +65,17 @@ const CreateNewProduct = () => {
         fetchCategories()
     }, [])
 
+    const fetchProduct = () => {
+      axios.get(`${baseUrl}/products/${id}`)
+        .then((doc) => {
+          setProduct(doc.data);
+        })
+        .catch((err) => console.log(err))
+    }
+    useEffect(() => {
+        fetchProduct()
+    }, [])
+
     const fetchWarehouses = () => {
         axios.get(`${baseUrl}/warehouses?ownerId=${user.id}`)
           .then((doc) => {
@@ -93,9 +106,8 @@ const CreateNewProduct = () => {
         const qty = e.target.value;
         setSelectedWarehouse(qty);
     }
-    const createProduct = () => {
-        axios.get()
-        axios.post(`${baseUrl}/products`, {
+    const updateProduct = () => {
+        axios.put(`${baseUrl}/products`, {
             "name": name,
             "createdAt": currentdate,
             "brandID": selectedBrand?.id,
@@ -123,21 +135,24 @@ const CreateNewProduct = () => {
             })
         })
         .catch((err) => console.log(err));
+        navigate(`/products/${id}`)
     }
     const uploadImageIconUrl = 'https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg'
+
+      console.log(product);
     return (
       <>
       <Nav />
       <div className='SingleFlex'>
         
         <div>
-            {(imageUrl === "")? <SinglePageGrid datas={[uploadImageIconUrl, uploadImageIconUrl, uploadImageIconUrl]} /> 
-            : <Image src={imageUrl} alt={uploadImageIconUrl} w={["100%","100%","100%"]}/>}
+            {(product?.image === "")? <SinglePageGrid datas={[uploadImageIconUrl, uploadImageIconUrl, uploadImageIconUrl]} /> 
+            : <SinglePageGrid datas={[product?.image, product?.image, product?.image]} /> }
         </div>
         <div>
         <Box>
           <Text fontSize='3xl' as='b'>Image URL</Text>
-          <Input placeholder='Image URL' onChange={(e) => setImageUrl(e.target.value)}/>
+          <Input value={product?.image} onChange={(e) => setImageUrl(e.target.value)}/>
         
         <Text fontSize='3xl' as='b'>Attribute</Text>
         <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
@@ -167,10 +182,7 @@ const CreateNewProduct = () => {
         </Select>
         <br />
         <Text fontSize='3xl' as='b'>Price</Text>
-        <Input placeholder='Price' onChange={(e) => setPrice(e.target.value)} />
-        <br /><br />
-        <Text fontSize='3xl' as='b'>Quantity</Text>
-        <Input placeholder='Quantity' onChange={(e) => setQuantity(e.target.value)} />
+        <Input placeholder='Product Price' onChange={(e) => setPrice(e.target.value)} />
         <br /><br />
         <Text fontSize='3xl' as='b'>Warehouse</Text>
         <Select  variant="flushed" value={selectedWarehouse} onChange={ handleWarehouse } textAlign={'left'} maxW={"max-content"}   >
@@ -181,11 +193,11 @@ const CreateNewProduct = () => {
         <br />
         <br />
       </Box>
-      <Button onClick={createProduct} colorScheme='blue'>Add Product</Button>
+      <Button onClick={updateProduct} colorScheme='blue'>Confirm</Button>
       </div>
       </div>
       </>
     )
 }
 
-export default CreateNewProduct;
+export default UpdateProduct;

@@ -26,6 +26,7 @@ import PaymentPage from "./component/Rahul/PaymentPage/PaymentPage";
 import CartPage from "./component/Rahul/Cart/CartPage";
 import OrderSucess from "./component/Rahul/PaymentPage/OrderSucess";
 import CreateNewProduct from "./component/singlePage/CreateNewProduct";
+import UpdateProduct from "./component/singlePage/UpdateProduct";
 
 const AllRoutes = () => {
 
@@ -57,18 +58,12 @@ const AllRoutes = () => {
       <Route path="/shops" element={<Shop />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
-      {/* <Route path="/address" element={<Address />} /> */}
       <Route path="/paymentPage" element={<PaymentPage />} />
-      {/* <Route path="/otp" element={<Otp />} /> */}
       <Route path="/orderSuccess" element={<OrderSucess />} />
 
-      {/* <Route path='/paymentpage' element={<Address />} />  */}
       <Route path="/kidsproduct/:id" element={<SingleProduct />} />
       <Route path="/products/:id" element={<SingleProduct />} />
-      {/* <Route path='/login' element={<Login />} />  */}
-      {/* <Route path='/adminLogin' element={<AdminPageLogin />} /> 
-        <Route path='/adminLogin' element={<AdminPageLogin />} /> 
-        <Route path='/adminPanel' element={<AdminPanel />} />  */}
+      <Route path="/products/:id/update" element={<UpdateProduct />} />
       <Route path="*" element={<h2>Page not found...</h2>} />
     </Routes>
   );
