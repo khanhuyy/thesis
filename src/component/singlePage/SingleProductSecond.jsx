@@ -13,7 +13,7 @@ import { AiOutlineMobile } from 'react-icons/ai';
 import { TbTruckReturn } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 
-const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
+const SingleProductSecond = ({ id, addToCart, removeFromCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
   const navigate = useNavigate();
   return (
     <Box>
@@ -65,7 +65,7 @@ const SingleProductSecond = ({ id, addToCart, title, brand, rating, count, price
 
       <Box mt={"5%"} mb={"5%"} display={"flex"} flexDirection={["column","row"]}>
             {exist === true ? (
-              <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{}} >Product in cart now</Button>
+              <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{removeFromCart()}} >Remove from Cart</Button>
             ) : (
               <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Cart</Button>
             )}

@@ -282,6 +282,8 @@ import { useEffect } from 'react';
 const Home = () => {
   const [hamburger, setHamburger] = useState(false)
   const [banners, setBanners] = useState();
+  const [dealOfTheDays, setDealOfTheDays] = useState();
+  const [flashSales, setFlashSales] = useState();
   const fetchData = () => {
     axios.get(`${baseUrl}/banners`)
       .then((doc) => {
@@ -291,6 +293,28 @@ const Home = () => {
   }
   useEffect(() => {
     fetchData()
+  }, [])
+
+  const fetchDealOfTheDays = () => {
+    axios.get(`${baseUrl}/products?isDealOfTheDay=true`)
+    .then((doc) => {
+      setDealOfTheDays(doc.data)
+    })
+    .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchDealOfTheDays()
+  }, [])
+
+  const fetchFlashSales = () => {
+    axios.get(`${baseUrl}/products?isFlashSale=true`)
+    .then((doc) => {
+      setFlashSales(doc.data)
+    })
+    .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchFlashSales();
   }, [])
 
   return (<Box mt={"0px"}>
@@ -315,7 +339,8 @@ const Home = () => {
           <Image src={b7} alt="" w={"100%"} />
           <Image src={b8} alt="" w={"100%"} />
         </Carousel>
-        <HomePart data={[d1, d2, d3, d4, d5, d6, d7, d8]} text="DEAL OF THE DAY" length={8} />
+        {/* <HomePart data={[d1, d2, d3, d4, d5, d6, d7, d8]} text="DEAL OF THE DAY" length={8} /> */}
+        <HomePart data={dealOfTheDays} text="DEAL OF THE DAY" length={8} />
         <HomePart data={[a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16]} text="BEST OF MYNTRA EXCLUSIVE BRANDS" length={8} />
         <HomePart data={[bb1, bb2, bb3, bb4, bb5, bb6, bb7]} text="TOP PICKS" length={7} />
         <HomePart data={[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24]} text="CATEGORIES TO BAG" length={8} />

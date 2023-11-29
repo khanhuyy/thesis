@@ -2,16 +2,16 @@
 
 
 export const textTospeechFun = (text) => {
-    let voices = window.speechSynthesis.getVoices()[3];
-    console.log(voices);
+    // let voices = window.speechSynthesis.getVoices()[3];
+    // console.log(voices);
 
-    console.log('voiceFun working', text);
-     const utternance =  new SpeechSynthesisUtterance(text);
-     if(window.speechSynthesis.getVoices()[3] === null) {
-        console.log('empty gfbkjhnhfj');
-     }
-    utternance.voice =  voices ;
-    window.speechSynthesis.speak(utternance);
+    // console.log('voiceFun working', text);
+    //  const utternance =  new SpeechSynthesisUtterance(text);
+    //  if(window.speechSynthesis.getVoices()[3] === null) {
+    //     console.log('empty gfbkjhnhfj');
+    //  }
+    // utternance.voice =  voices ;
+    // window.speechSynthesis.speak(utternance);
       
 
 }

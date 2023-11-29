@@ -24,8 +24,9 @@ const Nav = ({ setHamburger, hamburger }) => {
 
   const [search, setSearch] = useState("")
   const [DATA, setData] = useState([])
-  const [categories, setCategories] = useState([])
+  // const [categories, setCategories] = useState([])
   const [random, setRandom] = useState(true)
+  const [categories, setCategories] = useState()
 
   const [windowDimension, detectHW] = useState({
     winWidth: window.innerWidth,
@@ -78,24 +79,14 @@ const Nav = ({ setHamburger, hamburger }) => {
     setLogout(true)
   }
 
-  const categoryRef = collection(db, 'categories');
-  useEffect(() => {
-    const q = query(
-      categoryRef
-    );
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        data.id = doc.id;
-        items.push(data);
-      });
-      setCategories(items);
-    });
-    return () => {
-      unsub();
-    };
+  const fetchCategories = () => {
+    axios.get(`${baseUrl}/categories?_limit=6`).then((res) => setCategories(res.data))
+      .catch((err) => console.log(err))
+  }
+  useEffect (() => {
+    fetchCategories()
   }, [])
+
   const user = JSON.parse(localStorage.getItem('user'))
   return (
     <div style={{ position: 'sticky', top: "0", backgroundColor: 'white', marginTop: "0px", boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", zIndex: 100 }}>

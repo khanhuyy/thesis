@@ -38,6 +38,17 @@ const CartPage = () => {
         setCart(doc.data?.[0]);
       })
       .catch((err) => console.log(err))
+    if (cart == {}) {
+      axios.post(`${baseUrl}/carts`, {
+        "ownerId": user.id,
+        "paymentMethod": "CASH",
+        "isComplete": false
+    })
+      .then((doc) => {
+        setCart(doc.data?.[0]);
+      })
+      .catch((err) => console.log(err))
+    }
   }
   useEffect(() => {
     fetchCart()
@@ -52,7 +63,8 @@ const CartPage = () => {
   }
   useEffect(() => {
     fetchCartItems()
-  }, [])
+  }, [cart?.id])
+  
 
   const rColor = "#d3145a";
   

@@ -17,27 +17,10 @@ const SingleProduct = () => {
     const toast = useToast()
     const [loading, setLoading] = useState(false)
     const [itemExisted, setItemExisted] = useState(false);
+    const [existedCartItem, setExistedCartItem] = useState();
     const [cart, setCart] = useState();
-    const [product, setProduct] = useState({
-        // rating: "",
-        // count: "",
-        // images: {
-        //     image1: "",
-        //     image2: "",
-        //     image3: "",
-        //     image4: ""
-        // },
-        // image: "",
-        // brand: "",
-        // title: "",
-        // sizes: [
-        // ],
-        // price: "",
-        // productDiscountPercentage: "",
-        // quantity: 0,
-        // gender: "",
-        // category: ""
-    })
+    const [product, setProduct] = useState()
+    const [ change, setChange ] = useState()
     const fetchProduct = () => {
         axios.get(`${baseUrl}/products/${id}`)
         .then((doc) => {
@@ -76,6 +59,7 @@ const SingleProduct = () => {
             if (doc.data == null || doc.data?.length == 0) {
                 setItemExisted(false);
             } else {
+                setExistedCartItem(doc.data?.[0])
                 setItemExisted(true);
             }
         })
@@ -84,12 +68,14 @@ const SingleProduct = () => {
     useEffect(() => {
         const result = productInCart();;
         setItemExisted(result);
-    }, []);
+    }, [cart?.id, change]);
+
     const addToCart = () => {
         axios.post(`${baseUrl}/cartItems`, {
-                "cartID": 1,
+                "cartID": cart?.id,
                 "productID": id,
-                "price": 100000, // todo
+                "image": product?.image,
+                "price": product?.price,
                 "quantity": 1
             }).then(function (response) {
                 console.log(response);
@@ -97,6 +83,16 @@ const SingleProduct = () => {
             .catch(function (error) {
                 console.log(error);
             });
+        setChange("added")
+    }
+    const removeFromCart = () => {
+        axios.delete(`${baseUrl}/cartItems/${existedCartItem?.id}`).then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        setChange("removed")
     }
     const fetchData = () => {
         axios.get(`${baseUrl}/carts/${1}`)
@@ -155,6 +151,7 @@ const SingleProduct = () => {
                     {product ? 
                     <SingleProductSecond 
                         addToCart={addToCart} 
+                        removeFromCart={removeFromCart} 
                         id={product?.id}
                         title={product?.title} 
                         brand={product?.brand} 

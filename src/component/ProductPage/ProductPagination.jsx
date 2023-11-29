@@ -26,7 +26,7 @@ import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import Footer from '../footer/Footer'
 import { useEffect } from "react";
-import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate, useParams } from "react-router-dom";
 import CardForMensAndWomen from "./CardForMensAndWomen";
 import Pagination from "./Pagination";
 import Nav from "../Nav";
@@ -34,10 +34,12 @@ import MobileNav from "../NavBar/MobileNav";
 import { baseUrl } from "../../Url";
 import axios from "axios";
 
-const ProductPaganation = ({id}) => {
+const ProductPaganation = () => {
+  const { id } = useParams()
   const navigate = useNavigate();
   // filter
   const [brands, setBrands] = useState()
+  const [category, setCategory] = useState() // level 2
   const [categories, setCategories] = useState() // level 2
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1)
@@ -70,24 +72,22 @@ const ProductPaganation = ({id}) => {
     fetchBrands()
   }, [])
 
-  const fetchCategories = () => {
-    axios.get(`${baseUrl}/categories?level=${2}&parentId=${1}`).then(
+  const fetchCategory = () => {
+    axios.get(`${baseUrl}/categories/${id}`).then(
       (doc) => {
-        setCategories(doc.data)
+        setCategory(doc.data);
       })
       .catch((err) => console.log(err)
     )
   }
   useEffect(() => {
-    fetchCategories()
-  }, [])
+    fetchCategory()
+  }, [id])
 
   const fetchProducts = () => {
     
-    var url = `${baseUrl}/products?`
-    if (filters["categoryIds"].length > 0) {
-      url += `categoryIds_like=${filters["categoryIds"]}`
-    } else if (filters["brandIds"].length > 1) {
+    var url = `${baseUrl}/products?categoryId=${id}`
+    if (filters["brandIds"].length > 1) {
       url += `brandIds_like=${filters["brandIds"]}`
     }
     axios.get(url).then(
@@ -100,7 +100,7 @@ const ProductPaganation = ({id}) => {
   }
   useEffect(() => {
     fetchProducts()
-  }, [filters])
+  }, [filters, id])
 
   const handleChange = ({ target }) => {
     if (target.name == "categoryIds") {
@@ -170,16 +170,16 @@ const ProductPaganation = ({id}) => {
           >
             <Breadcrumb className={"breadcrummb"}>
               <BreadcrumbItem>
-                <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
               </BreadcrumbItem>
 
-              <BreadcrumbItem>
+              {/* <BreadcrumbItem>
                 <BreadcrumbLink href="#">Clothing</BreadcrumbLink>
-              </BreadcrumbItem>
+              </BreadcrumbItem> */}
 
               <BreadcrumbItem isCurrentPage>
                 <BreadcrumbLink as={"b"} cursor="text">
-                  Mens Wear Online Store
+                  {category?.name}
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </Breadcrumb>
@@ -187,7 +187,7 @@ const ProductPaganation = ({id}) => {
             <Breadcrumb separator="-" className={"breadcrummb"}>
               <BreadcrumbItem>
                 <BreadcrumbLink as={"b"} cursor="text" href="#">
-                  Mens Wear Online Store
+                  {category?.name}
                 </BreadcrumbLink>
               </BreadcrumbItem>
 
@@ -252,7 +252,7 @@ const ProductPaganation = ({id}) => {
                   CLEAR ALL
                 </Button>
               </Stack>
-              <Stack
+              {/* <Stack
                 direction={"column"}
                 textAlign="left"
                 border="1px solid #e9e9ed"
@@ -275,7 +275,7 @@ const ProductPaganation = ({id}) => {
                     {e?.name}
                   </Checkbox>
                 ))}
-              </Stack>
+              </Stack> */}
               <Stack
                 direction={"column"}
                 textAlign="left"

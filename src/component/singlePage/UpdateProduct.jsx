@@ -32,7 +32,7 @@ const UpdateProduct = () => {
     const [ price, setPrice ] = useState(product?.price)
     const toast = useToast()
     const user = JSON.parse(localStorage.getItem('user'));
-    const currentdate = new Date();
+    const currentdate = new Date()
     const fetchAttribute = () => {
         axios.get(`${baseUrl}/attributes`)
           .then((doc) => {

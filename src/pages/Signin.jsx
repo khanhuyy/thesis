@@ -46,6 +46,7 @@ export const Signin = () => {
       if (doc.data?.length > 0) {
         // const userData = getUserCart(doc.data[0].id)
         localStorage.setItem('user', JSON.stringify(doc.data[0]))
+        localStorage.setItem('login', true)
       }
       navigate("/")
     })

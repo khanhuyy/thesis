@@ -64,7 +64,7 @@ const Warehouse = () => {
   useEffect(() => {
     fetchData()
   }, [])  
-
+  console.log(products);
   return (<Box mt={"0px"}>
 
     <Box >

@@ -10,10 +10,10 @@ const HomePart = ({text,data,length}) => {
         <Heading as='h2' size='lg' mt={"4%"} ml={"2%"}>{text}</Heading>
 
        <SimpleGrid columns={[length-4,length-2,length]} spacing={0} mt={"4%"}>
-        {data.map((el)=>{
+        {data?.map((el)=>{
             return <>
-              <Link>
-                <Image src={el}/>
+              <Link to={`/products/${el?.id}`}>
+                { el?.image ? <Image src={el?.image} /> : <Image src={el}/> }
               </Link>
             </>
         })}

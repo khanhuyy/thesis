@@ -8,11 +8,11 @@ const PrivateRoutes = ({children}) => {
 
 
 
-const token = localStorage.getItem("Login")
+  const token = localStorage.getItem("login")
 
-if(!token) {
-  return <Navigate to={'/signup'}  />
-}
+  if(!token) {
+    return <Navigate to={'/signup'}  />
+  }
 
  
   return ( children  )
