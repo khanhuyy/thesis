@@ -24,13 +24,13 @@ import "./OrderDetail.css";
 
 const OrderDetail = () => {
   const {orderId} = useParams()
-  console.log(orderId)
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
 
   const [orders, setOrders] = useState();
   const [order, setOrder] = useState();
+  const [orderEvents, setOrderEvents] = useState();
   const [orderItems, setOrderItems] = useState();
   const user = JSON.parse(localStorage.getItem('user'))
 
@@ -56,7 +56,19 @@ const OrderDetail = () => {
   useEffect(() => {
     fetchOrder()
   }, [])
-  console.log(order);
+  
+  // get order events
+  const fetchOrderEvents = () => {
+    axios.get(`${baseUrl}/orderEvents?orderId=${orderId}`)
+      .then((doc) => {
+        setOrderEvents(doc.data);
+      })
+      .catch((err) => console.log(err))
+  }
+  useEffect(() => {
+    fetchOrderEvents()
+  }, [])
+  console.log(orderEvents);
   
   // get order items
   const fetchOrderItems = () => {
@@ -114,17 +126,25 @@ const OrderDetail = () => {
               <div style={{display: "inline-flex"}}>
                 <Button onClick={()=>navigate(`/orders`)}>- Back</Button>
                 <div className="align-right">
-                  <p>Order Code: 202311261123CODE | Order Status: COMPLETE</p>
+                  <p style={{textAlign: "right"}}>Order Code: 202311261123CODE | Order Status: COMPLETE</p>
                 </div>
               </div>
               <div style={{height: "250px", margin: "10px"}}>
                 <div>Status Bar</div>
+                {orderEvents?.length &&
+                  (<div style={{display: "inline-flex", backgroundColor: "#E0E0E0", maxWidth: "100%"}}>
+                    {orderEvents?.map((e)=> (
+                      <div key={e.id} style={{display: "inline"}}>
+                        <Image key={e.id} 
+                          w={"20%"}
+                          src="" alt="order status" />
+                        <p>{e?.event}</p>
+                        <p>{e?.createdAt}</p>
+                      </div>
+                    ))}
+                  </div>)
+                }
                 <div style={{display: "inline-flex", margin: "10px"}}>
-                  {/* <div>Created</div>
-                  <div>Created</div>
-                  <div>Created</div>
-                  <div>Created</div>
-                  <div>Created</div> */}
                   <Image 
                     w={"650px"}
                     bgColor={'white'}
@@ -141,15 +161,14 @@ const OrderDetail = () => {
                     w={{ base: "100%", sm: "100%", md: "100%", lg: "100%" }} marginTop={"1px"}
                     paddingRight={{ base: "0", sm: "0", md: "0", lg: "1px" }}
                     paddingBottom={{ base: "1rem", sm: "1rem", md: "1rem", lg: "3rem" }}
-                    // h={"85vh"}
-                    // h={{ base: "70vh", sm: "70vh", md: "70vh", lg: "85vh" }}
                     overflowY={{ base: "auto", sm: "auto", md: "auto", lg: "scroll" }}
                     bg='#E0E0E0'
                   >
                     
                     {orderItems?.map((e) => (
                       // Pop up detail
-                      <Stack spacing={'1px'} display={'flex'} flexDirection={'rows'} justifyContent={'center'} gap={'2px'} alignContent={'center'} overflow={'hidden'}  minH={'150px'} >
+                      <Stack key={e.id} 
+                        spacing={'1px'} display={'flex'} flexDirection={'rows'} justifyContent={'center'} gap={'2px'} alignContent={'center'} overflow={'hidden'}  minH={'150px'} >
                         <hr />
                       
                       <Image 
