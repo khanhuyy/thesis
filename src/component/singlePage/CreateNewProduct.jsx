@@ -25,6 +25,7 @@ const CreateNewProduct = () => {
     const [selectedCategory, setSelectedCategory] = useState();
     const [selectedWarehouse, setSelectedWarehouse] = useState();
     const [ imageUrl, setImageUrl ] = useState("");
+    const [ image, setImage ] = useState();
     const [ name, setName ] = useState()
     const [ quantity, setQuantity ] = useState()
     const [ price, setPrice ] = useState()
@@ -125,6 +126,67 @@ const CreateNewProduct = () => {
         .catch((err) => console.log(err));
     }
     const uploadImageIconUrl = 'https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg'
+    const state = {
+      // Initially, no file is selected
+      selectedFile: null,
+    };
+
+    // On file select (from the pop up)
+    const onFileChange = (event) => {
+        // Update the state
+        this.setState({
+            selectedFile: event.target.files[0],
+        });
+    };
+    const onFileUpload = () => {
+      const formData = new FormData();
+
+      formData.append(
+          "myFile",
+          this.state.selectedFile,
+          this.state.selectedFile.name
+      );
+
+      // Details of the uploaded file
+      console.log(this.state.selectedFile);
+
+      // Request made to the backend api
+      // Send formData object
+      setImage(this.state)
+    };
+    const fileData = () => {
+        if (this.state.selectedFile) {
+            return (
+                <div>
+                    <h2>File Details:</h2>
+                    <p>
+                        File Name:{" "}
+                        {this.state.selectedFile.name}
+                    </p>
+
+                    <p>
+                        File Type:{" "}
+                        {this.state.selectedFile.type}
+                    </p>
+
+                    <p>
+                        Last Modified:{" "}
+                        {this.state.selectedFile.lastModifiedDate.toDateString()}
+                    </p>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                    <h4>
+                        Choose before Pressing the Upload
+                        button
+                    </h4>
+                </div>
+            );
+        }
+    };
     return (
       <>
       <Nav />
@@ -137,7 +199,11 @@ const CreateNewProduct = () => {
         <div>
         <Box>
           <Text fontSize='3xl' as='b'>Image URL</Text>
+          
           <Input placeholder='Image URL' onChange={(e) => setImageUrl(e.target.value)}/>
+          <Input type='file' placeholder='Image File' onChange={onFileChange}/>
+          <Button onClick={onFileUpload}> Upload Image </Button>
+          {/* {fileData} */}
         
         <Text fontSize='3xl' as='b'>Attribute</Text>
         <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >

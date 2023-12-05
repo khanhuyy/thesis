@@ -23,6 +23,7 @@ import Otp from "./pages/Otp";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PrivateRoutes from "./component/PrivateRoutes/PrivateRoutes";
 import PaymentPage from "./component/Rahul/PaymentPage/PaymentPage";
+import Profile from "./component/user/Profile";
 import CartPage from "./component/Rahul/Cart/CartPage";
 import OrderSucess from "./component/Rahul/PaymentPage/OrderSucess";
 import CreateNewProduct from "./component/singlePage/CreateNewProduct";
@@ -34,10 +35,6 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/admin" element={<Admin />} />
-      {/* <Route path="/categories/:id" element={<ProductPagination id={() =>{
-        const params = useParams();
-        return params?.id;
-      }} />}/> */}
       <Route path="/categories/:id" element={<ProductPagination />}/>
       <Route path="/createProduct" element={<CreateNewProduct />}></Route>
       <Route path="/kids" element={<KidsWear />} />
@@ -59,6 +56,7 @@ const AllRoutes = () => {
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/paymentPage" element={<PaymentPage />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/orderSuccess" element={<OrderSucess />} />
 
       <Route path="/kidsproduct/:id" element={<SingleProduct />} />
