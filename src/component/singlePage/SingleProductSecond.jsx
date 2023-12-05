@@ -65,11 +65,14 @@ const SingleProductSecond = ({ id, addToCart, removeFromCart, title, brand, rati
 
       <Box mt={"5%"} mb={"5%"} display={"flex"} flexDirection={["column","row"]}>
             {exist === true ? (
-              <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{removeFromCart()}} >Remove from Cart</Button>
+              <Button color={"white"} background={"grey"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>{removeFromCart()}} >
+                Remove from Cart
+              </Button>
             ) : (
-              <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Cart</Button>
+              <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >
+                Add to Cart
+              </Button>
             )}
-        {/* <Button color={"white"} background={"pink.500"}  pl={"20"}  pr={"20"} pt={"7"} pb={"7"} onClick={()=>addToCart()} >Add to Bag</Button><span> </span> */}
         <Button background={"white"} pl={"20"} pr={"20"} pt={"7"} pb={"7"} border={"1px solid black"}>Wishlist</Button>
       </Box>
       {/* <hr /> */}

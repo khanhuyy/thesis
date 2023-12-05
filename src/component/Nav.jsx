@@ -1,11 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import { 
+  PhoneIcon, 
+  AddIcon, 
+  WarningIcon, 
+  SearchIcon, EditIcon, RepeatIcon, 
+  HamburgerIcon, ExternalLinkIcon
+} from "@chakra-ui/icons";
 import "../CSS/Nav.css";
 import MobileNav from "./NavBar/MobileNav";
 import { Link, useNavigate } from "react-router-dom";
 import MobNav2 from "./NavBar/MobNav2";
 import axios from "axios";
-import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, 
+  Menu,
+  MenuList,
+  MenuItem,
+  MenuButton,
+  IconButton
+} from "@chakra-ui/react";
 import { baseUrl } from "../Url";
 import firebase from "../service/firebase";
 import "firebase/compat/auth";
@@ -51,14 +63,14 @@ const Nav = ({ setHamburger, hamburger }) => {
   const handleNavigate1 = (id) => {
     let data = search
     data = data.split(" ")[0]
-    navigate(`/product/${id}`, { state: data })
+    navigate(`/products/${id}`, { state: data })
 
   }
 
   const handleSearch = () => {
     console.log("Searching...")
+    axios.get(`${baseUrl}/products?name=${search}`)
   }
-  // const ref1 = useRef()
   const detectSize = () => {
     detectHW({
       winWidth: window.innerWidth,
@@ -107,16 +119,7 @@ const Nav = ({ setHamburger, hamburger }) => {
                 {/* categories */}
                 {
                   categories?.length >= 0 &&
-                    // categories.slice(((page - 1) * 15), (((page - 1) * 15) + 15)).map((e) =>
-                    // <Box onClick={()=>navigate(`/products/${e.id}`,{state:"men"})}>
-                    //       < CardForMensAndWomen key={e.id} props={e} />
-                    //     </Box>)
                     categories?.map((e) =>
-                      // <Link to={formatURL(e?.name)}>
-                      //   <span>
-                      //     {e?.name}
-                      //   </span>
-                      // </Link>
                       <Link key={e.id} to={`/categories/${e.id}`} relative='path'>
                         <span>
                           {e?.name}
@@ -126,114 +129,12 @@ const Nav = ({ setHamburger, hamburger }) => {
                 }
               </ul>
               
-              {/* <ul>
-                
-                <li>
-                  <Link to={'/mens'}>
-                    <span>
-                      Men
-                    </span>
-                  </Link>
-                  <div class="subMenu">
-                    <div id="mobiles" class="submenuList">
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Top-Wear</p>
-                        <p>T-Shirt</p>
-                        <p>Casual Shirts</p>
-                        <p>Formal Shirts</p>
-                        <p>Sweat Shirt</p>
-                        <p>Jacket</p>
-                        <p>Sweater</p>
-                        <p>Suits</p>
-                        <p>Rain Jacket</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Indian & Festive Wear
-                        </p>
-                        <p>Kurta & Kurts's Set</p>
-                        <p>Sherwani</p>
-                        <p>Dhotis</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Bottom-Wear</p>
-                        <p>Jeans</p>
-                        <p>Casual Trousers</p>
-                        <p>Formal Trousers</p>
-                        <p>Shorts</p>
-                        <p>Tract-Pents & Jooggers</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Inner Wear & Sleep Wear
-                        </p>
-                        <p>Briefs & Trunks</p>
-                        <p>Boxers</p>
-
-                        <p>Vests</p>
-                        <p>Spleepwear & Loungewear</p>
-                        <p>Thermals</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Plus Size</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Footwears</p>
-                        <p>Shoes</p>
-                        <p>Casual Shoes</p>
-                        <p>Formal Shoes</p>
-                        <p>Sport Shoes</p>
-                        <p>Sneakers</p>
-                        <p>Sendal & Footwear</p>
-                        <p>Flip Flops</p>
-                        <p>Socks</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>
-                          Personal care & Grooming
-                        </p>
-                        <p style={{ color: "#EC407A" }}> Sunglasses & Frames</p>
-                        <p style={{ color: "#EC407A" }}>Watches</p>
-                        {/* <p>Dhotis</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Sports & Active-Wear</p>
-                        <p>Sports Shoes</p>
-                        <p>Sports Sendals</p>
-                        <p>Active T-Shirts</p>
-                        <p>Track Pants</p>
-                        <p>Tractsuits</p>
-                        <p>Jacktes</p>
-                        <p>Accessories</p>
-                        <p>Swimming Suits</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Gadgets</p>
-                        <p>Fitness Gadgets</p>
-                        <p>Headphones</p>
-                        <p>Speakers</p>
-                      </div>
-                      <div>
-                        <p style={{ color: "#EC407A" }}>Fashion Accessories</p>
-                        <p>Wallets</p>
-                        <p>Belts</p>
-                        <p>Perfumes</p>
-                        <p>Treamer</p>
-                        <p>Deodrant</p>
-                        <p>Ties</p>
-                        <p>Accessories Gift-Set</p>
-                        <p>Caps & Hats</p>
-
-                        <p>Phone Cases</p>
-                        <p>Rings & Neckles</p>
-                        <hr />
-                        <p style={{ color: "#EC407A" }}>Bag & Bag-Packs</p>
-                        <p style={{ color: "#EC407A" }}>Luggage & Trolly </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul> */}
+              
             </nav>
           </div>
           <div className="secondNavMain">
             <div>
-              <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
+              <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Product name, vendor" />
               <span onClick={handleSearch}>
                 <SearchIcon />
               </span>
@@ -265,15 +166,6 @@ const Nav = ({ setHamburger, hamburger }) => {
                       />
                     </Link>
                   </div>
-                  <div>
-                    <Link to={'/shops'}>
-                      <img
-                        src="https://img.icons8.com/?size=50&id=489&format=png"
-                        style={{ width: "25px" }}
-                        alt=""
-                      />
-                    </Link>
-                  </div>
                   <Link to={'/carts'}> <div>
                     <img
                       src="https://img.icons8.com/?size=50&id=9671&format=png"
@@ -288,6 +180,25 @@ const Nav = ({ setHamburger, hamburger }) => {
                       alt=""
                     />
                   </div></Link>
+                  <div>
+                    <Link to={'/notifications'}>
+                      <img
+                        src="https://img.icons8.com/?size=50&id=11642&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  
+                  <div>
+                    <Link to={'/profile'}>
+                      <img
+                        src="https://img.icons8.com/?size=50&id=11730&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </Link>
+                  </div>
                 </>
               ) : (
                 (user.role == "SELLER") ? (
@@ -324,16 +235,39 @@ const Nav = ({ setHamburger, hamburger }) => {
             ) : (
               <></>
             )}
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label='Options'
+                icon={<HamburgerIcon />}
+                variant='outline'
+              />
+              <MenuList>
+                <MenuItem icon={<div>
+                    <Link to={'/profile'}>
+                      <img
+                        src="https://img.icons8.com/?size=50&id=11730&format=png"
+                        style={{ width: "25px" }}
+                        alt=""
+                      />
+                    </Link>
+                  </div>} command='⌘T'>
+                  Profile
+                </MenuItem>
+                <MenuItem icon={<ExternalLinkIcon />} command='⌘N'>
+                  New Window
+                </MenuItem>
+                <MenuItem icon={<RepeatIcon />} command='⌘⇧N'>
+                  Open Closed Tab
+                </MenuItem>
+                {(localStorage.getItem('user') == undefined || localStorage.getItem('user') == null) ? (
+                  <MenuItem _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</MenuItem>
+                ) : (
+                  <MenuItem _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={handleLogout}>Logout</MenuItem>
+                )}
+              </MenuList>
+            </Menu>
             
-            {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signup")}>Login</Button> */}
-            {/* Login button */}
-            {(localStorage.getItem('user') == undefined || localStorage.getItem('user') == null) ? (
-              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
-            ) : (
-              <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={handleLogout}>Logout</Button>
-            )}
-            {/* <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</Button>
-            <Button backgroundColor={'pink.500'} color={"white"} _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={logouts}>Logout</Button> */}
           </div>
         </div>
       ) : (
