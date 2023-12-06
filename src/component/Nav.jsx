@@ -244,21 +244,21 @@ const Nav = ({ setHamburger, hamburger }) => {
               />
               <MenuList>
                 <MenuItem icon={<div>
-                    <Link to={'/profile'}>
-                      <img
-                        src="https://img.icons8.com/?size=50&id=11730&format=png"
-                        style={{ width: "25px" }}
-                        alt=""
-                      />
-                    </Link>
-                  </div>} command='⌘T'>
+                    <Image
+                      src={(user?.avatar) || "https://img.icons8.com/?size=50&id=11730&format=png"}
+                      style={{ width: "25px" }}
+                      alt=""
+                    />
+                  </div>}
+                  onClick={() => navigate("/profile")}>
                   Profile
                 </MenuItem>
-                <MenuItem icon={<ExternalLinkIcon />} command='⌘N'>
-                  New Window
+                <MenuItem icon={<ExternalLinkIcon />}>
+                  Post
                 </MenuItem>
-                <MenuItem icon={<RepeatIcon />} command='⌘⇧N'>
-                  Open Closed Tab
+                {/* <MenuItem icon={<RepeatIcon />} command='⌘⇧N'> */}
+                <MenuItem icon={<RepeatIcon />}>
+                  Settings
                 </MenuItem>
                 {(localStorage.getItem('user') == undefined || localStorage.getItem('user') == null) ? (
                   <MenuItem _hover={{ backgroundColor: "pink.400" }} display={D2} onClick={() => navigate("/signin")}>Login</MenuItem>

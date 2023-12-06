@@ -2,7 +2,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import SinglePageGrid from './SinglePageGrid'
 import "../../CSS/SingleProduct.css"
-import { Box, HStack, Image, Input, InputGroup, Stack, Text, Button, ButtonGroup, Select, filter, Container, Flex, useToast, UnorderedList, ListItem } from '@chakra-ui/react'
+import { Box, HStack, Image, Input, InputGroup, Stack, Text, Button, ButtonGroup, Select, filter, Container, Flex, useToast, UnorderedList, ListItem,
+    RadioGroup,
+    Radio
+} from '@chakra-ui/react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Nav from '../Nav'
 import Footer from '../footer/Footer'
@@ -18,6 +21,7 @@ const CreateNewProduct = () => {
     const [attributes, setAttributes] = useState();
     const [brands, setBrands] = useState();
     const [attributeValues, setAttributeValues] = useState();
+    const [ vat, setVat ] = useState(true);
     const [warehouses, setWarehouses] = useState();
     const [selectedAttribute, setSelectedAttribute] = useState();
     const [selectedBrand, setSelectedBrand] = useState();
@@ -99,7 +103,7 @@ const CreateNewProduct = () => {
         axios.post(`${baseUrl}/products`, {
             "name": name,
             "createdAt": currentdate,
-            "brandID": selectedBrand?.id,
+            "brandID": selectedBrand.id || brands.id,
             "availableColors": [],
             "image": imageUrl,
             "price": price,
@@ -111,8 +115,8 @@ const CreateNewProduct = () => {
             ],
             "ownerId": user.id,
             "productFlag": 1,
-            "warehouseID": selectedWarehouse?.id,
-            "categoryIds": ["7"]
+            "warehouseId": selectedWarehouse.id || warehouses[0].id,
+            "categoryIds": selectedCategory.id || categories[0].id
         }).then((doc) => {
             toast({
                 title: 'Created',
@@ -198,39 +202,56 @@ const CreateNewProduct = () => {
         </div>
         <div>
         <Box>
+          <Text fontSize='3xl' as='b'>Name</Text>
+          <Input placeholder='Product Name' onChange={(e) => setName(e.target.value)} />
           <Text fontSize='3xl' as='b'>Image URL</Text>
           
           <Input placeholder='Image URL' onChange={(e) => setImageUrl(e.target.value)}/>
-          <Input type='file' placeholder='Image File' onChange={onFileChange}/>
-          <Button onClick={onFileUpload}> Upload Image </Button>
+          {/* <Input type='file' placeholder='Image File' onChange={onFileChange}/>
+          <Button onClick={onFileUpload}> Upload Image </Button> */}
           {/* {fileData} */}
         
         <Text fontSize='3xl' as='b'>Attribute</Text>
-        <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
-          <option key={40} value={40}>{40}</option>
-          <option key={41} value={41}>{41}</option>
-          <option key={42} value={42}>{42}</option>
-        </Select>
+        {/* <div style={{}}> */}
+            <div>
+                <Text fontSize='xl' as='b'>Size</Text>
+                <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
+                    <option key={40} value={40}>{40}</option>
+                    <option key={41} value={41}>{41}</option>
+                    <option key={42} value={42}>{42}</option>
+                </Select>
+            </div>
+            <div>
+                <Text fontSize='xl' as='b'>Color</Text>
+                <Select  variant="flushed" value={selectedAttribute} onChange={ addNewProductAttribute } textAlign={'left'} maxW={"max-content"}   >
+                    <option key={"red"} value="red">{"red"}</option>
+                    <option key={"White"} value="white">{"white"}</option>
+                    <option key={"black"} value="black">{"black"}</option>
+                </Select>
+            </div>
+        {/* </div> */}
+        
         <Text fontSize='3xl' as='b'>Category</Text>
         <Select variant="flushed" value={selectedCategory} onChange={ handleCategory } textAlign={'left'} maxW={"max-content"}   >
             {categories?.length && categories?.map((category) => (
                 <option key={category?.id} value={category?.id}>{category?.name}</option>
             ))}
         </Select>
-        <Box>
+        {/* <Box>
           <Text fontSize={"18px"} as={"b"}>
             {price}{" "}
             <span style={{ fontSize: "18px", color: "orange" }}>
               {" "}
-              {/* &nbsp; {discount} */}
             </span>
           </Text>
-        </Box>
+        </Box> */}
         <Text fontWeight={"600"} fontSize={"30px"} mt={"1%"}>VATS: </Text>
-        <Select>
-          <option key={40} value={40}>{"YES"}</option>
-          <option key={41} value={41}>{"NO"}</option>
-        </Select>
+        <RadioGroup onChange={setVat} value={vat}>
+        <Stack direction='row'>
+            <Radio value="true">Yes</Radio>
+            <Radio value="false">No</Radio>
+        </Stack>
+        </RadioGroup>
         <br />
         <Text fontSize='3xl' as='b'>Price</Text>
         <Input placeholder='Price' onChange={(e) => setPrice(e.target.value)} />

@@ -45,21 +45,18 @@ const Profile = () => {
   const navigate = useNavigate();
   const [hamburger, setHamburger] = useState(false)
   const [shop, setShop] = useState();
+  const [ selectedFile, setSelectedFile ] = useState({name: ""});
+
   const onFileUpload = () => {
     const formData = new FormData();
 
     formData.append(
         "myFile",
-        this.state.selectedFile,
-        this.state.selectedFile.name
+        selectedFile,
+        selectedFile?.name
     );
-
-    // Details of the uploaded file
-    console.log(this.state.selectedFile);
-
-    // Request made to the backend api
-    // Send formData object
-    setImage(this.state)
+    console.log(selectedFile);
+    setImage(selectedFile)
   };
   const user = JSON.parse(localStorage.getItem("user"))
   return (<Box mt={"0px"}>
@@ -76,12 +73,22 @@ const Profile = () => {
             <div style={{display: "inline-flex", maxWidth: "100%"}}>
               <div style={{width: "70%"}}>
                 <Text fontSize='3xl' as='b'>Email</Text>
-                <Editable defaultValue='Take some chakra'>
+                <Editable defaultValue={user?.email}>
                   <EditablePreview />
                   <EditableInput />
                 </Editable>
                 <Text fontSize='3xl' as='b'>Name</Text>
-                <Editable defaultValue='Take some chakra'>
+                <Editable defaultValue={user?.name}>
+                  <EditablePreview />
+                  <EditableInput />
+                </Editable>
+                <Text fontSize='3xl' as='b'>Phone Number</Text>
+                <Editable defaultValue={user?.phoneNumber}>
+                  <EditablePreview />
+                  <EditableInput />
+                </Editable>
+                <Text fontSize='3xl' as='b'>Gender</Text>
+                <Editable defaultValue={user?.gender}>
                   <EditablePreview />
                   <EditableInput />
                 </Editable>

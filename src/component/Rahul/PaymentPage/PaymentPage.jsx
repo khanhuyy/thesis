@@ -23,8 +23,9 @@ const PaymentPage = () => {
     // console.log('store', store);
     return store.CartReducer;
   });
+  
+  const cart = JSON.parse(localStorage.getItem('cart'))
   const cartItems = JSON.parse(localStorage.getItem('cartItems'))
-
   return (
     <Stack
       spacing={"0"}
@@ -87,7 +88,10 @@ const PaymentPage = () => {
             {" "}
             Payment Mode
           </Text>
-          <DebitCard  />
+          <DebitCard 
+            cart={cart}
+            cartItems={cartItems}
+          />
         </Stack>
       </Stack>
     </Stack>

@@ -23,7 +23,8 @@ import "./OrderDetail.css";
 
 
 const OrderDetail = () => {
-  const {orderId} = useParams()
+  const { orderId } = useParams()
+  console.log(orderId);
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const OrderDetail = () => {
   }
   useEffect(() => {
     fetchOrder()
-  }, [])
+  }, [orderId])
   
   // get order events
   const fetchOrderEvents = () => {
@@ -67,12 +68,11 @@ const OrderDetail = () => {
   }
   useEffect(() => {
     fetchOrderEvents()
-  }, [])
-  console.log(orderEvents);
+  }, [orderId])
   
   // get order items
   const fetchOrderItems = () => {
-    axios.get(`${baseUrl}/orderItems?orderID=${orderId}`)
+    axios.get(`${baseUrl}/orderItems?cartId=${order?.cartId}`)
       .then((doc) => {
         setOrderItems(doc.data);
       })
@@ -80,7 +80,7 @@ const OrderDetail = () => {
   }
   useEffect(() => {
     fetchOrderItems()
-  }, [])
+  }, [order])
   
   const handleClick = () => {
     localStorage.setItem("totalPrice", totalPrice + 99);
@@ -104,10 +104,7 @@ const OrderDetail = () => {
                 boxSize='150px' 
                 src={user.avatar} /> <Text color='black'>Products</Text>
               <div>
-                <Link onClick={()=>navigate(`/profiles`)}>Info</Link>
-              </div>
-              <div>
-                <Link onClick={()=>navigate(`/profiles`)}>Deals</Link>
+                <Link onClick={()=>navigate(`/profile`)}>Info</Link>
               </div>
               <div>
                 <Link onClick={()=>navigate(`/users/${user.id}`)}>My account</Link>
@@ -119,14 +116,14 @@ const OrderDetail = () => {
                 <Link onClick={()=>navigate(`/vouchers`)}>Vouchers</Link>
               </div>
               <div>
-                <Link onClick={()=>navigate(`/profiles`)}>Coins</Link>
+                <Link onClick={()=>navigate(`/profile`)}>Coins</Link>
               </div>
             </div>
             <div className="order-info">
               <div style={{display: "inline-flex"}}>
-                <Button onClick={()=>navigate(`/orders`)}>- Back</Button>
+                <Button onClick={()=>navigate(`/orders`)}>Back</Button>
                 <div className="align-right">
-                  <p style={{textAlign: "right"}}>Order Code: 202311261123CODE | Order Status: COMPLETE</p>
+                  <div style={{right: "0"}}>Order Code: 202311261123CODE | Order Status: COMPLETE</div>
                 </div>
               </div>
               <div style={{height: "250px", margin: "10px"}}>
@@ -180,7 +177,6 @@ const OrderDetail = () => {
                       <Stack  w={'100%'} direction={'row'}  bgColor={'white'} justify={'space-between'}  p={'0 15px'}>
                 
                       <Stack p={'10px 0'} >
-                        {/* <Text fontSize={'18px'} >{title}</Text> */}
                         <Text fontSize={'18px'} >Order Item {e.id}</Text>
                         <br />
                         <Text>

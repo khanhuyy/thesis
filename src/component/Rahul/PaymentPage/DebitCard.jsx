@@ -14,10 +14,12 @@ import { useDispatch } from "react-redux";
 import { deleteAll } from "../../../redux/CartReducer/action";
 import axios from "axios";
 import { baseUrl } from "../../../Url";
+import { formatOrderCode } from "../../../utils/helper";
 // let voices = window.speechSynthesis.getVoices()[3];
 
-const DebitCard = (cart) => {
+const DebitCard = ({cart, cartItems}) => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [ createdOrder, setCreatedOrder ] = useState();
 
   const [tabView] = useMediaQuery("(max-width: 1105px)");
 
@@ -33,7 +35,6 @@ const DebitCard = (cart) => {
   const statuses = ["success", "error", "warning", "info"];
   const positions = ["top"];
   const user = JSON.parse(localStorage.getItem('user'))
-
   const handleFinalSubmit = () => {
 
     const formData = JSON.parse(localStorage.getItem("formData"));
@@ -59,19 +60,57 @@ const DebitCard = (cart) => {
     //   isClosable: true,
     // });
     textTospeechFun(`Order Success`);
-    // const createOrder = () => {
+    const now = new Date();
+    // create order
     axios.post(`${baseUrl}/orders`, {
-      "ownerID": `${user?.id}`,
-      "total": 700000, // todo 
-      "paymentMethod": "CASH",
-      "quantity": 3,
-      "cartID": cart?.id || 123
+      code: formatOrderCode(now),
+      ownerId: `${user?.id}`,
+      total: cart?.total,
+      paymentMethod: "CASH",
+      quantity: 3,
+      cartId: cart.id,
+      avatar: cartItems?.[0]?.image || "https://picsum.photos/200/300"
     })
-    .then((doc) => {
-      
-    })
+    .then((doc) => {})
     .catch((err) => console.log(err))
-    // };
+
+    // get created order
+    axios.get(`${baseUrl}/orders?cartId=${cart?.id}`)
+    .then((doc) => {
+      setCreatedOrder(doc.data?.[0])
+      console.log(createdOrder);
+    }).catch((err) => console.log(err))
+
+    // create order items
+    cartItems?.map((e) => {
+      axios.post(`${baseUrl}/orderItems`, {
+        cartId: cart.id,
+        productId: e.productId,
+        image: e.image || "",
+        price: e?.price,
+        endPrice: e.endPrice || e?.price,
+      }).then((doc) => {}).catch((err) => {
+        console.log(err);
+      })
+    })
+
+    // complete current cart
+    axios.put(`${baseUrl}/carts/${cart?.id}`, {
+      isComplete: true,
+      ownerId: cart.ownerId,
+      total: cart.total,
+      paymentMethod: cart?.paymentMethod,
+      quantity: cart.quantity
+    }).then((response) => {}
+    ).catch((err) => console.log(err))
+    // create new incomplete new cart for user
+    axios.post(`${baseUrl}/carts`, {
+      paymentMethod: "CASH",
+      isComplete: false,
+      ownerId: user.id
+    })
+    .then((doc) => {})
+    .catch((err) => console.log(err))
     navigate("/orderSuccess");
   };
 

@@ -30,25 +30,17 @@ const CartPage = () => {
   });
 
   const [cart, setCart] = useState({});
+  const [ checkCart, setCheckCart ] = useState({});
+  const [ onChangeCreateCart, setOnChangeCreateCart ] = useState(false);
   const [cartItems, setCartItems] = useState();
   const user = JSON.parse(localStorage.getItem("user"));
   const fetchCart = () => {
     axios.get(`${baseUrl}/carts?ownerId=${user?.id}&isComplete=false`)
       .then((doc) => {
         setCart(doc.data?.[0]);
+        setCheckCart(doc.data);
       })
       .catch((err) => console.log(err))
-    if (cart == {}) {
-      axios.post(`${baseUrl}/carts`, {
-        "ownerId": user.id,
-        "paymentMethod": "CASH",
-        "isComplete": false
-    })
-      .then((doc) => {
-        setCart(doc.data?.[0]);
-      })
-      .catch((err) => console.log(err))
-    }
   }
   useEffect(() => {
     fetchCart()
@@ -74,12 +66,16 @@ const CartPage = () => {
       "total": 700000, // todo 
       "paymentMethod": "CASH",
       "quantity": 3,
-      "cartID": cart?.id || 123
+      "cartID": cart?.id || 123,
+      "avatar": cartItems?.[0]?.avatar || ""
     })
-    .then((doc) => {
-      
-    })
+    .then((doc) => {})
     .catch((err) => console.log(err))
+
+    axios.put(`${baseUrl}/carts/${cart?.id}`, {
+      isComplete: true,
+    }).then((response) => {}
+    ).catch((err) => console.log(err))
   }
 
   const createProduct = () => {
@@ -106,11 +102,11 @@ const CartPage = () => {
   const handleClick = () => {
     if (cart?.paymentMethod === "CASH") {
       localStorage.setItem("totalPrice", cart?.total + 99);
+      localStorage.setItem("cart", JSON.stringify(cart))
       localStorage.setItem("cartItems", JSON.stringify(cartItems))
       navigate("/paymentPage");
     } else {
       createOrder();
-      // create debt order
     }
     
   };

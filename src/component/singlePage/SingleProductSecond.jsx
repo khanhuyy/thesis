@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Heading, Text, Box, HStack, Flex, Button, Image, Input, List,
   ListItem,
   ListIcon,
   OrderedList,
   UnorderedList,
-  Container
+  Container,
+  Select
 } from '@chakra-ui/react'
 import { FaStar } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci';
@@ -15,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 
 const SingleProductSecond = ({ id, addToCart, removeFromCart, title, brand, rating, count, price, discount, size, ageGroup, exist }) => {
   const navigate = useNavigate();
+  const [ deliveryOption, setDeliveryOption ] = useState("Fast - Grab")
+
   return (
     <Box>
       
@@ -78,7 +81,11 @@ const SingleProductSecond = ({ id, addToCart, removeFromCart, title, brand, rati
       {/* <hr /> */}
 
       <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Delivery Option</Text>
-      <Input width={"40%"} />
+      <Select  variant="flushed" value={deliveryOption} onChange={(e) => setDeliveryOption(e.target.value)} textAlign={'left'} maxW={"70%"}   >
+        <option key={"Fast - Grab"} value="Fast - Grab">Fast - Grab</option>
+        <option key={"Economic - Viettel Post"} value="Economic - Viettel Post">Economic - Viettel Post</option>
+        <option key={"Luxury - J&T"} value="Luxury - J&T">Luxury - J&T</option>
+      </Select>
 
       <Box display={"flex"} alignItems={"center"} mt={"4%"}>
         <CiDeliveryTruck size={"25px"} />
@@ -97,8 +104,8 @@ const SingleProductSecond = ({ id, addToCart, removeFromCart, title, brand, rati
 
       <Text fontWeight={"400"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>100% Original Products</Text>
       <Flex>
-        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Price From:</Text>
-        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Commission:</Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Price From: </Text>
+        <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"}>Commission: </Text>
         <Text fontWeight={"600"} fontSize={["1.1rem","1.7rem","1.2rem"]} mt={"2%"} mb={"2%"} color={"orange"}>{price}</Text>
       </Flex>
       <Box>

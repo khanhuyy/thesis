@@ -18,6 +18,7 @@ const Card = ({ props }) => {
     sizes,
     productDiscountPercentage,
   } = props;
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <Stack
       height={"380px"}
@@ -112,17 +113,20 @@ const Card = ({ props }) => {
           >
             <CarouselPage obj={image} />
           </Box>
-          <Button
-            borderRadius={"0.05rem"}
-            _hover={{ backgroundColor: "none", borderColor: "black" }}
-            leftIcon={<FiHeart />}
-            size="sm"
-            variant="outline"
-            w="95%"
-          >
-            {" "}
-            Wishlist
-          </Button>
+          { user.role !== "VENDOR" && user.role !== "ADMIN" &&
+            <Button
+              borderRadius={"0.05rem"}
+              _hover={{ backgroundColor: "none", borderColor: "black" }}
+              leftIcon={<FiHeart />}
+              size="sm"
+              variant="outline"
+              w="95%"
+            >
+              {" "}
+              Wishlist
+            </Button>
+          }
+          
           <Stack p="1rem" spacing={0} alignItems={"flex-start"}>
             {/* <Text>Sizes: {sizes[0]} </Text>  */}
           </Stack>

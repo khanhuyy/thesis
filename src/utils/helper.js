@@ -5,6 +5,10 @@ export const formatURL = (s) => {
   return result;
 };
 
+export const formatOrderCode = (time) => {
+  return time.getYears() + time.getMonths() + time.getDates() + time.getHours() + time.getMinutes() + time.getSeconds() + ""
+}
+
 // const onFileUpload = () => {
 //   const formData = new FormData();
 

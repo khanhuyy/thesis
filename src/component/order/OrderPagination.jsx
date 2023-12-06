@@ -1,6 +1,7 @@
 import {
   Box,
   Button, 
+  Container, 
   Image,
   Stack,
   Text,
@@ -28,7 +29,7 @@ const OrderPagination = () => {
   const user = JSON.parse(localStorage.getItem('user'))
 
   const fetchOrders = () => {
-    axios.get(`${baseUrl}/orders?ownerID=${user.id}`)
+    axios.get(`${baseUrl}/orders?ownerId=${user.id}`)
       .then((doc) => {
         setOrders(doc.data);
       })
@@ -47,32 +48,18 @@ const OrderPagination = () => {
   
 
   return (
-    <Stack
-      spacing={"0"}
-      overflow={"hidden"}
-      // bgColor={"red"}
-      // border={"1px solid red"}
-    >
+    <Stack>
       <Nav />
-      
+        <Box>
       {orders?.length && (
-        <Stack
-          bgColor={"#eeeeee"}
-          w={"100%"}
-          mt={"240px"}
-          p={"3rem 8rem 0"}
-          pl={{ base: "0.3rem", sm: "0.3rem", md: "8rem", lg: "8rem" }}
-          pr={{ base: "0.3rem", sm: "0.3rem", md: "8rem", lg: "8rem" }}
-          pt={"10vh"}
-          direction={{ base: "column", sm: "column", md: "column", lg: "row" }}
-        >
+        <Container maxW="70%" bg="#eeeeee">
           <Stack
-            w={{ base: "100%", sm: "100%", md: "100%", lg: "70%" }}
+            // w={{ base: "100%", sm: "100%", md: "100%", lg: "70%" }}
             marginTop={"35px"}
             paddingRight={{ base: "0", sm: "0", md: "0", lg: "10px" }}
             paddingBottom={{ base: "1rem", sm: "1rem", md: "1rem", lg: "3rem" }}
             // h={"85vh"}
-            h={{ base: "70vh", sm: "70vh", md: "70vh", lg: "85vh" }}
+            // h={{ base: "70vh", sm: "70vh", md: "70vh", lg: "85vh" }}
             overflowY={{ base: "auto", sm: "auto", md: "auto", lg: "scroll" }}
           >
             {orders?.map((e) => (
@@ -117,8 +104,9 @@ const OrderPagination = () => {
             
           </Stack>
           
-        </Stack>
+        </Container>
       )}
+      </Box>
     </Stack>
   );
 };
